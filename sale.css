@@ -1,13 +1,12 @@
 body {
-	font-family: "Arial";
-	padding-top: 1%;
+	font-family: Arial, Helvetica, sans-serif;
+	padding-top: 50px;
 }
 
 .meni {
 	background-color: #729fcf;
 	border: 1px solid lightgreen;
 	font-size: 12px;
-	margin-top: 25px;
 }
 
 .meni ul {
@@ -31,14 +30,14 @@ body {
 	border: 1px;
 	border-style: outset;
 	border-color: black;
-	margin-top: -25px;
+	margin-top: -40px;
 }
 
 .sadrzaj {
 	border: 1px solid lightgreen;
 	background-color: #729fcf;
 	margin-top: 1%;
-	padding: 2%;
+	padding: 1em;
 }
 
 .tabelaSala {
@@ -95,11 +94,11 @@ td.headerRedni {
 }
 
 .slobodnaSala {
-	background-color: green;
+	background-color: #00ff00;
 }
 
 .zauzetaSala {
-	background-color: orange;
+	background-color: #ff6347;
 }
 
 .kancelarija {
@@ -107,15 +106,15 @@ td.headerRedni {
 }
 
 @media only screen and (max-width: 600px) {
+	.meni li {
+		display: block;
+	}
+
 	td.headerSprat {
 		display: none;
 	}
 
 	.headerRedni {
 		display: none;
-	}
-
-	.meni li {
-		display: block;
 	}
 }

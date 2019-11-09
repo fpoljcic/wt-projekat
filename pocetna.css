@@ -1,13 +1,12 @@
 body {
-	font-family: "Arial";
-	padding-top: 1%;
+	font-family: Arial, Helvetica, sans-serif;
+	padding-top: 50px;
 }
 
 .meni {
 	background-color: #729fcf;
 	border: 1px solid lightgreen;
 	font-size: 12px;
-	margin-top: 25px;
 }
 
 .meni ul {
@@ -31,25 +30,28 @@ body {
 	border: 1px;
 	border-style: outset;
 	border-color: black;
-	margin-top: -25px;
+	margin-top: -40px;
 }
 
-
-.red {
-	margin-top: 1%;
-	width: 100%;
-}
-
-.red img {
+.sadrzaj img {
 	vertical-align: middle;
 	padding: 1% 0;
-	width: 20em;
+	width: 33%;
 	height: auto;
+	
 }
 
 @media only screen and (max-width: 600px) {
+	.meni li {
+		display: block;
+	}
+
+	.sadrzaj {
+		display: inline-grid;
+	}
+
 	.sadrzaj img {
-		width: 80%;
-		height: 80%;
+		max-width: 80%;
+		height: auto;
 	}
 }

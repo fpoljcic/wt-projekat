@@ -1,0 +1,57 @@
+@objects
+	meni 		css     .meni
+	meni_item_1	xpath	//div[@class='meni']/ul/li[1]
+	meni_item_2	xpath	//div[@class='meni']/ul/li[2]
+	logo 		css     .logo
+	ul 			css		.meni ul
+	sadrzaj 	css		.sadrzaj
+	labela_1 	xpath	//div[@class='sadrzaj']/form/label[1]
+	labela_2 	xpath	//div[@class='sadrzaj']/form/label[2]
+	input_1		xpath 	//div[@class='sadrzaj']/form/input[1]
+	input_2		xpath 	//div[@class='sadrzaj']/form/input[2]
+= Meni section =
+	logo:
+		inside partly meni 40px bottom
+		width 97 to 99% of viewport/width
+		height 80 to 84px
+		centered horizontally inside viewport
+	meni:
+		above labela_1 14 to 18px
+		width 97 to 99% of viewport/width
+		centered horizontally inside viewport
+	ul:
+		inside meni
+		contains meni_item_1
+		inside viewport 7 to 11px left
+		below logo
+		centered horizontally inside meni 1px
+	meni_item_1:
+		aligned horizontally all meni_item_2
+		near meni_item_2 2 to 6px left
+		height 12 to 16px
+		inside ul 0 to 2px bottom, 0px top
+	meni_item_2:
+		inside ul 0 to 2px bottom, 0px top
+		height 12 to 16px
+= Main section =
+	sadrzaj:
+		width 97 to 99% of viewport/width
+		below meni
+		centered horizontally inside viewport
+		inside viewport 7 to 11px left
+	labela_1:
+		inside sadrzaj 15 to 20px top
+		width 150px
+		aligned vertically all labela_2
+		below meni 14 to 16px
+	labela_2:
+		width 150px
+		below labela_1 3 to 7px
+	input_1:
+		right-of labela_1 12 to 16px
+		aligned vertically left input_2
+		width 100 % of input_2/width
+		below meni 14 to 16px
+	input_2:
+		right-of labela_2 12 to 16px
+		below input_1 3 to 7px

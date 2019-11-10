@@ -1,0 +1,47 @@
+@objects
+	meni 		css     .meni
+	meni_item_1	xpath	//div[@class='meni']/ul/li[1]
+	meni_item_2	xpath	//div[@class='meni']/ul/li[2]
+	logo 		css     .logo
+	ul 			css		.meni ul
+	sadrzaj 	css		.sadrzaj
+	tabela 		css		.tabelaSala
+	headerRedni	css 	.headerRedni
+	headerSprat	css 	td.headerSprat
+= Meni section =
+	logo:
+		inside partly meni -40 to -38px top
+		width 95 to 97% of viewport/width
+		height 80 to 84px
+		centered horizontally inside viewport
+	meni:
+		above sadrzaj 3 to 5px
+		width 95 to 97% of viewport/width
+		centered horizontally inside viewport
+	ul:
+		inside meni
+		contains meni_item_1
+		inside viewport 7 to 11px left
+		below logo
+		centered horizontally inside meni 1px
+	meni_item_1:
+		aligned vertically all meni_item_2
+		above meni_item_2 0px
+		height 12 to 16px
+		inside ul 0px top, 2 to 6px left
+	meni_item_2:
+		inside ul 2 to 6px left
+		height 12 to 16px
+= Main section =
+	sadrzaj:
+		width 95 to 97% of viewport/width
+		below meni
+		contains tabela
+		centered horizontally inside viewport
+	tabela:
+		inside sadrzaj 15 to 19px top bottom
+		centered horizontally inside meni
+	headerRedni:
+		absent
+	headerSprat:
+		absent

@@ -1,0 +1,64 @@
+@objects
+	meni 		css     .meni
+	meni_item_1	xpath	//div[@class='meni']/ul/li[1]
+	meni_item_2	xpath	//div[@class='meni']/ul/li[2]
+	logo 		css     .logo
+	ul 			css		.meni ul
+	sadrzaj 	css		.sadrzaj
+	tabela 		xpath	//div[@class='kalendar']/table
+	labela_1	xpath	//div[@class='sadrzaj']/label[1]
+	select_1	xpath	//div[@class='sadrzaj']/select
+	labela_2	xpath	//div[@class='sadrzaj']/label[2]
+	brojevi 	css 	.brojevi
+	tableHeader	css 	th
+	button		css 	input[type=button] 
+= Meni section =
+	logo:
+		inside partly meni -40 to -38px top
+		width 95 to 97% of viewport/width
+		height 80 to 84px
+		centered horizontally inside viewport
+	meni:
+		above labela_1 7 to 11px
+		width 95 to 97% of viewport/width
+		centered horizontally inside viewport
+	ul:
+		inside meni
+		contains meni_item_1
+		inside viewport 7 to 11px left
+		below logo
+		centered horizontally inside meni 1px
+	meni_item_1:
+		aligned vertically all meni_item_2
+		above meni_item_2 0px
+		height 12 to 16px
+		inside ul 0px top, 2 to 6px left
+	meni_item_2:
+		inside ul 2 to 6px left
+		height 12 to 16px
+= Main section =
+	sadrzaj:
+		width 95 to 97% of viewport/width
+		below meni
+		centered horizontally inside viewport
+	tabela:
+		inside sadrzaj 51 to 55px top, 0px left
+		width 200px
+	labela_1:
+		below meni 7 to 11px
+		inside viewport 6 to 10px left
+	select_1:
+		right-of labela_1 3 to 7px
+		aligned horizontally centered labela_1 1px
+		below meni 4 to 6px
+	labela_2:
+		aligned horizontally centered labela_1
+		right-of select_1 2 to 6px
+		height 100% of labela_1/height
+	brojevi:
+		absent
+	tableHeader:
+		absent
+	button:
+		below tabela 2 to 4px
+		aligned vertically left tabela

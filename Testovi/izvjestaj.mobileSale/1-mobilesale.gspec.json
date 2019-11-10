@@ -1,0 +1,562 @@
+{
+  "testId" : "1-mobilesale.gspec",
+  "name" : "mobileSale.gspec",
+  "report" : {
+    "nodes" : [ {
+      "name" : "Mutation test",
+      "status" : "info",
+      "nodes" : [ {
+        "name" : "check  mobileSale.gspec --url http://localhost/sale.html --size 480x800 --offset 5 --htmlreport izvjestaj.mobileSale",
+        "status" : "info",
+        "nodes" : [ {
+          "name" : "Check layout: mobileSale.gspec included tags: ",
+          "status" : "info",
+          "time" : 1573347257099,
+          "sections" : [ {
+            "name" : "Meni section",
+            "place" : {
+              "filePath" : "mobileSale.gspec",
+              "lineNumber" : 11
+            },
+            "objects" : [ {
+              "name" : "logo",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "mobileSale.gspec",
+                  "lineNumber" : 13
+                },
+                "name" : "inside partly meni -40 to -38px top",
+                "meta" : [ {
+                  "from" : {
+                    "object" : "logo",
+                    "edge" : "top"
+                  },
+                  "to" : {
+                    "object" : "meni",
+                    "edge" : "top"
+                  },
+                  "expectedDistance" : "-40 to -38px",
+                  "realDistance" : "-39px"
+                } ],
+                "highlight" : [ "logo", "meni" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "mobileSale.gspec",
+                  "lineNumber" : 14
+                },
+                "name" : "width 95 to 97% of viewport/width",
+                "meta" : [ {
+                  "from" : {
+                    "object" : "logo",
+                    "edge" : "left"
+                  },
+                  "to" : {
+                    "object" : "logo",
+                    "edge" : "right"
+                  },
+                  "expectedDistance" : "95 to 97% [444 to 453px]",
+                  "realDistance" : "96% [450px]"
+                } ],
+                "highlight" : [ "logo" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "mobileSale.gspec",
+                  "lineNumber" : 15
+                },
+                "name" : "height 80 to 84px",
+                "meta" : [ {
+                  "from" : {
+                    "object" : "logo",
+                    "edge" : "top"
+                  },
+                  "to" : {
+                    "object" : "logo",
+                    "edge" : "bottom"
+                  },
+                  "expectedDistance" : "80 to 84px",
+                  "realDistance" : "82px"
+                } ],
+                "highlight" : [ "logo" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "mobileSale.gspec",
+                  "lineNumber" : 16
+                },
+                "name" : "centered horizontally inside viewport",
+                "highlight" : [ "logo", "viewport" ]
+              } ]
+            }, {
+              "name" : "meni",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "mobileSale.gspec",
+                  "lineNumber" : 18
+                },
+                "name" : "above sadrzaj 3 to 5px",
+                "meta" : [ {
+                  "from" : {
+                    "object" : "meni",
+                    "edge" : "bottom"
+                  },
+                  "to" : {
+                    "object" : "sadrzaj",
+                    "edge" : "top"
+                  },
+                  "expectedDistance" : "3 to 5px",
+                  "realDistance" : "4px"
+                } ],
+                "highlight" : [ "meni", "sadrzaj" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "mobileSale.gspec",
+                  "lineNumber" : 19
+                },
+                "name" : "width 95 to 97% of viewport/width",
+                "meta" : [ {
+                  "from" : {
+                    "object" : "meni",
+                    "edge" : "left"
+                  },
+                  "to" : {
+                    "object" : "meni",
+                    "edge" : "right"
+                  },
+                  "expectedDistance" : "95 to 97% [444 to 453px]",
+                  "realDistance" : "96% [452px]"
+                } ],
+                "highlight" : [ "meni" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "mobileSale.gspec",
+                  "lineNumber" : 20
+                },
+                "name" : "centered horizontally inside viewport",
+                "highlight" : [ "meni", "viewport" ]
+              } ]
+            }, {
+              "name" : "ul",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "mobileSale.gspec",
+                  "lineNumber" : 22
+                },
+                "name" : "inside meni",
+                "meta" : [ ],
+                "highlight" : [ "ul", "meni" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "mobileSale.gspec",
+                  "lineNumber" : 23
+                },
+                "name" : "contains meni_item_1",
+                "highlight" : [ "ul", "meni_item_1" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "mobileSale.gspec",
+                  "lineNumber" : 24
+                },
+                "name" : "inside viewport 7 to 11px left",
+                "meta" : [ {
+                  "from" : {
+                    "object" : "ul",
+                    "edge" : "left"
+                  },
+                  "to" : {
+                    "object" : "viewport",
+                    "edge" : "left"
+                  },
+                  "expectedDistance" : "7 to 11px",
+                  "realDistance" : "9px"
+                } ],
+                "highlight" : [ "ul", "viewport" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "mobileSale.gspec",
+                  "lineNumber" : 25
+                },
+                "name" : "below logo",
+                "meta" : [ {
+                  "from" : {
+                    "object" : "ul",
+                    "edge" : "top"
+                  },
+                  "to" : {
+                    "object" : "logo",
+                    "edge" : "bottom"
+                  },
+                  "expectedDistance" : ">= 0px",
+                  "realDistance" : "12px"
+                } ],
+                "highlight" : [ "ul", "logo" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "mobileSale.gspec",
+                  "lineNumber" : 26
+                },
+                "name" : "centered horizontally inside meni 1px",
+                "highlight" : [ "ul", "meni" ]
+              } ]
+            }, {
+              "name" : "meni_item_1",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "mobileSale.gspec",
+                  "lineNumber" : 28
+                },
+                "name" : "aligned vertically all meni_item_2",
+                "highlight" : [ "meni_item_1", "meni_item_2" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "mobileSale.gspec",
+                  "lineNumber" : 29
+                },
+                "name" : "above meni_item_2 0px",
+                "meta" : [ {
+                  "from" : {
+                    "object" : "meni_item_1",
+                    "edge" : "bottom"
+                  },
+                  "to" : {
+                    "object" : "meni_item_2",
+                    "edge" : "top"
+                  },
+                  "expectedDistance" : "0px",
+                  "realDistance" : "0px"
+                } ],
+                "highlight" : [ "meni_item_1", "meni_item_2" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "mobileSale.gspec",
+                  "lineNumber" : 30
+                },
+                "name" : "height 12 to 16px",
+                "meta" : [ {
+                  "from" : {
+                    "object" : "meni_item_1",
+                    "edge" : "top"
+                  },
+                  "to" : {
+                    "object" : "meni_item_1",
+                    "edge" : "bottom"
+                  },
+                  "expectedDistance" : "12 to 16px",
+                  "realDistance" : "15px"
+                } ],
+                "highlight" : [ "meni_item_1" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "mobileSale.gspec",
+                  "lineNumber" : 31
+                },
+                "name" : "inside ul 0px top, 2 to 6px left",
+                "meta" : [ {
+                  "from" : {
+                    "object" : "meni_item_1",
+                    "edge" : "top"
+                  },
+                  "to" : {
+                    "object" : "ul",
+                    "edge" : "top"
+                  },
+                  "expectedDistance" : "0px",
+                  "realDistance" : "0px"
+                }, {
+                  "from" : {
+                    "object" : "meni_item_1",
+                    "edge" : "left"
+                  },
+                  "to" : {
+                    "object" : "ul",
+                    "edge" : "left"
+                  },
+                  "expectedDistance" : "2 to 6px",
+                  "realDistance" : "4px"
+                } ],
+                "highlight" : [ "meni_item_1", "ul" ]
+              } ]
+            }, {
+              "name" : "meni_item_2",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "mobileSale.gspec",
+                  "lineNumber" : 33
+                },
+                "name" : "inside ul 2 to 6px left",
+                "meta" : [ {
+                  "from" : {
+                    "object" : "meni_item_2",
+                    "edge" : "left"
+                  },
+                  "to" : {
+                    "object" : "ul",
+                    "edge" : "left"
+                  },
+                  "expectedDistance" : "2 to 6px",
+                  "realDistance" : "4px"
+                } ],
+                "highlight" : [ "meni_item_2", "ul" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "mobileSale.gspec",
+                  "lineNumber" : 34
+                },
+                "name" : "height 12 to 16px",
+                "meta" : [ {
+                  "from" : {
+                    "object" : "meni_item_2",
+                    "edge" : "top"
+                  },
+                  "to" : {
+                    "object" : "meni_item_2",
+                    "edge" : "bottom"
+                  },
+                  "expectedDistance" : "12 to 16px",
+                  "realDistance" : "15px"
+                } ],
+                "highlight" : [ "meni_item_2" ]
+              } ]
+            } ]
+          }, {
+            "name" : "Main section",
+            "place" : {
+              "filePath" : "mobileSale.gspec",
+              "lineNumber" : 35
+            },
+            "objects" : [ {
+              "name" : "sadrzaj",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "mobileSale.gspec",
+                  "lineNumber" : 37
+                },
+                "name" : "width 95 to 97% of viewport/width",
+                "meta" : [ {
+                  "from" : {
+                    "object" : "sadrzaj",
+                    "edge" : "left"
+                  },
+                  "to" : {
+                    "object" : "sadrzaj",
+                    "edge" : "right"
+                  },
+                  "expectedDistance" : "95 to 97% [444 to 453px]",
+                  "realDistance" : "96% [452px]"
+                } ],
+                "highlight" : [ "sadrzaj" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "mobileSale.gspec",
+                  "lineNumber" : 38
+                },
+                "name" : "below meni",
+                "meta" : [ {
+                  "from" : {
+                    "object" : "sadrzaj",
+                    "edge" : "top"
+                  },
+                  "to" : {
+                    "object" : "meni",
+                    "edge" : "bottom"
+                  },
+                  "expectedDistance" : ">= 0px",
+                  "realDistance" : "4px"
+                } ],
+                "highlight" : [ "sadrzaj", "meni" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "mobileSale.gspec",
+                  "lineNumber" : 39
+                },
+                "name" : "contains tabela",
+                "highlight" : [ "sadrzaj", "tabela" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "mobileSale.gspec",
+                  "lineNumber" : 40
+                },
+                "name" : "centered horizontally inside viewport",
+                "highlight" : [ "sadrzaj", "viewport" ]
+              } ]
+            }, {
+              "name" : "tabela",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "mobileSale.gspec",
+                  "lineNumber" : 42
+                },
+                "name" : "inside sadrzaj 15 to 19px top bottom",
+                "meta" : [ {
+                  "from" : {
+                    "object" : "tabela",
+                    "edge" : "top"
+                  },
+                  "to" : {
+                    "object" : "sadrzaj",
+                    "edge" : "top"
+                  },
+                  "expectedDistance" : "15 to 19px",
+                  "realDistance" : "17px"
+                }, {
+                  "from" : {
+                    "object" : "tabela",
+                    "edge" : "bottom"
+                  },
+                  "to" : {
+                    "object" : "sadrzaj",
+                    "edge" : "bottom"
+                  },
+                  "expectedDistance" : "15 to 19px",
+                  "realDistance" : "17px"
+                } ],
+                "highlight" : [ "tabela", "sadrzaj" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "mobileSale.gspec",
+                  "lineNumber" : 43
+                },
+                "name" : "centered horizontally inside meni",
+                "highlight" : [ "tabela", "meni" ]
+              } ]
+            }, {
+              "name" : "headerRedni",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "mobileSale.gspec",
+                  "lineNumber" : 45
+                },
+                "name" : "absent",
+                "highlight" : [ ]
+              } ]
+            }, {
+              "name" : "headerSprat",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "mobileSale.gspec",
+                  "lineNumber" : 47
+                },
+                "name" : "absent",
+                "highlight" : [ ]
+              } ]
+            } ]
+          } ],
+          "objects" : {
+            "meni" : {
+              "area" : [ 8, 58, 452, 143 ]
+            },
+            "tabela" : {
+              "area" : [ 154, 222, 160, 186 ]
+            },
+            "viewport" : {
+              "area" : [ 0, 0, 468, 719 ]
+            },
+            "ul" : {
+              "area" : [ 9, 113, 450, 75 ]
+            },
+            "logo" : {
+              "area" : [ 9, 19, 450, 82 ]
+            },
+            "meni_item_2" : {
+              "area" : [ 13, 128, 441, 15 ]
+            },
+            "meni_item_1" : {
+              "area" : [ 13, 113, 441, 15 ]
+            },
+            "sadrzaj" : {
+              "area" : [ 8, 205, 452, 220 ]
+            }
+          },
+          "screenshot" : "layout-1-screenshot.png",
+          "type" : "layout"
+        }, {
+          "name" : "Mutation testing: mobileSale.gspec included tags: ",
+          "status" : "error",
+          "time" : 1573347257099,
+          "mutationReport" : {
+            "objectMutationStatistics" : {
+              "meni" : {
+                "passed" : 10,
+                "failed" : 0,
+                "failedMutations" : [ ]
+              },
+              "tabela" : {
+                "passed" : 10,
+                "failed" : 0,
+                "failedMutations" : [ ]
+              },
+              "headerSprat" : {
+                "passed" : 0,
+                "failed" : 10,
+                "failedMutations" : [ "headerSprat: drag left by 5px", "headerSprat: drag right by 5px", "headerSprat: drag top by 5px", "headerSprat: drag down by 5px", "headerSprat: increase width by 5px", "headerSprat: decrease width by 5px", "headerSprat: increase height by 5px", "headerSprat: decrease height by 5px", "headerSprat: move left edge right by 5px", "headerSprat: move top edge down by 5px" ]
+              },
+              "ul" : {
+                "passed" : 8,
+                "failed" : 2,
+                "failedMutations" : [ "ul: increase height by 5px", "ul: decrease height by 5px" ]
+              },
+              "logo" : {
+                "passed" : 10,
+                "failed" : 0,
+                "failedMutations" : [ ]
+              },
+              "meni_item_2" : {
+                "passed" : 10,
+                "failed" : 0,
+                "failedMutations" : [ ]
+              },
+              "headerRedni" : {
+                "passed" : 0,
+                "failed" : 10,
+                "failedMutations" : [ "headerRedni: drag left by 5px", "headerRedni: drag right by 5px", "headerRedni: drag top by 5px", "headerRedni: drag down by 5px", "headerRedni: increase width by 5px", "headerRedni: decrease width by 5px", "headerRedni: increase height by 5px", "headerRedni: decrease height by 5px", "headerRedni: move left edge right by 5px", "headerRedni: move top edge down by 5px" ]
+              },
+              "meni_item_1" : {
+                "passed" : 10,
+                "failed" : 0,
+                "failedMutations" : [ ]
+              },
+              "sadrzaj" : {
+                "passed" : 10,
+                "failed" : 0,
+                "failedMutations" : [ ]
+              }
+            },
+            "totalPassed" : 68,
+            "totalFailed" : 22,
+            "totalMutations" : 90,
+            "failedRatio" : 24.444444444444443
+          },
+          "type" : "mutation"
+        } ],
+        "time" : 1573347252872,
+        "type" : "node"
+      } ],
+      "time" : 1573347246705,
+      "type" : "node"
+    } ]
+  }
+}

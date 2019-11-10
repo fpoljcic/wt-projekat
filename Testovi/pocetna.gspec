@@ -1,0 +1,51 @@
+@objects
+	meni 		css     .meni
+	meni_item_1	xpath	//div[@class='meni']/ul/li[1]
+	meni_item_2	xpath	//div[@class='meni']/ul/li[2]
+	logo 		css     .logo
+	ul 			css		.meni ul
+	sadrzaj 	css		.sadrzaj
+	slika_1 	xpath	//div[@class='sadrzaj']/img[1]
+	slika_2 	xpath	//div[@class='sadrzaj']/img[2]
+	slika_4 	xpath	//div[@class='sadrzaj']/img[4]
+= Meni section =
+	logo:
+		inside partly meni 40px bottom
+		width 97 to 99% of viewport/width
+		height 80 to 84px
+		centered horizontally inside viewport
+	meni:
+		above slika_1 0px
+		width 97 to 99% of viewport/width
+		centered horizontally inside viewport
+	ul:
+		inside meni
+		contains meni_item_1
+		inside viewport 7 to 11px left
+		below logo
+		centered horizontally inside meni 1px
+	meni_item_1:
+		aligned horizontally all meni_item_2
+		near meni_item_2 2 to 6px left
+		height 12 to 16px
+		inside ul 0 to 2px bottom, 0px top
+	meni_item_2:
+		inside ul 0 to 2px bottom, 0px top
+		height 12 to 16px
+= Main section =
+	sadrzaj:
+		width 97 to 99% of viewport/width
+		below meni
+		centered horizontally inside viewport
+		# inside viewport 7 to 11px left
+	slika_1:
+		inside sadrzaj 0px top
+		inside sadrzaj 0px left
+		width 32 to 34 % of viewport/width
+		below meni 0px
+	slika_2:
+		aligned horizontally centered slika_1 1px
+		width 32 to 34 % of viewport/width
+		right-of slika_1 2 to 6px 
+	slika_4:
+		width 32 to 34 % of viewport/width

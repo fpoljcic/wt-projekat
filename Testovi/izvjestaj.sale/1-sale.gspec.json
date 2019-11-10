@@ -1,0 +1,541 @@
+{
+  "testId" : "1-sale.gspec",
+  "name" : "sale.gspec",
+  "report" : {
+    "nodes" : [ {
+      "name" : "Mutation test",
+      "status" : "info",
+      "nodes" : [ {
+        "name" : "check  sale.gspec --url http://localhost/sale.html --size 1024x768 --offset 5 --htmlreport izvjestaj.sale",
+        "status" : "info",
+        "nodes" : [ {
+          "name" : "Check layout: sale.gspec included tags: ",
+          "status" : "info",
+          "time" : 1573347192482,
+          "sections" : [ {
+            "name" : "Meni section",
+            "place" : {
+              "filePath" : "sale.gspec",
+              "lineNumber" : 9
+            },
+            "objects" : [ {
+              "name" : "logo",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "sale.gspec",
+                  "lineNumber" : 11
+                },
+                "name" : "inside partly meni 40px bottom",
+                "meta" : [ {
+                  "from" : {
+                    "object" : "logo",
+                    "edge" : "bottom"
+                  },
+                  "to" : {
+                    "object" : "meni",
+                    "edge" : "bottom"
+                  },
+                  "expectedDistance" : "40px",
+                  "realDistance" : "40px"
+                } ],
+                "highlight" : [ "logo", "meni" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "sale.gspec",
+                  "lineNumber" : 12
+                },
+                "name" : "width 97 to 99% of viewport/width",
+                "meta" : [ {
+                  "from" : {
+                    "object" : "logo",
+                    "edge" : "left"
+                  },
+                  "to" : {
+                    "object" : "logo",
+                    "edge" : "right"
+                  },
+                  "expectedDistance" : "97 to 99% [981 to 1001px]",
+                  "realDistance" : "98% [994px]"
+                } ],
+                "highlight" : [ "logo" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "sale.gspec",
+                  "lineNumber" : 13
+                },
+                "name" : "height 80 to 84px",
+                "meta" : [ {
+                  "from" : {
+                    "object" : "logo",
+                    "edge" : "top"
+                  },
+                  "to" : {
+                    "object" : "logo",
+                    "edge" : "bottom"
+                  },
+                  "expectedDistance" : "80 to 84px",
+                  "realDistance" : "82px"
+                } ],
+                "highlight" : [ "logo" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "sale.gspec",
+                  "lineNumber" : 14
+                },
+                "name" : "centered horizontally inside viewport",
+                "highlight" : [ "logo", "viewport" ]
+              } ]
+            }, {
+              "name" : "meni",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "sale.gspec",
+                  "lineNumber" : 16
+                },
+                "name" : "above sadrzaj 7 to 11px",
+                "meta" : [ {
+                  "from" : {
+                    "object" : "meni",
+                    "edge" : "bottom"
+                  },
+                  "to" : {
+                    "object" : "sadrzaj",
+                    "edge" : "top"
+                  },
+                  "expectedDistance" : "7 to 11px",
+                  "realDistance" : "9px"
+                } ],
+                "highlight" : [ "meni", "sadrzaj" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "sale.gspec",
+                  "lineNumber" : 17
+                },
+                "name" : "width 97 to 99% of viewport/width",
+                "meta" : [ {
+                  "from" : {
+                    "object" : "meni",
+                    "edge" : "left"
+                  },
+                  "to" : {
+                    "object" : "meni",
+                    "edge" : "right"
+                  },
+                  "expectedDistance" : "97 to 99% [981 to 1001px]",
+                  "realDistance" : "98% [996px]"
+                } ],
+                "highlight" : [ "meni" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "sale.gspec",
+                  "lineNumber" : 18
+                },
+                "name" : "centered horizontally inside viewport",
+                "highlight" : [ "meni", "viewport" ]
+              } ]
+            }, {
+              "name" : "ul",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "sale.gspec",
+                  "lineNumber" : 20
+                },
+                "name" : "inside meni",
+                "meta" : [ ],
+                "highlight" : [ "ul", "meni" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "sale.gspec",
+                  "lineNumber" : 21
+                },
+                "name" : "contains meni_item_1",
+                "highlight" : [ "ul", "meni_item_1" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "sale.gspec",
+                  "lineNumber" : 22
+                },
+                "name" : "inside viewport 7 to 11px left",
+                "meta" : [ {
+                  "from" : {
+                    "object" : "ul",
+                    "edge" : "left"
+                  },
+                  "to" : {
+                    "object" : "viewport",
+                    "edge" : "left"
+                  },
+                  "expectedDistance" : "7 to 11px",
+                  "realDistance" : "9px"
+                } ],
+                "highlight" : [ "ul", "viewport" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "sale.gspec",
+                  "lineNumber" : 23
+                },
+                "name" : "below logo",
+                "meta" : [ {
+                  "from" : {
+                    "object" : "ul",
+                    "edge" : "top"
+                  },
+                  "to" : {
+                    "object" : "logo",
+                    "edge" : "bottom"
+                  },
+                  "expectedDistance" : ">= 0px",
+                  "realDistance" : "12px"
+                } ],
+                "highlight" : [ "ul", "logo" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "sale.gspec",
+                  "lineNumber" : 24
+                },
+                "name" : "centered horizontally inside meni 1px",
+                "highlight" : [ "ul", "meni" ]
+              } ]
+            }, {
+              "name" : "meni_item_1",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "sale.gspec",
+                  "lineNumber" : 26
+                },
+                "name" : "aligned horizontally all meni_item_2",
+                "highlight" : [ "meni_item_1", "meni_item_2" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "sale.gspec",
+                  "lineNumber" : 27
+                },
+                "name" : "near meni_item_2 2 to 6px left",
+                "meta" : [ {
+                  "from" : {
+                    "object" : "meni_item_1",
+                    "edge" : "right"
+                  },
+                  "to" : {
+                    "object" : "meni_item_2",
+                    "edge" : "left"
+                  },
+                  "expectedDistance" : "2 to 6px",
+                  "realDistance" : "4px"
+                } ],
+                "highlight" : [ "meni_item_1", "meni_item_2" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "sale.gspec",
+                  "lineNumber" : 28
+                },
+                "name" : "height 12 to 16px",
+                "meta" : [ {
+                  "from" : {
+                    "object" : "meni_item_1",
+                    "edge" : "top"
+                  },
+                  "to" : {
+                    "object" : "meni_item_1",
+                    "edge" : "bottom"
+                  },
+                  "expectedDistance" : "12 to 16px",
+                  "realDistance" : "14px"
+                } ],
+                "highlight" : [ "meni_item_1" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "sale.gspec",
+                  "lineNumber" : 29
+                },
+                "name" : "inside ul 0 to 2px bottom, 0px top",
+                "meta" : [ {
+                  "from" : {
+                    "object" : "meni_item_1",
+                    "edge" : "bottom"
+                  },
+                  "to" : {
+                    "object" : "ul",
+                    "edge" : "bottom"
+                  },
+                  "expectedDistance" : "0 to 2px",
+                  "realDistance" : "1px"
+                }, {
+                  "from" : {
+                    "object" : "meni_item_1",
+                    "edge" : "top"
+                  },
+                  "to" : {
+                    "object" : "ul",
+                    "edge" : "top"
+                  },
+                  "expectedDistance" : "0px",
+                  "realDistance" : "0px"
+                } ],
+                "highlight" : [ "meni_item_1", "ul" ]
+              } ]
+            }, {
+              "name" : "meni_item_2",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "sale.gspec",
+                  "lineNumber" : 31
+                },
+                "name" : "inside ul 0 to 2px bottom, 0px top",
+                "meta" : [ {
+                  "from" : {
+                    "object" : "meni_item_2",
+                    "edge" : "bottom"
+                  },
+                  "to" : {
+                    "object" : "ul",
+                    "edge" : "bottom"
+                  },
+                  "expectedDistance" : "0 to 2px",
+                  "realDistance" : "1px"
+                }, {
+                  "from" : {
+                    "object" : "meni_item_2",
+                    "edge" : "top"
+                  },
+                  "to" : {
+                    "object" : "ul",
+                    "edge" : "top"
+                  },
+                  "expectedDistance" : "0px",
+                  "realDistance" : "0px"
+                } ],
+                "highlight" : [ "meni_item_2", "ul" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "sale.gspec",
+                  "lineNumber" : 32
+                },
+                "name" : "height 12 to 16px",
+                "meta" : [ {
+                  "from" : {
+                    "object" : "meni_item_2",
+                    "edge" : "top"
+                  },
+                  "to" : {
+                    "object" : "meni_item_2",
+                    "edge" : "bottom"
+                  },
+                  "expectedDistance" : "12 to 16px",
+                  "realDistance" : "14px"
+                } ],
+                "highlight" : [ "meni_item_2" ]
+              } ]
+            } ]
+          }, {
+            "name" : "Main section",
+            "place" : {
+              "filePath" : "sale.gspec",
+              "lineNumber" : 33
+            },
+            "objects" : [ {
+              "name" : "sadrzaj",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "sale.gspec",
+                  "lineNumber" : 35
+                },
+                "name" : "width 97 to 99% of viewport/width",
+                "meta" : [ {
+                  "from" : {
+                    "object" : "sadrzaj",
+                    "edge" : "left"
+                  },
+                  "to" : {
+                    "object" : "sadrzaj",
+                    "edge" : "right"
+                  },
+                  "expectedDistance" : "97 to 99% [981 to 1001px]",
+                  "realDistance" : "98% [996px]"
+                } ],
+                "highlight" : [ "sadrzaj" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "sale.gspec",
+                  "lineNumber" : 36
+                },
+                "name" : "below meni",
+                "meta" : [ {
+                  "from" : {
+                    "object" : "sadrzaj",
+                    "edge" : "top"
+                  },
+                  "to" : {
+                    "object" : "meni",
+                    "edge" : "bottom"
+                  },
+                  "expectedDistance" : ">= 0px",
+                  "realDistance" : "9px"
+                } ],
+                "highlight" : [ "sadrzaj", "meni" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "sale.gspec",
+                  "lineNumber" : 37
+                },
+                "name" : "contains tabela",
+                "highlight" : [ "sadrzaj", "tabela" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "sale.gspec",
+                  "lineNumber" : 38
+                },
+                "name" : "centered horizontally inside viewport",
+                "highlight" : [ "sadrzaj", "viewport" ]
+              } ]
+            }, {
+              "name" : "tabela",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "sale.gspec",
+                  "lineNumber" : 40
+                },
+                "name" : "inside sadrzaj 15 to 19px top bottom",
+                "meta" : [ {
+                  "from" : {
+                    "object" : "tabela",
+                    "edge" : "top"
+                  },
+                  "to" : {
+                    "object" : "sadrzaj",
+                    "edge" : "top"
+                  },
+                  "expectedDistance" : "15 to 19px",
+                  "realDistance" : "17px"
+                }, {
+                  "from" : {
+                    "object" : "tabela",
+                    "edge" : "bottom"
+                  },
+                  "to" : {
+                    "object" : "sadrzaj",
+                    "edge" : "bottom"
+                  },
+                  "expectedDistance" : "15 to 19px",
+                  "realDistance" : "17px"
+                } ],
+                "highlight" : [ "tabela", "sadrzaj" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "sale.gspec",
+                  "lineNumber" : 41
+                },
+                "name" : "centered horizontally inside meni",
+                "highlight" : [ "tabela", "meni" ]
+              } ]
+            } ]
+          } ],
+          "objects" : {
+            "meni" : {
+              "area" : [ 8, 58, 996, 83 ]
+            },
+            "tabela" : {
+              "area" : [ 365, 167, 282, 370 ]
+            },
+            "viewport" : {
+              "area" : [ 0, 0, 1012, 687 ]
+            },
+            "ul" : {
+              "area" : [ 9, 113, 994, 15 ]
+            },
+            "logo" : {
+              "area" : [ 9, 19, 994, 82 ]
+            },
+            "meni_item_2" : {
+              "area" : [ 86, 113, 44, 14 ]
+            },
+            "meni_item_1" : {
+              "area" : [ 18, 113, 64, 14 ]
+            },
+            "sadrzaj" : {
+              "area" : [ 8, 150, 996, 404 ]
+            }
+          },
+          "screenshot" : "layout-1-screenshot.png",
+          "type" : "layout"
+        }, {
+          "name" : "Mutation testing: sale.gspec included tags: ",
+          "status" : "error",
+          "time" : 1573347192482,
+          "mutationReport" : {
+            "objectMutationStatistics" : {
+              "meni" : {
+                "passed" : 9,
+                "failed" : 1,
+                "failedMutations" : [ "meni: move top edge down by 5px" ]
+              },
+              "tabela" : {
+                "passed" : 10,
+                "failed" : 0,
+                "failedMutations" : [ ]
+              },
+              "ul" : {
+                "passed" : 10,
+                "failed" : 0,
+                "failedMutations" : [ ]
+              },
+              "logo" : {
+                "passed" : 10,
+                "failed" : 0,
+                "failedMutations" : [ ]
+              },
+              "meni_item_2" : {
+                "passed" : 8,
+                "failed" : 2,
+                "failedMutations" : [ "meni_item_2: increase width by 5px", "meni_item_2: decrease width by 5px" ]
+              },
+              "meni_item_1" : {
+                "passed" : 9,
+                "failed" : 1,
+                "failedMutations" : [ "meni_item_1: move left edge right by 5px" ]
+              },
+              "sadrzaj" : {
+                "passed" : 10,
+                "failed" : 0,
+                "failedMutations" : [ ]
+              }
+            },
+            "totalPassed" : 66,
+            "totalFailed" : 4,
+            "totalMutations" : 70,
+            "failedRatio" : 5.714285714285714
+          },
+          "type" : "mutation"
+        } ],
+        "time" : 1573347188087,
+        "type" : "node"
+      } ],
+      "time" : 1573347181851,
+      "type" : "node"
+    } ]
+  }
+}

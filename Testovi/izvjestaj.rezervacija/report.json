@@ -1,0 +1,17 @@
+{
+  "tests" : [ {
+    "name" : "rezervacija.gspec",
+    "startedAt" : 1573347231970,
+    "endedAt" : 1573347244623,
+    "failed" : true,
+    "statistic" : {
+      "passed" : 33,
+      "errors" : 1,
+      "warnings" : 0,
+      "total" : 34
+    },
+    "testId" : "1-rezervacija.gspec",
+    "duration" : 12653,
+    "failed" : true
+  } ]
+}

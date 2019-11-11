@@ -36,9 +36,8 @@ body {
 .sadrzaj img {
 	vertical-align: middle;
 	padding: 1% 0;
-	width: 33%;
+	width: 32.5vw;
 	height: auto;
-	
 }
 
 @media only screen and (max-width: 600px) {

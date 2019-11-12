@@ -132,12 +132,21 @@ input[name=sljedeci] {
 		grid-column-start: 2;
 	}
 
-	.brojevi, tr:nth-child(1), th {
+	.brojevi {
 		display: none;
 	}
 
 	tr {
 		display: table-cell;
+	}
+
+	tr:nth-child(1) {
+		width: 1em;
+		transform: translate(0, 25.5%) rotate(270deg);
+	}
+
+	th {
+		letter-spacing: 1em;
 	}
 	
 	td {

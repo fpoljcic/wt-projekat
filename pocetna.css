@@ -7,6 +7,7 @@ body {
 	background-color: #729fcf;
 	border: 1px solid lightgreen;
 	font-size: 12px;
+	text-align: center;
 }
 
 .meni ul {
@@ -33,10 +34,19 @@ body {
 	margin-top: -40px;
 }
 
+#sadrzaj_wrapper {
+	background-color: #729fcf;
+	border: 1px solid lightgreen;
+	text-align: center;
+	margin-top: 0.5em;
+	padding: 1em 1em 0.5em 1em;
+}
+
 .sadrzaj img {
 	vertical-align: middle;
-	padding: 1% 0;
-	width: 32.5vw;
+	padding-bottom: 0.5em;
+	margin: auto;
+	width: 31vw;
 	height: auto;
 }
 

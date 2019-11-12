@@ -7,6 +7,7 @@ body {
 	background-color: #729fcf;
 	border: 1px solid lightgreen;
 	font-size: 12px;
+	text-align: center;
 }
 
 .meni ul {
@@ -36,7 +37,7 @@ body {
 .sadrzaj {
 	border: 1px solid lightgreen;
 	background-color: #729fcf;
-	margin-top: 1%;
+	margin-top: 0.5em;
 	padding: 1em;
 }
 

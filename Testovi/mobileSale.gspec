@@ -10,12 +10,12 @@
 	headerSprat	css 	td.headerSprat
 = Meni section =
 	logo:
-		inside partly meni -40 to -38px top
 		width 95 to 97% of viewport/width
 		height 80 to 84px
 		centered horizontally inside viewport
 	meni:
-		above sadrzaj 3 to 5px
+		inside partly logo 37 to 41px top
+		above sadrzaj 5 to 9px
 		width 95 to 97% of viewport/width
 		centered horizontally inside viewport
 	ul:
@@ -27,11 +27,11 @@
 	meni_item_1:
 		aligned vertically all meni_item_2
 		above meni_item_2 0px
-		height 12 to 16px
+		height 14 to 18px
 		inside ul 0px top, 2 to 6px left
 	meni_item_2:
 		inside ul 2 to 6px left
-		height 12 to 16px
+		height 14 to 18px
 = Main section =
 	sadrzaj:
 		width 95 to 97% of viewport/width
@@ -39,8 +39,10 @@
 		contains tabela
 		centered horizontally inside viewport
 	tabela:
-		inside sadrzaj 15 to 19px top bottom
-		centered horizontally inside meni
+		inside sadrzaj 13 to 17px top bottom
+		centered horizontally inside sadrzaj
+		centered vertically inside sadrzaj
+		aligned vertically centered meni_item_1 1px
 	headerRedni:
 		absent
 	headerSprat:

@@ -1,14 +1,22 @@
 Zadatak 1.
+galen mutate sale.gspec --url "http://localhost/sale.html" --size 640x480 --offset 5 --htmlreport izvjestaj.sale
 galen mutate sale.gspec --url "http://localhost/sale.html" --size 1024x768 --offset 5 --htmlreport izvjestaj.sale
+galen mutate sale.gspec --url "http://localhost/sale.html" --size 3840x2160 --offset 5 --htmlreport izvjestaj.sale
 
 Zadatak 2.
+galen mutate unos.gspec --url "http://localhost/unos.html" --size 640x480 --offset 5 --htmlreport izvjestaj.unos
 galen mutate unos.gspec --url "http://localhost/unos.html" --size 1024x768 --offset 5 --htmlreport izvjestaj.unos
+galen mutate unos.gspec --url "http://localhost/unos.html" --size 3840x2160 --offset 5 --htmlreport izvjestaj.unos
 
 Zadatak 3.
+galen mutate pocetna.gspec --url "http://localhost/pocetna.html" --size 640x480 --offset 5 --htmlreport izvjestaj.pocetna
 galen mutate pocetna.gspec --url "http://localhost/pocetna.html" --size 1024x768 --offset 5 --htmlreport izvjestaj.pocetna
+galen mutate pocetna.gspec --url "http://localhost/pocetna.html" --size 3840x2160 --offset 5 --htmlreport izvjestaj.pocetna
 
 Zadatak 4.
+galen mutate rezervacija.gspec --url "http://localhost/rezervacija.html" --size 640x480 --offset 5 --htmlreport izvjestaj.rezervacija
 galen mutate rezervacija.gspec --url "http://localhost/rezervacija.html" --size 1024x768 --offset 5 --htmlreport izvjestaj.rezervacija
+galen mutate rezervacija.gspec --url "http://localhost/rezervacija.html" --size 3840x2160 --offset 5 --htmlreport izvjestaj.rezervacija
 
 Zadatak 5.
 galen mutate mobileSale.gspec --url "http://localhost/sale.html" --size 480x800 --offset 5 --htmlreport izvjestaj.mobileSale

@@ -11,7 +11,7 @@
         "nodes" : [ {
           "name" : "Check layout: pocetna.gspec included tags: ",
           "status" : "info",
-          "time" : 1573347221058,
+          "time" : 1573600823340,
           "sections" : [ {
             "name" : "Meni section",
             "place" : {
@@ -25,26 +25,6 @@
                 "place" : {
                   "filePath" : "pocetna.gspec",
                   "lineNumber" : 13
-                },
-                "name" : "inside partly meni 40px bottom",
-                "meta" : [ {
-                  "from" : {
-                    "object" : "logo",
-                    "edge" : "bottom"
-                  },
-                  "to" : {
-                    "object" : "meni",
-                    "edge" : "bottom"
-                  },
-                  "expectedDistance" : "40px",
-                  "realDistance" : "40px"
-                } ],
-                "highlight" : [ "logo", "meni" ]
-              }, {
-                "status" : "info",
-                "place" : {
-                  "filePath" : "pocetna.gspec",
-                  "lineNumber" : 14
                 },
                 "name" : "width 97 to 99% of viewport/width",
                 "meta" : [ {
@@ -64,7 +44,7 @@
                 "status" : "info",
                 "place" : {
                   "filePath" : "pocetna.gspec",
-                  "lineNumber" : 15
+                  "lineNumber" : 14
                 },
                 "name" : "height 80 to 84px",
                 "meta" : [ {
@@ -84,7 +64,7 @@
                 "status" : "info",
                 "place" : {
                   "filePath" : "pocetna.gspec",
-                  "lineNumber" : 16
+                  "lineNumber" : 15
                 },
                 "name" : "centered horizontally inside viewport",
                 "highlight" : [ "logo", "viewport" ]
@@ -95,22 +75,42 @@
                 "status" : "info",
                 "place" : {
                   "filePath" : "pocetna.gspec",
+                  "lineNumber" : 17
+                },
+                "name" : "inside partly logo 37 to 41px top",
+                "meta" : [ {
+                  "from" : {
+                    "object" : "meni",
+                    "edge" : "top"
+                  },
+                  "to" : {
+                    "object" : "logo",
+                    "edge" : "top"
+                  },
+                  "expectedDistance" : "37 to 41px",
+                  "realDistance" : "39px"
+                } ],
+                "highlight" : [ "meni", "logo" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "pocetna.gspec",
                   "lineNumber" : 18
                 },
-                "name" : "above slika_1 0px",
+                "name" : "above sadrzaj 20 to 24px",
                 "meta" : [ {
                   "from" : {
                     "object" : "meni",
                     "edge" : "bottom"
                   },
                   "to" : {
-                    "object" : "slika_1",
+                    "object" : "sadrzaj",
                     "edge" : "top"
                   },
-                  "expectedDistance" : "0px",
-                  "realDistance" : "0px"
+                  "expectedDistance" : "20 to 24px",
+                  "realDistance" : "22px"
                 } ],
-                "highlight" : [ "meni", "slika_1" ]
+                "highlight" : [ "meni", "sadrzaj" ]
               }, {
                 "status" : "info",
                 "place" : {
@@ -196,7 +196,7 @@
                     "edge" : "bottom"
                   },
                   "expectedDistance" : ">= 0px",
-                  "realDistance" : "12px"
+                  "realDistance" : "14px"
                 } ],
                 "highlight" : [ "ul", "logo" ]
               }, {
@@ -224,7 +224,7 @@
                   "filePath" : "pocetna.gspec",
                   "lineNumber" : 29
                 },
-                "name" : "near meni_item_2 2 to 6px left",
+                "name" : "near meni_item_2 3 to 7px left",
                 "meta" : [ {
                   "from" : {
                     "object" : "meni_item_1",
@@ -234,8 +234,8 @@
                     "object" : "meni_item_2",
                     "edge" : "left"
                   },
-                  "expectedDistance" : "2 to 6px",
-                  "realDistance" : "3px"
+                  "expectedDistance" : "3 to 7px",
+                  "realDistance" : "4px"
                 } ],
                 "highlight" : [ "meni_item_1", "meni_item_2" ]
               }, {
@@ -244,7 +244,7 @@
                   "filePath" : "pocetna.gspec",
                   "lineNumber" : 30
                 },
-                "name" : "height 12 to 16px",
+                "name" : "height 14 to 18px",
                 "meta" : [ {
                   "from" : {
                     "object" : "meni_item_1",
@@ -254,8 +254,8 @@
                     "object" : "meni_item_1",
                     "edge" : "bottom"
                   },
-                  "expectedDistance" : "12 to 16px",
-                  "realDistance" : "14px"
+                  "expectedDistance" : "14 to 18px",
+                  "realDistance" : "16px"
                 } ],
                 "highlight" : [ "meni_item_1" ]
               }, {
@@ -329,7 +329,7 @@
                   "filePath" : "pocetna.gspec",
                   "lineNumber" : 34
                 },
-                "name" : "height 12 to 16px",
+                "name" : "height 14 to 18px",
                 "meta" : [ {
                   "from" : {
                     "object" : "meni_item_2",
@@ -339,8 +339,8 @@
                     "object" : "meni_item_2",
                     "edge" : "bottom"
                   },
-                  "expectedDistance" : "12 to 16px",
-                  "realDistance" : "14px"
+                  "expectedDistance" : "14 to 18px",
+                  "realDistance" : "16px"
                 } ],
                 "highlight" : [ "meni_item_2" ]
               } ]
@@ -359,7 +359,7 @@
                   "filePath" : "pocetna.gspec",
                   "lineNumber" : 37
                 },
-                "name" : "width 97 to 99% of viewport/width",
+                "name" : "width 92 to 98% of viewport/width",
                 "meta" : [ {
                   "from" : {
                     "object" : "sadrzaj",
@@ -369,8 +369,8 @@
                     "object" : "sadrzaj",
                     "edge" : "right"
                   },
-                  "expectedDistance" : "97 to 99% [965 to 985px]",
-                  "realDistance" : "98% [979px]"
+                  "expectedDistance" : "92 to 98% [915 to 975px]",
+                  "realDistance" : "95% [949px]"
                 } ],
                 "highlight" : [ "sadrzaj" ]
               }, {
@@ -390,7 +390,7 @@
                     "edge" : "bottom"
                   },
                   "expectedDistance" : ">= 0px",
-                  "realDistance" : "0px"
+                  "realDistance" : "22px"
                 } ],
                 "highlight" : [ "sadrzaj", "meni" ]
               }, {
@@ -408,49 +408,9 @@
                 "status" : "info",
                 "place" : {
                   "filePath" : "pocetna.gspec",
-                  "lineNumber" : 42
+                  "lineNumber" : 41
                 },
-                "name" : "inside sadrzaj 0px top",
-                "meta" : [ {
-                  "from" : {
-                    "object" : "slika_1",
-                    "edge" : "top"
-                  },
-                  "to" : {
-                    "object" : "sadrzaj",
-                    "edge" : "top"
-                  },
-                  "expectedDistance" : "0px",
-                  "realDistance" : "0px"
-                } ],
-                "highlight" : [ "slika_1", "sadrzaj" ]
-              }, {
-                "status" : "info",
-                "place" : {
-                  "filePath" : "pocetna.gspec",
-                  "lineNumber" : 43
-                },
-                "name" : "inside sadrzaj 0px left",
-                "meta" : [ {
-                  "from" : {
-                    "object" : "slika_1",
-                    "edge" : "left"
-                  },
-                  "to" : {
-                    "object" : "sadrzaj",
-                    "edge" : "left"
-                  },
-                  "expectedDistance" : "0px",
-                  "realDistance" : "0px"
-                } ],
-                "highlight" : [ "slika_1", "sadrzaj" ]
-              }, {
-                "status" : "info",
-                "place" : {
-                  "filePath" : "pocetna.gspec",
-                  "lineNumber" : 44
-                },
-                "name" : "width 32 to 34 % of viewport/width",
+                "name" : "width 31 to 33% of viewport/width",
                 "meta" : [ {
                   "from" : {
                     "object" : "slika_1",
@@ -460,17 +420,17 @@
                     "object" : "slika_1",
                     "edge" : "right"
                   },
-                  "expectedDistance" : "32 to 34% [318 to 338px]",
-                  "realDistance" : "32% [323px]"
+                  "expectedDistance" : "31 to 33% [308 to 328px]",
+                  "realDistance" : "32% [320px]"
                 } ],
                 "highlight" : [ "slika_1" ]
               }, {
                 "status" : "info",
                 "place" : {
                   "filePath" : "pocetna.gspec",
-                  "lineNumber" : 45
+                  "lineNumber" : 42
                 },
-                "name" : "below meni 0px",
+                "name" : "below meni 20 to 24px",
                 "meta" : [ {
                   "from" : {
                     "object" : "slika_1",
@@ -480,8 +440,8 @@
                     "object" : "meni",
                     "edge" : "bottom"
                   },
-                  "expectedDistance" : "0px",
-                  "realDistance" : "0px"
+                  "expectedDistance" : "20 to 24px",
+                  "realDistance" : "22px"
                 } ],
                 "highlight" : [ "slika_1", "meni" ]
               } ]
@@ -491,7 +451,7 @@
                 "status" : "info",
                 "place" : {
                   "filePath" : "pocetna.gspec",
-                  "lineNumber" : 47
+                  "lineNumber" : 44
                 },
                 "name" : "aligned horizontally centered slika_1 1px",
                 "highlight" : [ "slika_2", "slika_1" ]
@@ -499,9 +459,9 @@
                 "status" : "info",
                 "place" : {
                   "filePath" : "pocetna.gspec",
-                  "lineNumber" : 48
+                  "lineNumber" : 45
                 },
-                "name" : "width 32 to 34 % of viewport/width",
+                "name" : "width 31 to 33% of viewport/width",
                 "meta" : [ {
                   "from" : {
                     "object" : "slika_2",
@@ -511,17 +471,17 @@
                     "object" : "slika_2",
                     "edge" : "right"
                   },
-                  "expectedDistance" : "32 to 34% [318 to 338px]",
-                  "realDistance" : "32% [323px]"
+                  "expectedDistance" : "31 to 33% [308 to 328px]",
+                  "realDistance" : "32% [320px]"
                 } ],
                 "highlight" : [ "slika_2" ]
               }, {
                 "status" : "info",
                 "place" : {
                   "filePath" : "pocetna.gspec",
-                  "lineNumber" : 49
+                  "lineNumber" : 46
                 },
-                "name" : "right-of slika_1 2 to 6px",
+                "name" : "right-of slika_1 3 to 7px",
                 "meta" : [ {
                   "from" : {
                     "object" : "slika_2",
@@ -531,8 +491,8 @@
                     "object" : "slika_1",
                     "edge" : "right"
                   },
-                  "expectedDistance" : "2 to 6px",
-                  "realDistance" : "4px"
+                  "expectedDistance" : "3 to 7px",
+                  "realDistance" : "5px"
                 } ],
                 "highlight" : [ "slika_2", "slika_1" ]
               } ]
@@ -542,9 +502,9 @@
                 "status" : "info",
                 "place" : {
                   "filePath" : "pocetna.gspec",
-                  "lineNumber" : 51
+                  "lineNumber" : 48
                 },
-                "name" : "width 32 to 34 % of viewport/width",
+                "name" : "width 31 to 33% of viewport/width",
                 "meta" : [ {
                   "from" : {
                     "object" : "slika_4",
@@ -554,43 +514,63 @@
                     "object" : "slika_4",
                     "edge" : "right"
                   },
-                  "expectedDistance" : "32 to 34% [318 to 338px]",
-                  "realDistance" : "32% [323px]"
+                  "expectedDistance" : "31 to 33% [308 to 328px]",
+                  "realDistance" : "32% [320px]"
                 } ],
                 "highlight" : [ "slika_4" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "pocetna.gspec",
+                  "lineNumber" : 49
+                },
+                "name" : "below slika_1 0 to 2px",
+                "meta" : [ {
+                  "from" : {
+                    "object" : "slika_4",
+                    "edge" : "top"
+                  },
+                  "to" : {
+                    "object" : "slika_1",
+                    "edge" : "bottom"
+                  },
+                  "expectedDistance" : "0 to 2px",
+                  "realDistance" : "0px"
+                } ],
+                "highlight" : [ "slika_4", "slika_1" ]
               } ]
             } ]
           } ],
           "objects" : {
             "meni" : {
-              "area" : [ 8, 58, 979, 83 ]
+              "area" : [ 8, 58, 979, 89 ]
             },
             "viewport" : {
               "area" : [ 0, 0, 995, 687 ]
             },
             "ul" : {
-              "area" : [ 9, 113, 977, 15 ]
+              "area" : [ 9, 115, 977, 17 ]
             },
             "slika_2" : {
-              "area" : [ 335, 173, 323, 170 ]
+              "area" : [ 499, 169, 320, 216 ]
             },
             "logo" : {
               "area" : [ 9, 19, 977, 82 ]
             },
-            "slika_1" : {
-              "area" : [ 8, 141, 323, 235 ]
-            },
             "meni_item_2" : {
-              "area" : [ 85, 113, 44, 14 ]
+              "area" : [ 403, 115, 47, 16 ]
+            },
+            "slika_1" : {
+              "area" : [ 174, 169, 320, 216 ]
             },
             "meni_item_1" : {
-              "area" : [ 18, 113, 64, 14 ]
+              "area" : [ 328, 115, 71, 16 ]
             },
             "slika_4" : {
-              "area" : [ 8, 441, 323, 221 ]
+              "area" : [ 499, 385, 320, 216 ]
             },
             "sadrzaj" : {
-              "area" : [ 8, 141, 979, 1324 ]
+              "area" : [ 23, 169, 949, 1080 ]
             }
           },
           "screenshot" : "layout-1-screenshot.png",
@@ -598,13 +578,13 @@
         }, {
           "name" : "Mutation testing: pocetna.gspec included tags: ",
           "status" : "error",
-          "time" : 1573347221058,
+          "time" : 1573600823340,
           "mutationReport" : {
             "objectMutationStatistics" : {
               "meni" : {
-                "passed" : 9,
-                "failed" : 1,
-                "failedMutations" : [ "meni: move top edge down by 5px" ]
+                "passed" : 10,
+                "failed" : 0,
+                "failedMutations" : [ ]
               },
               "ul" : {
                 "passed" : 10,
@@ -612,16 +592,11 @@
                 "failedMutations" : [ ]
               },
               "slika_2" : {
-                "passed" : 9,
-                "failed" : 1,
-                "failedMutations" : [ "slika_2: increase width by 5px" ]
+                "passed" : 8,
+                "failed" : 2,
+                "failedMutations" : [ "slika_2: increase width by 5px", "slika_2: decrease width by 5px" ]
               },
               "logo" : {
-                "passed" : 10,
-                "failed" : 0,
-                "failedMutations" : [ ]
-              },
-              "slika_1" : {
                 "passed" : 10,
                 "failed" : 0,
                 "failedMutations" : [ ]
@@ -631,15 +606,20 @@
                 "failed" : 2,
                 "failedMutations" : [ "meni_item_2: increase width by 5px", "meni_item_2: decrease width by 5px" ]
               },
+              "slika_1" : {
+                "passed" : 9,
+                "failed" : 1,
+                "failedMutations" : [ "slika_1: move left edge right by 5px" ]
+              },
               "meni_item_1" : {
                 "passed" : 9,
                 "failed" : 1,
                 "failedMutations" : [ "meni_item_1: move left edge right by 5px" ]
               },
               "slika_4" : {
-                "passed" : 2,
-                "failed" : 8,
-                "failedMutations" : [ "slika_4: drag left by 5px", "slika_4: drag right by 5px", "slika_4: drag top by 5px", "slika_4: drag down by 5px", "slika_4: increase width by 5px", "slika_4: increase height by 5px", "slika_4: decrease height by 5px", "slika_4: move top edge down by 5px" ]
+                "passed" : 3,
+                "failed" : 7,
+                "failedMutations" : [ "slika_4: drag left by 5px", "slika_4: drag right by 5px", "slika_4: increase width by 5px", "slika_4: decrease width by 5px", "slika_4: increase height by 5px", "slika_4: decrease height by 5px", "slika_4: move left edge right by 5px" ]
               },
               "sadrzaj" : {
                 "passed" : 8,
@@ -649,15 +629,15 @@
             },
             "totalPassed" : 75,
             "totalFailed" : 15,
-            "totalMutations" : 90,
-            "failedRatio" : 16.666666666666668
+            "failedRatio" : 16.666666666666668,
+            "totalMutations" : 90
           },
           "type" : "mutation"
         } ],
-        "time" : 1573347216170,
+        "time" : 1573600817632,
         "type" : "node"
       } ],
-      "time" : 1573347209830,
+      "time" : 1573600811164,
       "type" : "node"
     } ]
   }

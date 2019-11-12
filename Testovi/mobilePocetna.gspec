@@ -11,12 +11,12 @@
 	slika_4 	xpath	//div[@class='sadrzaj']/img[4]
 = Meni section =
 	logo:
-		inside partly meni -40 to -38px top
 		width 95 to 97% of viewport/width
 		height 80 to 84px
 		centered horizontally inside viewport
 	meni:
-		above slika_1 0px
+		inside partly logo 37 to 41px top
+		above sadrzaj 20 to 24px
 		width 95 to 97% of viewport/width
 		centered horizontally inside viewport
 	ul:
@@ -28,31 +28,30 @@
 	meni_item_1:
 		aligned vertically all meni_item_2
 		above meni_item_2 0px
-		height 12 to 16px
+		height 14 to 18px
 		inside ul 0px top, 2 to 6px left
 	meni_item_2:
 		inside ul 2 to 6px left
-		height 12 to 16px
+		height 14 to 18px
 = Main section =
 	sadrzaj:
-		width 95 to 97% of viewport/width
 		below meni
 		centered horizontally inside viewport
 		# inside viewport 7 to 11px left
 	slika_1:
 		inside sadrzaj 0px top
-		inside sadrzaj 0px left
-		width 30 to 32 % of viewport/width
-		below meni 0px
+		inside sadrzaj 10 to 14px left
+		width 27 to 29 % of viewport/width
+		below meni 20 to 24px
 		aligned vertically all slika_2 1px
 	slika_2:
 		aligned vertically all slika_3 1px
-		width 30 to 32 % of viewport/width
+		width 27 to 29 % of viewport/width
 		below slika_1 0 to 1px
 	slika_3:
 		aligned vertically all slika_4 1px
-		width 30 to 32 % of viewport/width
+		width 27 to 29 % of viewport/width
 		below slika_2 0 to 1px
 	slika_4:
-		width 30 to 32 % of viewport/width
+		width 27 to 29 % of viewport/width
 		below slika_3 0 to 1px

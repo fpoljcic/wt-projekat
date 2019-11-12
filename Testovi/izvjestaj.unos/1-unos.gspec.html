@@ -20,7 +20,7 @@ var REPORT_DATA = {
         "nodes" : [ {
           "name" : "Check layout: unos.gspec included tags: ",
           "status" : "info",
-          "time" : 1573347206938,
+          "time" : 1573600808182,
           "sections" : [ {
             "name" : "Meni section",
             "place" : {
@@ -34,26 +34,6 @@ var REPORT_DATA = {
                 "place" : {
                   "filePath" : "unos.gspec",
                   "lineNumber" : 14
-                },
-                "name" : "inside partly meni 40px bottom",
-                "meta" : [ {
-                  "from" : {
-                    "object" : "logo",
-                    "edge" : "bottom"
-                  },
-                  "to" : {
-                    "object" : "meni",
-                    "edge" : "bottom"
-                  },
-                  "expectedDistance" : "40px",
-                  "realDistance" : "40px"
-                } ],
-                "highlight" : [ "logo", "meni" ]
-              }, {
-                "status" : "info",
-                "place" : {
-                  "filePath" : "unos.gspec",
-                  "lineNumber" : 15
                 },
                 "name" : "width 97 to 99% of viewport/width",
                 "meta" : [ {
@@ -73,7 +53,7 @@ var REPORT_DATA = {
                 "status" : "info",
                 "place" : {
                   "filePath" : "unos.gspec",
-                  "lineNumber" : 16
+                  "lineNumber" : 15
                 },
                 "name" : "height 80 to 84px",
                 "meta" : [ {
@@ -93,7 +73,7 @@ var REPORT_DATA = {
                 "status" : "info",
                 "place" : {
                   "filePath" : "unos.gspec",
-                  "lineNumber" : 17
+                  "lineNumber" : 16
                 },
                 "name" : "centered horizontally inside viewport",
                 "highlight" : [ "logo", "viewport" ]
@@ -104,22 +84,42 @@ var REPORT_DATA = {
                 "status" : "info",
                 "place" : {
                   "filePath" : "unos.gspec",
+                  "lineNumber" : 18
+                },
+                "name" : "inside partly logo 37 to 41px top",
+                "meta" : [ {
+                  "from" : {
+                    "object" : "meni",
+                    "edge" : "top"
+                  },
+                  "to" : {
+                    "object" : "logo",
+                    "edge" : "top"
+                  },
+                  "expectedDistance" : "37 to 41px",
+                  "realDistance" : "39px"
+                } ],
+                "highlight" : [ "meni", "logo" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "unos.gspec",
                   "lineNumber" : 19
                 },
-                "name" : "above labela_1 14 to 18px",
+                "name" : "above sadrzaj 5 to 9px",
                 "meta" : [ {
                   "from" : {
                     "object" : "meni",
                     "edge" : "bottom"
                   },
                   "to" : {
-                    "object" : "labela_1",
+                    "object" : "sadrzaj",
                     "edge" : "top"
                   },
-                  "expectedDistance" : "14 to 18px",
-                  "realDistance" : "16px"
+                  "expectedDistance" : "5 to 9px",
+                  "realDistance" : "7px"
                 } ],
-                "highlight" : [ "meni", "labela_1" ]
+                "highlight" : [ "meni", "sadrzaj" ]
               }, {
                 "status" : "info",
                 "place" : {
@@ -205,7 +205,7 @@ var REPORT_DATA = {
                     "edge" : "bottom"
                   },
                   "expectedDistance" : ">= 0px",
-                  "realDistance" : "12px"
+                  "realDistance" : "14px"
                 } ],
                 "highlight" : [ "ul", "logo" ]
               }, {
@@ -233,7 +233,7 @@ var REPORT_DATA = {
                   "filePath" : "unos.gspec",
                   "lineNumber" : 30
                 },
-                "name" : "near meni_item_2 2 to 6px left",
+                "name" : "near meni_item_2 3 to 7px left",
                 "meta" : [ {
                   "from" : {
                     "object" : "meni_item_1",
@@ -243,8 +243,8 @@ var REPORT_DATA = {
                     "object" : "meni_item_2",
                     "edge" : "left"
                   },
-                  "expectedDistance" : "2 to 6px",
-                  "realDistance" : "4px"
+                  "expectedDistance" : "3 to 7px",
+                  "realDistance" : "5px"
                 } ],
                 "highlight" : [ "meni_item_1", "meni_item_2" ]
               }, {
@@ -253,7 +253,7 @@ var REPORT_DATA = {
                   "filePath" : "unos.gspec",
                   "lineNumber" : 31
                 },
-                "name" : "height 12 to 16px",
+                "name" : "height 14 to 18px",
                 "meta" : [ {
                   "from" : {
                     "object" : "meni_item_1",
@@ -263,8 +263,8 @@ var REPORT_DATA = {
                     "object" : "meni_item_1",
                     "edge" : "bottom"
                   },
-                  "expectedDistance" : "12 to 16px",
-                  "realDistance" : "14px"
+                  "expectedDistance" : "14 to 18px",
+                  "realDistance" : "16px"
                 } ],
                 "highlight" : [ "meni_item_1" ]
               }, {
@@ -338,7 +338,7 @@ var REPORT_DATA = {
                   "filePath" : "unos.gspec",
                   "lineNumber" : 35
                 },
-                "name" : "height 12 to 16px",
+                "name" : "height 14 to 18px",
                 "meta" : [ {
                   "from" : {
                     "object" : "meni_item_2",
@@ -348,8 +348,8 @@ var REPORT_DATA = {
                     "object" : "meni_item_2",
                     "edge" : "bottom"
                   },
-                  "expectedDistance" : "12 to 16px",
-                  "realDistance" : "14px"
+                  "expectedDistance" : "14 to 18px",
+                  "realDistance" : "16px"
                 } ],
                 "highlight" : [ "meni_item_2" ]
               } ]
@@ -399,7 +399,7 @@ var REPORT_DATA = {
                     "edge" : "bottom"
                   },
                   "expectedDistance" : ">= 0px",
-                  "realDistance" : "0px"
+                  "realDistance" : "7px"
                 } ],
                 "highlight" : [ "sadrzaj", "meni" ]
               }, {
@@ -416,7 +416,7 @@ var REPORT_DATA = {
                   "filePath" : "unos.gspec",
                   "lineNumber" : 41
                 },
-                "name" : "inside viewport 7 to 11px left",
+                "name" : "inside viewport 6 to 10px left",
                 "meta" : [ {
                   "from" : {
                     "object" : "sadrzaj",
@@ -426,7 +426,7 @@ var REPORT_DATA = {
                     "object" : "viewport",
                     "edge" : "left"
                   },
-                  "expectedDistance" : "7 to 11px",
+                  "expectedDistance" : "6 to 10px",
                   "realDistance" : "8px"
                 } ],
                 "highlight" : [ "sadrzaj", "viewport" ]
@@ -439,7 +439,7 @@ var REPORT_DATA = {
                   "filePath" : "unos.gspec",
                   "lineNumber" : 43
                 },
-                "name" : "inside sadrzaj 15 to 20px top",
+                "name" : "inside sadrzaj 13 to 17px top",
                 "meta" : [ {
                   "from" : {
                     "object" : "labela_1",
@@ -449,8 +449,8 @@ var REPORT_DATA = {
                     "object" : "sadrzaj",
                     "edge" : "top"
                   },
-                  "expectedDistance" : "15 to 20px",
-                  "realDistance" : "16px"
+                  "expectedDistance" : "13 to 17px",
+                  "realDistance" : "15px"
                 } ],
                 "highlight" : [ "labela_1", "sadrzaj" ]
               }, {
@@ -479,15 +479,35 @@ var REPORT_DATA = {
                   "filePath" : "unos.gspec",
                   "lineNumber" : 45
                 },
-                "name" : "aligned vertically all labela_2",
-                "highlight" : [ "labela_1", "labela_2" ]
+                "name" : "height 20 to 24px",
+                "meta" : [ {
+                  "from" : {
+                    "object" : "labela_1",
+                    "edge" : "top"
+                  },
+                  "to" : {
+                    "object" : "labela_1",
+                    "edge" : "bottom"
+                  },
+                  "expectedDistance" : "20 to 24px",
+                  "realDistance" : "22px"
+                } ],
+                "highlight" : [ "labela_1" ]
               }, {
                 "status" : "info",
                 "place" : {
                   "filePath" : "unos.gspec",
                   "lineNumber" : 46
                 },
-                "name" : "below meni 14 to 16px",
+                "name" : "aligned vertically all labela_2",
+                "highlight" : [ "labela_1", "labela_2" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "unos.gspec",
+                  "lineNumber" : 47
+                },
+                "name" : "below meni 20 to 24px",
                 "meta" : [ {
                   "from" : {
                     "object" : "labela_1",
@@ -497,8 +517,8 @@ var REPORT_DATA = {
                     "object" : "meni",
                     "edge" : "bottom"
                   },
-                  "expectedDistance" : "14 to 16px",
-                  "realDistance" : "16px"
+                  "expectedDistance" : "20 to 24px",
+                  "realDistance" : "22px"
                 } ],
                 "highlight" : [ "labela_1", "meni" ]
               } ]
@@ -508,7 +528,7 @@ var REPORT_DATA = {
                 "status" : "info",
                 "place" : {
                   "filePath" : "unos.gspec",
-                  "lineNumber" : 48
+                  "lineNumber" : 49
                 },
                 "name" : "width 150px",
                 "meta" : [ {
@@ -528,9 +548,29 @@ var REPORT_DATA = {
                 "status" : "info",
                 "place" : {
                   "filePath" : "unos.gspec",
-                  "lineNumber" : 49
+                  "lineNumber" : 50
                 },
-                "name" : "below labela_1 3 to 7px",
+                "name" : "height 20 to 24px",
+                "meta" : [ {
+                  "from" : {
+                    "object" : "labela_2",
+                    "edge" : "top"
+                  },
+                  "to" : {
+                    "object" : "labela_2",
+                    "edge" : "bottom"
+                  },
+                  "expectedDistance" : "20 to 24px",
+                  "realDistance" : "22px"
+                } ],
+                "highlight" : [ "labela_2" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "unos.gspec",
+                  "lineNumber" : 51
+                },
+                "name" : "below labela_1 5 to 9px",
                 "meta" : [ {
                   "from" : {
                     "object" : "labela_2",
@@ -540,8 +580,8 @@ var REPORT_DATA = {
                     "object" : "labela_1",
                     "edge" : "bottom"
                   },
-                  "expectedDistance" : "3 to 7px",
-                  "realDistance" : "5px"
+                  "expectedDistance" : "5 to 9px",
+                  "realDistance" : "7px"
                 } ],
                 "highlight" : [ "labela_2", "labela_1" ]
               } ]
@@ -551,9 +591,29 @@ var REPORT_DATA = {
                 "status" : "info",
                 "place" : {
                   "filePath" : "unos.gspec",
-                  "lineNumber" : 51
+                  "lineNumber" : 53
                 },
-                "name" : "right-of labela_1 12 to 16px",
+                "name" : "height 20 to 24px",
+                "meta" : [ {
+                  "from" : {
+                    "object" : "input_1",
+                    "edge" : "top"
+                  },
+                  "to" : {
+                    "object" : "input_1",
+                    "edge" : "bottom"
+                  },
+                  "expectedDistance" : "20 to 24px",
+                  "realDistance" : "22px"
+                } ],
+                "highlight" : [ "input_1" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "unos.gspec",
+                  "lineNumber" : 54
+                },
+                "name" : "right-of labela_1 5 to 9px",
                 "meta" : [ {
                   "from" : {
                     "object" : "input_1",
@@ -563,15 +623,15 @@ var REPORT_DATA = {
                     "object" : "labela_1",
                     "edge" : "right"
                   },
-                  "expectedDistance" : "12 to 16px",
-                  "realDistance" : "14px"
+                  "expectedDistance" : "5 to 9px",
+                  "realDistance" : "7px"
                 } ],
                 "highlight" : [ "input_1", "labela_1" ]
               }, {
                 "status" : "info",
                 "place" : {
                   "filePath" : "unos.gspec",
-                  "lineNumber" : 52
+                  "lineNumber" : 55
                 },
                 "name" : "aligned vertically left input_2",
                 "highlight" : [ "input_1", "input_2" ]
@@ -579,7 +639,7 @@ var REPORT_DATA = {
                 "status" : "info",
                 "place" : {
                   "filePath" : "unos.gspec",
-                  "lineNumber" : 53
+                  "lineNumber" : 56
                 },
                 "name" : "width 100 % of input_2/width",
                 "meta" : [ {
@@ -599,9 +659,9 @@ var REPORT_DATA = {
                 "status" : "info",
                 "place" : {
                   "filePath" : "unos.gspec",
-                  "lineNumber" : 54
+                  "lineNumber" : 57
                 },
-                "name" : "below meni 14 to 16px",
+                "name" : "below meni 20 to 24px",
                 "meta" : [ {
                   "from" : {
                     "object" : "input_1",
@@ -611,8 +671,8 @@ var REPORT_DATA = {
                     "object" : "meni",
                     "edge" : "bottom"
                   },
-                  "expectedDistance" : "14 to 16px",
-                  "realDistance" : "16px"
+                  "expectedDistance" : "20 to 24px",
+                  "realDistance" : "22px"
                 } ],
                 "highlight" : [ "input_1", "meni" ]
               } ]
@@ -622,9 +682,29 @@ var REPORT_DATA = {
                 "status" : "info",
                 "place" : {
                   "filePath" : "unos.gspec",
-                  "lineNumber" : 56
+                  "lineNumber" : 59
                 },
-                "name" : "right-of labela_2 12 to 16px",
+                "name" : "height 20 to 24px",
+                "meta" : [ {
+                  "from" : {
+                    "object" : "input_2",
+                    "edge" : "top"
+                  },
+                  "to" : {
+                    "object" : "input_2",
+                    "edge" : "bottom"
+                  },
+                  "expectedDistance" : "20 to 24px",
+                  "realDistance" : "22px"
+                } ],
+                "highlight" : [ "input_2" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "unos.gspec",
+                  "lineNumber" : 60
+                },
+                "name" : "right-of labela_2 5 to 9px",
                 "meta" : [ {
                   "from" : {
                     "object" : "input_2",
@@ -634,17 +714,17 @@ var REPORT_DATA = {
                     "object" : "labela_2",
                     "edge" : "right"
                   },
-                  "expectedDistance" : "12 to 16px",
-                  "realDistance" : "14px"
+                  "expectedDistance" : "5 to 9px",
+                  "realDistance" : "7px"
                 } ],
                 "highlight" : [ "input_2", "labela_2" ]
               }, {
                 "status" : "info",
                 "place" : {
                   "filePath" : "unos.gspec",
-                  "lineNumber" : 57
+                  "lineNumber" : 61
                 },
-                "name" : "below input_1 3 to 7px",
+                "name" : "below input_1 5 to 9px",
                 "meta" : [ {
                   "from" : {
                     "object" : "input_2",
@@ -654,8 +734,8 @@ var REPORT_DATA = {
                     "object" : "input_1",
                     "edge" : "bottom"
                   },
-                  "expectedDistance" : "3 to 7px",
-                  "realDistance" : "5px"
+                  "expectedDistance" : "5 to 9px",
+                  "realDistance" : "7px"
                 } ],
                 "highlight" : [ "input_2", "input_1" ]
               } ]
@@ -663,37 +743,37 @@ var REPORT_DATA = {
           } ],
           "objects" : {
             "meni" : {
-              "area" : [ 8, 58, 996, 83 ]
+              "area" : [ 8, 58, 996, 89 ]
             },
             "viewport" : {
               "area" : [ 0, 0, 1012, 687 ]
             },
-            "labela_1" : {
-              "area" : [ 24, 157, 150, 22 ]
-            },
             "ul" : {
-              "area" : [ 9, 113, 994, 15 ]
+              "area" : [ 9, 115, 994, 17 ]
+            },
+            "labela_1" : {
+              "area" : [ 354, 169, 150, 22 ]
             },
             "labela_2" : {
-              "area" : [ 24, 184, 150, 22 ]
+              "area" : [ 354, 198, 150, 22 ]
             },
             "input_1" : {
-              "area" : [ 188, 157, 147, 22 ]
+              "area" : [ 511, 169, 147, 22 ]
             },
             "logo" : {
               "area" : [ 9, 19, 994, 82 ]
             },
             "meni_item_2" : {
-              "area" : [ 86, 113, 44, 14 ]
+              "area" : [ 411, 115, 47, 16 ]
             },
             "input_2" : {
-              "area" : [ 188, 184, 146, 22 ]
+              "area" : [ 511, 198, 146, 22 ]
             },
             "meni_item_1" : {
-              "area" : [ 18, 113, 64, 14 ]
+              "area" : [ 335, 115, 71, 16 ]
             },
             "sadrzaj" : {
-              "area" : [ 8, 141, 996, 142 ]
+              "area" : [ 8, 154, 996, 168 ]
             }
           },
           "screenshot" : "layout-1-screenshot.png",
@@ -701,15 +781,10 @@ var REPORT_DATA = {
         }, {
           "name" : "Mutation testing: unos.gspec included tags: ",
           "status" : "error",
-          "time" : 1573347206938,
+          "time" : 1573600808182,
           "mutationReport" : {
             "objectMutationStatistics" : {
               "meni" : {
-                "passed" : 9,
-                "failed" : 1,
-                "failedMutations" : [ "meni: move top edge down by 5px" ]
-              },
-              "labela_1" : {
                 "passed" : 10,
                 "failed" : 0,
                 "failedMutations" : [ ]
@@ -719,10 +794,15 @@ var REPORT_DATA = {
                 "failed" : 0,
                 "failedMutations" : [ ]
               },
+              "labela_1" : {
+                "passed" : 10,
+                "failed" : 0,
+                "failedMutations" : [ ]
+              },
               "labela_2" : {
-                "passed" : 8,
-                "failed" : 2,
-                "failedMutations" : [ "labela_2: increase height by 5px", "labela_2: decrease height by 5px" ]
+                "passed" : 10,
+                "failed" : 0,
+                "failedMutations" : [ ]
               },
               "input_1" : {
                 "passed" : 10,
@@ -755,17 +835,17 @@ var REPORT_DATA = {
                 "failedMutations" : [ "sadrzaj: increase height by 5px", "sadrzaj: decrease height by 5px" ]
               }
             },
-            "totalPassed" : 92,
-            "totalFailed" : 8,
-            "failedRatio" : 8.0,
-            "totalMutations" : 100
+            "totalPassed" : 95,
+            "totalFailed" : 5,
+            "totalMutations" : 100,
+            "failedRatio" : 5.0
           },
           "type" : "mutation"
         } ],
-        "time" : 1573347202182,
+        "time" : 1573600803235,
         "type" : "node"
       } ],
-      "time" : 1573347195369,
+      "time" : 1573600797055,
       "type" : "node"
     } ]
   }

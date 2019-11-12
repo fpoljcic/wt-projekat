@@ -8,12 +8,12 @@
 	tabela 		css		.tabelaSala
 = Meni section =
 	logo:
-		inside partly meni 40px bottom
 		width 97 to 99% of viewport/width
 		height 80 to 84px
 		centered horizontally inside viewport
 	meni:
-		above sadrzaj 7 to 11px
+		inside partly logo 37 to 41px top
+		above sadrzaj 5 to 9px
 		width 97 to 99% of viewport/width
 		centered horizontally inside viewport
 	ul:
@@ -24,12 +24,12 @@
 		centered horizontally inside meni 1px
 	meni_item_1:
 		aligned horizontally all meni_item_2
-		near meni_item_2 2 to 6px left
-		height 12 to 16px
+		near meni_item_2 3 to 7px left
+		height 14 to 18px
 		inside ul 0 to 2px bottom, 0px top
 	meni_item_2:
 		inside ul 0 to 2px bottom, 0px top
-		height 12 to 16px
+		height 14 to 18px
 = Main section =
 	sadrzaj:
 		width 97 to 99% of viewport/width
@@ -37,5 +37,5 @@
 		contains tabela
 		centered horizontally inside viewport
 	tabela:
-		inside sadrzaj 15 to 19px top bottom
+		inside sadrzaj 13 to 17px top bottom
 		centered horizontally inside meni

@@ -20,7 +20,7 @@ var REPORT_DATA = {
         "nodes" : [ {
           "name" : "Check layout: rezervacija.gspec included tags: ",
           "status" : "info",
-          "time" : 1573347243630,
+          "time" : 1573600838247,
           "sections" : [ {
             "name" : "Meni section",
             "place" : {
@@ -34,26 +34,6 @@ var REPORT_DATA = {
                 "place" : {
                   "filePath" : "rezervacija.gspec",
                   "lineNumber" : 15
-                },
-                "name" : "inside partly meni 40px bottom",
-                "meta" : [ {
-                  "from" : {
-                    "object" : "logo",
-                    "edge" : "bottom"
-                  },
-                  "to" : {
-                    "object" : "meni",
-                    "edge" : "bottom"
-                  },
-                  "expectedDistance" : "40px",
-                  "realDistance" : "40px"
-                } ],
-                "highlight" : [ "logo", "meni" ]
-              }, {
-                "status" : "info",
-                "place" : {
-                  "filePath" : "rezervacija.gspec",
-                  "lineNumber" : 16
                 },
                 "name" : "width 97 to 99% of viewport/width",
                 "meta" : [ {
@@ -73,7 +53,7 @@ var REPORT_DATA = {
                 "status" : "info",
                 "place" : {
                   "filePath" : "rezervacija.gspec",
-                  "lineNumber" : 17
+                  "lineNumber" : 16
                 },
                 "name" : "height 80 to 84px",
                 "meta" : [ {
@@ -93,7 +73,7 @@ var REPORT_DATA = {
                 "status" : "info",
                 "place" : {
                   "filePath" : "rezervacija.gspec",
-                  "lineNumber" : 18
+                  "lineNumber" : 17
                 },
                 "name" : "centered horizontally inside viewport",
                 "highlight" : [ "logo", "viewport" ]
@@ -104,22 +84,42 @@ var REPORT_DATA = {
                 "status" : "info",
                 "place" : {
                   "filePath" : "rezervacija.gspec",
+                  "lineNumber" : 19
+                },
+                "name" : "inside partly logo 37 to 41px top",
+                "meta" : [ {
+                  "from" : {
+                    "object" : "meni",
+                    "edge" : "top"
+                  },
+                  "to" : {
+                    "object" : "logo",
+                    "edge" : "top"
+                  },
+                  "expectedDistance" : "37 to 41px",
+                  "realDistance" : "39px"
+                } ],
+                "highlight" : [ "meni", "logo" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "rezervacija.gspec",
                   "lineNumber" : 20
                 },
-                "name" : "above labela_1 12 to 16px",
+                "name" : "above sadrzaj 5 to 9px",
                 "meta" : [ {
                   "from" : {
                     "object" : "meni",
                     "edge" : "bottom"
                   },
                   "to" : {
-                    "object" : "labela_1",
+                    "object" : "sadrzaj",
                     "edge" : "top"
                   },
-                  "expectedDistance" : "12 to 16px",
-                  "realDistance" : "14px"
+                  "expectedDistance" : "5 to 9px",
+                  "realDistance" : "7px"
                 } ],
-                "highlight" : [ "meni", "labela_1" ]
+                "highlight" : [ "meni", "sadrzaj" ]
               }, {
                 "status" : "info",
                 "place" : {
@@ -205,7 +205,7 @@ var REPORT_DATA = {
                     "edge" : "bottom"
                   },
                   "expectedDistance" : ">= 0px",
-                  "realDistance" : "12px"
+                  "realDistance" : "14px"
                 } ],
                 "highlight" : [ "ul", "logo" ]
               }, {
@@ -233,7 +233,7 @@ var REPORT_DATA = {
                   "filePath" : "rezervacija.gspec",
                   "lineNumber" : 31
                 },
-                "name" : "near meni_item_2 2 to 6px left",
+                "name" : "near meni_item_2 3 to 7px left",
                 "meta" : [ {
                   "from" : {
                     "object" : "meni_item_1",
@@ -243,8 +243,8 @@ var REPORT_DATA = {
                     "object" : "meni_item_2",
                     "edge" : "left"
                   },
-                  "expectedDistance" : "2 to 6px",
-                  "realDistance" : "4px"
+                  "expectedDistance" : "3 to 7px",
+                  "realDistance" : "5px"
                 } ],
                 "highlight" : [ "meni_item_1", "meni_item_2" ]
               }, {
@@ -253,7 +253,7 @@ var REPORT_DATA = {
                   "filePath" : "rezervacija.gspec",
                   "lineNumber" : 32
                 },
-                "name" : "height 12 to 16px",
+                "name" : "height 14 to 18px",
                 "meta" : [ {
                   "from" : {
                     "object" : "meni_item_1",
@@ -263,8 +263,8 @@ var REPORT_DATA = {
                     "object" : "meni_item_1",
                     "edge" : "bottom"
                   },
-                  "expectedDistance" : "12 to 16px",
-                  "realDistance" : "14px"
+                  "expectedDistance" : "14 to 18px",
+                  "realDistance" : "16px"
                 } ],
                 "highlight" : [ "meni_item_1" ]
               }, {
@@ -338,7 +338,7 @@ var REPORT_DATA = {
                   "filePath" : "rezervacija.gspec",
                   "lineNumber" : 36
                 },
-                "name" : "height 12 to 16px",
+                "name" : "height 14 to 18px",
                 "meta" : [ {
                   "from" : {
                     "object" : "meni_item_2",
@@ -348,8 +348,8 @@ var REPORT_DATA = {
                     "object" : "meni_item_2",
                     "edge" : "bottom"
                   },
-                  "expectedDistance" : "12 to 16px",
-                  "realDistance" : "14px"
+                  "expectedDistance" : "14 to 18px",
+                  "realDistance" : "16px"
                 } ],
                 "highlight" : [ "meni_item_2" ]
               } ]
@@ -399,7 +399,7 @@ var REPORT_DATA = {
                     "edge" : "bottom"
                   },
                   "expectedDistance" : ">= 0px",
-                  "realDistance" : "0px"
+                  "realDistance" : "7px"
                 } ],
                 "highlight" : [ "sadrzaj", "meni" ]
               }, {
@@ -419,27 +419,7 @@ var REPORT_DATA = {
                   "filePath" : "rezervacija.gspec",
                   "lineNumber" : 43
                 },
-                "name" : "below sadrzaj 3 to 7px",
-                "meta" : [ {
-                  "from" : {
-                    "object" : "tabela",
-                    "edge" : "top"
-                  },
-                  "to" : {
-                    "object" : "sadrzaj",
-                    "edge" : "bottom"
-                  },
-                  "expectedDistance" : "3 to 7px",
-                  "realDistance" : "5px"
-                } ],
-                "highlight" : [ "tabela", "sadrzaj" ]
-              }, {
-                "status" : "info",
-                "place" : {
-                  "filePath" : "rezervacija.gspec",
-                  "lineNumber" : 44
-                },
-                "name" : "width 49 to 51% of viewport/width",
+                "name" : "width >= 350px",
                 "meta" : [ {
                   "from" : {
                     "object" : "tabela",
@@ -449,10 +429,18 @@ var REPORT_DATA = {
                     "object" : "tabela",
                     "edge" : "right"
                   },
-                  "expectedDistance" : "49 to 51% [495 to 516px]",
-                  "realDistance" : "49% [498px]"
+                  "expectedDistance" : ">= 350px",
+                  "realDistance" : "357px"
                 } ],
                 "highlight" : [ "tabela" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "rezervacija.gspec",
+                  "lineNumber" : 44
+                },
+                "name" : "centered horizontally inside sadrzaj",
+                "highlight" : [ "tabela", "sadrzaj" ]
               } ]
             }, {
               "name" : "labela_1",
@@ -462,7 +450,7 @@ var REPORT_DATA = {
                   "filePath" : "rezervacija.gspec",
                   "lineNumber" : 46
                 },
-                "name" : "below meni 10 to 16px",
+                "name" : "below meni 23 to 27px",
                 "meta" : [ {
                   "from" : {
                     "object" : "labela_1",
@@ -472,30 +460,10 @@ var REPORT_DATA = {
                     "object" : "meni",
                     "edge" : "bottom"
                   },
-                  "expectedDistance" : "10 to 16px",
-                  "realDistance" : "14px"
+                  "expectedDistance" : "23 to 27px",
+                  "realDistance" : "25px"
                 } ],
                 "highlight" : [ "labela_1", "meni" ]
-              }, {
-                "status" : "info",
-                "place" : {
-                  "filePath" : "rezervacija.gspec",
-                  "lineNumber" : 47
-                },
-                "name" : "inside viewport 6 to 10px left",
-                "meta" : [ {
-                  "from" : {
-                    "object" : "labela_1",
-                    "edge" : "left"
-                  },
-                  "to" : {
-                    "object" : "viewport",
-                    "edge" : "left"
-                  },
-                  "expectedDistance" : "6 to 10px",
-                  "realDistance" : "8px"
-                } ],
-                "highlight" : [ "labela_1", "viewport" ]
               } ]
             }, {
               "name" : "select_1",
@@ -503,7 +471,7 @@ var REPORT_DATA = {
                 "status" : "info",
                 "place" : {
                   "filePath" : "rezervacija.gspec",
-                  "lineNumber" : 49
+                  "lineNumber" : 48
                 },
                 "name" : "right-of labela_1 3 to 7px",
                 "meta" : [ {
@@ -523,7 +491,7 @@ var REPORT_DATA = {
                 "status" : "info",
                 "place" : {
                   "filePath" : "rezervacija.gspec",
-                  "lineNumber" : 50
+                  "lineNumber" : 49
                 },
                 "name" : "aligned horizontally centered labela_1 1px",
                 "highlight" : [ "select_1", "labela_1" ]
@@ -531,9 +499,9 @@ var REPORT_DATA = {
                 "status" : "info",
                 "place" : {
                   "filePath" : "rezervacija.gspec",
-                  "lineNumber" : 51
+                  "lineNumber" : 50
                 },
-                "name" : "below meni 6 to 12px",
+                "name" : "below meni 21 to 25px",
                 "meta" : [ {
                   "from" : {
                     "object" : "select_1",
@@ -543,8 +511,8 @@ var REPORT_DATA = {
                     "object" : "meni",
                     "edge" : "bottom"
                   },
-                  "expectedDistance" : "6 to 12px",
-                  "realDistance" : "10px"
+                  "expectedDistance" : "21 to 25px",
+                  "realDistance" : "23px"
                 } ],
                 "highlight" : [ "select_1", "meni" ]
               } ]
@@ -554,7 +522,7 @@ var REPORT_DATA = {
                 "status" : "info",
                 "place" : {
                   "filePath" : "rezervacija.gspec",
-                  "lineNumber" : 53
+                  "lineNumber" : 52
                 },
                 "name" : "aligned horizontally centered labela_1",
                 "highlight" : [ "labela_2", "labela_1" ]
@@ -562,7 +530,7 @@ var REPORT_DATA = {
                 "status" : "info",
                 "place" : {
                   "filePath" : "rezervacija.gspec",
-                  "lineNumber" : 54
+                  "lineNumber" : 53
                 },
                 "name" : "right-of select_1 2 to 6px",
                 "meta" : [ {
@@ -582,7 +550,7 @@ var REPORT_DATA = {
                 "status" : "info",
                 "place" : {
                   "filePath" : "rezervacija.gspec",
-                  "lineNumber" : 55
+                  "lineNumber" : 54
                 },
                 "name" : "height 100% of labela_1/height",
                 "meta" : [ {
@@ -594,8 +562,8 @@ var REPORT_DATA = {
                     "object" : "labela_2",
                     "edge" : "bottom"
                   },
-                  "expectedDistance" : "100% [14px]",
-                  "realDistance" : "100% [14px]"
+                  "expectedDistance" : "100% [16px]",
+                  "realDistance" : "100% [16px]"
                 } ],
                 "highlight" : [ "labela_2" ]
               } ]
@@ -605,9 +573,9 @@ var REPORT_DATA = {
                 "status" : "info",
                 "place" : {
                   "filePath" : "rezervacija.gspec",
-                  "lineNumber" : 57
+                  "lineNumber" : 56
                 },
-                "name" : "below tabela 5 to 7px",
+                "name" : "below tabela",
                 "meta" : [ {
                   "from" : {
                     "object" : "button",
@@ -617,10 +585,30 @@ var REPORT_DATA = {
                     "object" : "tabela",
                     "edge" : "bottom"
                   },
-                  "expectedDistance" : "5 to 7px",
-                  "realDistance" : "6px"
+                  "expectedDistance" : ">= 0px",
+                  "realDistance" : "3px"
                 } ],
                 "highlight" : [ "button", "tabela" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "rezervacija.gspec",
+                  "lineNumber" : 57
+                },
+                "name" : "inside sadrzaj 14 to 18px bottom",
+                "meta" : [ {
+                  "from" : {
+                    "object" : "button",
+                    "edge" : "bottom"
+                  },
+                  "to" : {
+                    "object" : "sadrzaj",
+                    "edge" : "bottom"
+                  },
+                  "expectedDistance" : "14 to 18px",
+                  "realDistance" : "16px"
+                } ],
+                "highlight" : [ "button", "sadrzaj" ]
               }, {
                 "status" : "info",
                 "place" : {
@@ -634,40 +622,40 @@ var REPORT_DATA = {
           } ],
           "objects" : {
             "meni" : {
-              "area" : [ 8, 58, 996, 83 ]
+              "area" : [ 8, 58, 996, 89 ]
             },
             "button" : {
-              "area" : [ 8, 474, 82, 34 ]
+              "area" : [ 327, 504, 75, 30 ]
             },
             "tabela" : {
-              "area" : [ 8, 179, 498, 289 ]
+              "area" : [ 327, 200, 357, 301 ]
             },
             "viewport" : {
               "area" : [ 0, 0, 1012, 687 ]
             },
-            "labela_1" : {
-              "area" : [ 8, 155, 57, 14 ]
-            },
             "ul" : {
-              "area" : [ 9, 113, 994, 15 ]
+              "area" : [ 9, 115, 994, 17 ]
+            },
+            "labela_1" : {
+              "area" : [ 173, 172, 65, 16 ]
             },
             "labela_2" : {
-              "area" : [ 127, 155, 91, 14 ]
+              "area" : [ 300, 172, 104, 16 ]
             },
             "logo" : {
               "area" : [ 9, 19, 994, 82 ]
             },
             "meni_item_2" : {
-              "area" : [ 86, 113, 44, 14 ]
+              "area" : [ 411, 115, 47, 16 ]
             },
             "meni_item_1" : {
-              "area" : [ 18, 113, 64, 14 ]
+              "area" : [ 335, 115, 71, 16 ]
             },
             "select_1" : {
-              "area" : [ 70, 151, 53, 20 ]
+              "area" : [ 243, 170, 53, 20 ]
             },
             "sadrzaj" : {
-              "area" : [ 8, 141, 996, 33 ]
+              "area" : [ 8, 154, 996, 396 ]
             }
           },
           "screenshot" : "layout-1-screenshot.png",
@@ -675,30 +663,30 @@ var REPORT_DATA = {
         }, {
           "name" : "Mutation testing: rezervacija.gspec included tags: ",
           "status" : "error",
-          "time" : 1573347243630,
+          "time" : 1573600838247,
           "mutationReport" : {
             "objectMutationStatistics" : {
               "meni" : {
-                "passed" : 9,
-                "failed" : 1,
-                "failedMutations" : [ "meni: move top edge down by 5px" ]
-              },
-              "button" : {
-                "passed" : 6,
-                "failed" : 4,
-                "failedMutations" : [ "button: increase width by 5px", "button: decrease width by 5px", "button: increase height by 5px", "button: decrease height by 5px" ]
-              },
-              "tabela" : {
-                "passed" : 9,
-                "failed" : 1,
-                "failedMutations" : [ "tabela: increase width by 5px" ]
-              },
-              "labela_1" : {
                 "passed" : 10,
                 "failed" : 0,
                 "failedMutations" : [ ]
               },
+              "button" : {
+                "passed" : 7,
+                "failed" : 3,
+                "failedMutations" : [ "button: increase width by 5px", "button: decrease width by 5px", "button: move top edge down by 5px" ]
+              },
+              "tabela" : {
+                "passed" : 7,
+                "failed" : 3,
+                "failedMutations" : [ "tabela: drag top by 5px", "tabela: decrease height by 5px", "tabela: move top edge down by 5px" ]
+              },
               "ul" : {
+                "passed" : 10,
+                "failed" : 0,
+                "failedMutations" : [ ]
+              },
+              "labela_1" : {
                 "passed" : 10,
                 "failed" : 0,
                 "failedMutations" : [ ]
@@ -724,27 +712,27 @@ var REPORT_DATA = {
                 "failedMutations" : [ "meni_item_1: move left edge right by 5px" ]
               },
               "select_1" : {
-                "passed" : 9,
-                "failed" : 1,
-                "failedMutations" : [ "select_1: increase height by 5px" ]
+                "passed" : 10,
+                "failed" : 0,
+                "failedMutations" : [ ]
               },
               "sadrzaj" : {
-                "passed" : 9,
-                "failed" : 1,
-                "failedMutations" : [ "sadrzaj: move top edge down by 5px" ]
+                "passed" : 10,
+                "failed" : 0,
+                "failedMutations" : [ ]
               }
             },
-            "totalPassed" : 97,
-            "totalFailed" : 13,
+            "totalPassed" : 99,
+            "totalFailed" : 11,
             "totalMutations" : 110,
-            "failedRatio" : 11.818181818181818
+            "failedRatio" : 10.0
           },
           "type" : "mutation"
         } ],
-        "time" : 1573347238223,
+        "time" : 1573600832644,
         "type" : "node"
       } ],
-      "time" : 1573347231974,
+      "time" : 1573600826449,
       "type" : "node"
     } ]
   }

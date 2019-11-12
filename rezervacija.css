@@ -1,12 +1,12 @@
 body {
 	font-family: Arial, Helvetica, sans-serif;
 	padding-top: 50px;
+	font-size: 14px;
 }
 
 .meni {
 	background-color: #729fcf;
 	border: 1px solid lightgreen;
-	font-size: 12px;
 	text-align: center;
 }
 
@@ -44,13 +44,18 @@ body {
 }
 
 label {
-	font-size: 12px;
-	padding-left: 3%;
+	padding-left: 3.5%;
+}
+
+input[name=kraj] {
+	margin-right: 3.5%;
 }
 
 .kalendar {
 	margin: auto;
-	width: 60%;
+	width: 37%;
+	min-width: 350px;
+	margin-top: 0.5em;
 }
 
 table {
@@ -68,7 +73,6 @@ table {
 
 table, td {
 	border: 2px solid #406c9e;
-	font-size: 12px;
 	table-layout: fixed;
 }
 
@@ -117,34 +121,48 @@ input[name=sljedeci] {
 	.meni li {
 		display: block;
 	}
+
+	.polja {
+		display: inline-grid;
+		grid-gap: 0.2em;
+		grid-column-gap: 1em;
+	}
+
+	.polja input, .polja select {
+		grid-column-start: 2;
+	}
+
+	.brojevi, tr:nth-child(1), th {
+		display: none;
+	}
+
+	tr {
+		display: table-cell;
+	}
 	
 	td {
 		display: block;
+		padding-bottom: 1em;
+		margin-top: 0.5em;
+		margin-bottom: 0.5em;
+		height: 1.5em;
+		visibility: hidden;
 	}
 
-	.brojevi {
-		display: none;
+	tr.dani > td, td.zauzeta, td.slobodna {
+		visibility: visible;
 	}
 
-	th {
-		display: none;
-	}
-
-	table {
-		empty-cells: hide;
-	}
-
-	.dani td {
-		margin-top: 2%;
-		margin-bottom: 2%;
+	tr:nth-child(4) {
+		display: block;
 	}
 
 	table {
 		padding-bottom: 0;
-		width: 200px;
 	}
 
-	input[type=button] {
-		float: none;
+	.kalendar {
+		width: 50%;
+		min-width: 125px;
 	}
 }

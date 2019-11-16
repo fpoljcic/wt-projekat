@@ -107,6 +107,11 @@ input[type=button] {
 	border: 2px solid #406c9e;
 	margin-top: 1%;
 	padding: 1.5% 2.5%;
+	cursor: pointer;
+}
+
+input:disabled {
+	cursor: default;
 }
 
 input[name=prethodni] {

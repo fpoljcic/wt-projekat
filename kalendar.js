@@ -60,7 +60,7 @@ let Kalendar = (function() {
 
 		if (prikazPeriodicnih) {
 			for (var periodicnoZauzece of periodicna) {
-				if ((periodicnoZauzece.pocetak === pocetak || pocetak == "") && (periodicnoZauzece.kraj === kraj || kraj == "") && vratiNizMjeseciSemestra(periodicnoZauzece.semestar).includes(mjesec)) {
+				if (periodicnoZauzece.naziv === sala && (periodicnoZauzece.pocetak === pocetak || pocetak == "") && (periodicnoZauzece.kraj === kraj || kraj == "") && vratiNizMjeseciSemestra(periodicnoZauzece.semestar).includes(mjesec)) {
 					var dan = periodicnoZauzece.dan;
 					for (var i = 2; i < kalendarRef.rows.length; i++) {
 						kalendarRef.rows[i].cells[dan].style.backgroundImage = "linear-gradient(0, #ff6347 0, #ff6347 40%, #406c9e 40%, #406c9e 47%, #ffffff 47%, #ffffff 100%)";
@@ -69,7 +69,7 @@ let Kalendar = (function() {
 			}
 		} else {
 			for (var vanrednoZauzece of vanredna) {
-				if ((vanrednoZauzece.pocetak === pocetak || pocetak == "") && (vanrednoZauzece.kraj === kraj || kraj == "") && vratiMjesecIzDatuma(vanrednoZauzece.datum) === mjesec && vratiGodinuIzDatuma(vanrednoZauzece.datum) === new Date().getFullYear()) {
+				if (vanrednoZauzece.naziv === sala && (vanrednoZauzece.pocetak === pocetak || pocetak == "") && (vanrednoZauzece.kraj === kraj || kraj == "") && vratiMjesecIzDatuma(vanrednoZauzece.datum) === mjesec && vratiGodinuIzDatuma(vanrednoZauzece.datum) === new Date().getFullYear()) {
 					var dan = vratiDanIzDatuma(vanrednoZauzece.datum);
 					var x = Math.floor((dan + prviDan) / 7);
 					var y = (prviDan + (dan % 7)) % 7;
@@ -124,21 +124,21 @@ let Kalendar = (function() {
 window.onload = function(){
 	Kalendar.iscrtajKalendar(document.getElementById("kalendarRef"), trenutniMjesec);
 
-	var periodicna = [{dan: 0, semestar: "zimski", pocetak: "09:00", kraj: "11:00", naziv: "RPR", predavac: "Vedran"},
-	{dan: 1, semestar: "ljetni", pocetak: "09:00", kraj: "11:00", naziv: "OBP", predavac: "Emir"},
-	{dan: 2, semestar: "zimski", pocetak: "09:00", kraj: "11:00", naziv: "DM", predavac: "Juric"},
-	{dan: 3, semestar: "zimski", pocetak: "10:00", kraj: "12:00", naziv: "VVS", predavac: "Dzenana"},
-	{dan: 4, semestar: "zimski", pocetak: "10:00", kraj: "12:00", naziv: "OR", predavac: "Vedran"},
-	{dan: 5, semestar: "ljetni", pocetak: "12:00", kraj: "14:00", naziv: "TP", predavac: "Juric"},
-	{dan: 6, semestar: "ljetni", pocetak: "09:00", kraj: "11:00", naziv: "IM2", predavac: "Zenan"}];
+	var periodicna = [{dan: 0, semestar: "zimski", pocetak: "09:00", kraj: "11:00", naziv: "0-01", predavac: "Vedran"},
+	{dan: 1, semestar: "ljetni", pocetak: "09:00", kraj: "11:00", naziv: "0-02", predavac: "Emir"},
+	{dan: 2, semestar: "zimski", pocetak: "09:00", kraj: "11:00", naziv: "0-01", predavac: "Juric"},
+	{dan: 3, semestar: "zimski", pocetak: "10:00", kraj: "12:00", naziv: "0-02", predavac: "Dzenana"},
+	{dan: 4, semestar: "zimski", pocetak: "10:00", kraj: "12:00", naziv: "0-01", predavac: "Vedran"},
+	{dan: 5, semestar: "ljetni", pocetak: "12:00", kraj: "14:00", naziv: "0-02", predavac: "Juric"},
+	{dan: 6, semestar: "ljetni", pocetak: "09:00", kraj: "11:00", naziv: "0-01", predavac: "Zenan"}];
 
-	var vanredna = [{datum: "17.11.2019", pocetak: "09:00", kraj: "11:00", naziv: "Instrukcije", predavac: "Faris"},
-	{datum: "18.11.2019", pocetak: "09:00", kraj: "11:00", naziv: "Instrukcije.2", predavac: "Armin"},
-	{datum: "29.11.2019", pocetak: "09:00", kraj: "11:00", naziv: "Instrukcije.3", predavac: "Adin"},
-	{datum: "01.12.2019", pocetak: "10:00", kraj: "12:00", naziv: "Instrukcije.4", predavac: "Anes"},
-	{datum: "01.01.2019", pocetak: "09:00", kraj: "11:00", naziv: "Instrukcije.5", predavac: "Faris"},
-	{datum: "28.02.2019", pocetak: "09:00", kraj: "11:00", naziv: "Instrukcije.6", predavac: "Amra"},
-	{datum: "31.12.2019", pocetak: "10:00", kraj: "12:00", naziv: "Instrukcije.7", predavac: "Sile"}];
+	var vanredna = [{datum: "17.11.2019", pocetak: "09:00", kraj: "11:00", naziv: "0-01", predavac: "Faris"},
+	{datum: "18.11.2019", pocetak: "09:00", kraj: "11:00", naziv: "0-01", predavac: "Armin"},
+	{datum: "29.11.2019", pocetak: "09:00", kraj: "11:00", naziv: "0-01", predavac: "Adin"},
+	{datum: "01.12.2019", pocetak: "10:00", kraj: "12:00", naziv: "0-02", predavac: "Anes"},
+	{datum: "01.01.2019", pocetak: "09:00", kraj: "11:00", naziv: "0-02", predavac: "Faris"},
+	{datum: "28.02.2019", pocetak: "09:00", kraj: "11:00", naziv: "0-02", predavac: "Amra"},
+	{datum: "31.12.2019", pocetak: "10:00", kraj: "12:00", naziv: "0-02", predavac: "Sile"}];
 
 	Kalendar.ucitajPodatke(periodicna, vanredna);
 	azurirajPrikaz(document.getElementById("kalendarRef"));
@@ -151,12 +151,12 @@ function sljedeciMjesec(kalendarRef) {
 
 function prethodniMjesec(kalendarRef) {
 	Kalendar.iscrtajKalendar(kalendarRef, --trenutniMjesec);
+	azurirajPrikaz(kalendarRef);
 }
 
 function azurirajPrikaz(kalendarRef) {
 	var sala = document.getElementsByName("sale")[0].value;
 	prikazPeriodicnih = document.getElementsByName("periodicna")[0].checked;
-	var polja = document.getElementsByName("pocetak");
 	var pocetak = document.getElementsByName("pocetak")[0].value;
 	var kraj = document.getElementsByName("kraj")[0].value;
 	Kalendar.obojiZauzeca(kalendarRef, trenutniMjesec, sala, pocetak, kraj);

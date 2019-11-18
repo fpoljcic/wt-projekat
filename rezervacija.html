@@ -21,7 +21,7 @@
 	<div class="sadrzaj">
 		<div class="polja">
 			<label>Sala:</label>
-			<select name="sale">
+			<select onchange="azurirajPrikaz(document.getElementById('kalendarRef'));" name="sale">
 				<option value="0-01">0-01</option>
 				<option value="0-02">0-02</option>
 				<option value="0-03">0-03</option>
@@ -47,11 +47,11 @@
 				<option value="EE2">EE2</option>
 			</select>
 			<label>Periodična:</label>
-			<input type="checkbox" name="periodicna">
+			<input onchange="azurirajPrikaz(document.getElementById('kalendarRef'));" type="checkbox" name="periodicna">
 			<label>Početak:</label>
-			<input type="time" name="pocetak">
+			<input onkeyup="azurirajPrikaz(document.getElementById('kalendarRef'));" type="time" name="pocetak">
 			<label>Kraj:</label>
-			<input type="time" name="kraj">
+			<input onkeyup="azurirajPrikaz(document.getElementById('kalendarRef'));" type="time" name="kraj">
 		</div>
 		<div class="kalendar">
 			<table id="kalendarRef">

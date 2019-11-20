@@ -53,6 +53,8 @@ let Kalendar = (function() {
 	}
 
 	function nalaziSeUIntervalu(pocetak1, kraj1, pocetak2, kraj2) {
+		if (pocetak2 == "" || kraj2 == "")
+			return false;
 		var regexSati = /(\d\d):/gm;
 		var regexMinute = /:(\d\d)/gm;
 
@@ -85,10 +87,12 @@ let Kalendar = (function() {
 	function obojiZauzecaImpl(kalendarRef, mjesec, sala, pocetak, kraj) {
 		obojiSveZeleno(kalendarRef);
 		var prviDan = vratiPrviDanMjeseca(new Date().getFullYear(), mjesec);
+		/*
 		if (pocetak == "")
 			pocetak = "00:00";
 		if (kraj == "")
 			kraj = "23:59";
+		*/
 		if (periodicna != undefined && periodicna != null) {
 			for (var periodicnoZauzece of periodicna) {
 				if (periodicnoZauzece.naziv === sala && nalaziSeUIntervalu(periodicnoZauzece.pocetak, periodicnoZauzece.kraj, pocetak, kraj) && vratiNizMjeseciSemestra(periodicnoZauzece.semestar).includes(mjesec)) {

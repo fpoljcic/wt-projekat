@@ -1,23 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Rezervacija</title>
+	<title>Testovi</title>
+	<meta charset="UTF-8" >
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://unpkg.com/mocha/mocha.css">
 	<link rel="stylesheet" href="rezervacija.css">
-	<meta charset="UTF-8">
+	<style>
+		td {
+			border: 1px solid black;
+			height: 20px;
+			width: 20px;
+		}
+	</style>
 </head>
 <body>
-	<div class="meni">
-		<div class="logo">
-			<img src="logo.png" alt="Logo">
-		</div>
-		<ul>
-			<li><a href="pocetna.html">Početna</a></li>
-			<li><a href="sale.html">Sale</a></li>
-			<li><a href="unos.html">Unos</a></li>
-			<li>Rezervacije</li>
-			<li><a href="#">Osobe</a></li>
-		</ul>
-	</div>
+	<div id="ispis"></div>
+	<div id="mocha"></div>
+
+	<script src="https://unpkg.com/chai/chai.js"></script>
+	<script src="https://unpkg.com/mocha/mocha.js"></script>
+
+	<script class="mocha-init">
+		mocha.setup('bdd');
+		mocha.checkLeaks();
+	</script>
+
 	<div class="sadrzaj">
 		<div class="polja">
 			<label>Sala:</label>
@@ -126,6 +134,11 @@
 			<input type="button" onclick="sljedeciMjesec(document.getElementById('kalendarRef'));" name="sljedeci" value="Sljedeći">
 		</div>
 	</div>
+
 	<script src="kalendar.js"></script>
+	<script src="testovi.js"></script>
+	<script class="mocha-exec">
+		mocha.run();
+	</script>
 </body>
 </html>

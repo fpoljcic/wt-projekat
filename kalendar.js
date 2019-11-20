@@ -6,6 +6,7 @@ let Kalendar = (function() {
 	var periodicna, vanredna;
 
 	function vratiBroj(regex, broj) {
+		regex.lastIndex = 0;
 		var izdvojen = regex.exec(broj);
 		var s = izdvojen[1].charAt(1);
 		if (izdvojen[1].charAt(0) === '0')
@@ -39,7 +40,7 @@ let Kalendar = (function() {
 	function obojiSveZeleno(kalendarRef) {
 		for (var i = 2; i < kalendarRef.rows.length; i++) {
 			for(var j = 0; j < kalendarRef.rows[i].cells.length; j++) {
-				kalendarRef.rows[i].cells[j].style.backgroundImage = "linear-gradient(0, #00ff00 0, #00ff00 40%, #406c9e 40%, #406c9e 47%, #ffffff 47%, #ffffff 100%)";
+				kalendarRef.rows[i].cells[j].className = "slobodna";
 			}
 		}
 	}
@@ -52,28 +53,63 @@ let Kalendar = (function() {
 		return false;
 	}
 
+	function nalaziSeUIntervalu(pocetak1, kraj1, pocetak2, kraj2) {
+		var regexSati = /(\d\d):/gm;
+		var regexMinute = /:(\d\d)/gm;
+
+		var x1 = vratiBroj(regexSati, pocetak1) + 1;
+		var x2 = vratiBroj(regexSati, kraj1) + 1;
+		var y1 = vratiBroj(regexSati, pocetak2) + 1;
+		var y2 = vratiBroj(regexSati, kraj2) + 1;
+
+		var x1m = vratiBroj(regexMinute, pocetak1) + 1;
+		var x2m = vratiBroj(regexMinute, kraj1) + 1;
+		var	y1m = vratiBroj(regexMinute, pocetak2) + 1;
+		var	y2m = vratiBroj(regexMinute, kraj2) + 1;
+
+		if (x1 > x2 || y1 > y2 || x1 == x2 && x1m > x2m || y1 == y2 && y1m > y2m)
+			return false;
+		else if (x1 == x2 && y1 != y2 && x1 >= y1 && x1 < y2)
+			return true;
+		else if (y1 == y2 && x1 != x2 && y1 >= x1 && y1 < x2)
+			return true;
+		else if (x1 < y2 && y1 < x2)
+			return true;
+		else if (x1 != x2 || y1 != y2)
+			return false;
+		else if (x1m == x2m && y1m != y2m && x1m >= y1m && x1m < y2m)
+			return true;
+		else if (y1m == y2m && x1m != x2m && y1m >= x1m && y1m < x2m)
+			return true;
+		return x1m < y2m && y1m < x2m;
+	}
+
 	function obojiZauzecaImpl(kalendarRef, mjesec, sala, pocetak, kraj) {
 		if (periodicna === undefined || vanredna === undefined)
 			return false;
 		obojiSveZeleno(kalendarRef);
 		var prviDan = vratiPrviDanMjeseca(new Date().getFullYear(), mjesec);
+		if (pocetak == "")
+			pocetak = "00:00";
+		if (kraj == "")
+			kraj = "23:59";
 
 		if (prikazPeriodicnih) {
 			for (var periodicnoZauzece of periodicna) {
-				if (periodicnoZauzece.naziv === sala && (periodicnoZauzece.pocetak === pocetak || pocetak == "") && (periodicnoZauzece.kraj === kraj || kraj == "") && vratiNizMjeseciSemestra(periodicnoZauzece.semestar).includes(mjesec)) {
+				if (periodicnoZauzece.naziv === sala && nalaziSeUIntervalu(periodicnoZauzece.pocetak, periodicnoZauzece.kraj, pocetak, kraj) && vratiNizMjeseciSemestra(periodicnoZauzece.semestar).includes(mjesec)) {
 					var dan = periodicnoZauzece.dan;
 					for (var i = 2; i < kalendarRef.rows.length; i++) {
-						kalendarRef.rows[i].cells[dan].style.backgroundImage = "linear-gradient(0, #ff6347 0, #ff6347 40%, #406c9e 40%, #406c9e 47%, #ffffff 47%, #ffffff 100%)";
+						kalendarRef.rows[i].cells[dan].className = "zauzeta";
 					}
 				}
 			}
 		} else {
 			for (var vanrednoZauzece of vanredna) {
-				if (vanrednoZauzece.naziv === sala && (vanrednoZauzece.pocetak === pocetak || pocetak == "") && (vanrednoZauzece.kraj === kraj || kraj == "") && vratiMjesecIzDatuma(vanrednoZauzece.datum) === mjesec && vratiGodinuIzDatuma(vanrednoZauzece.datum) === new Date().getFullYear()) {
+				if (vanrednoZauzece.naziv === sala && nalaziSeUIntervalu(vanrednoZauzece.pocetak, vanrednoZauzece.kraj, pocetak, kraj) && vratiMjesecIzDatuma(vanrednoZauzece.datum) === mjesec && vratiGodinuIzDatuma(vanrednoZauzece.datum) === new Date().getFullYear()) {
 					var dan = vratiDanIzDatuma(vanrednoZauzece.datum);
 					var x = Math.floor((dan + prviDan) / 7);
 					var y = (prviDan + (dan % 7)) % 7;
-					kalendarRef.rows[x + 2].cells[y].style.backgroundImage = "linear-gradient(0, #ff6347 0, #ff6347 40%, #406c9e 40%, #406c9e 47%, #ffffff 47%, #ffffff 100%)";
+					kalendarRef.rows[x + 2].cells[y].className = "zauzeta";
 				}
 			}
 		}
@@ -96,9 +132,11 @@ let Kalendar = (function() {
 			document.getElementById("dodatniRed").style.display = "none";
 
 		for (var i = 2; i < kalendarRef.rows.length; i++) {
-			for(var j = 0; j < kalendarRef.rows[i].cells.length; j++) {
-				if (i === 2 && j < prviDan || brojac > brojDana)
+			for (var j = 0; j < kalendarRef.rows[i].cells.length; j++) {
+				if (i === 2 && j < prviDan || brojac > brojDana) {
 					kalendarRef.rows[i].cells[j].style.visibility = "hidden";
+					kalendarRef.rows[i].cells[j].innerHTML = "";
+				}
 				else {
 					kalendarRef.rows[i].cells[j].style.visibility = "visible";
 					kalendarRef.rows[i].cells[j].innerHTML = brojac++;
@@ -156,8 +194,12 @@ function prethodniMjesec(kalendarRef) {
 
 function azurirajPrikaz(kalendarRef) {
 	var sala = document.getElementsByName("sale")[0].value;
-	prikazPeriodicnih = document.getElementsByName("periodicna")[0].checked;
+	postaviPrikazPeriodicnih(document.getElementsByName("periodicna")[0].checked);
 	var pocetak = document.getElementsByName("pocetak")[0].value;
 	var kraj = document.getElementsByName("kraj")[0].value;
 	Kalendar.obojiZauzeca(kalendarRef, trenutniMjesec, sala, pocetak, kraj);
+}
+
+function postaviPrikazPeriodicnih(prikaz) {
+	prikazPeriodicnih = prikaz;
 }

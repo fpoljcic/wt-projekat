@@ -150,7 +150,6 @@ describe('Kalendar', function() {
 			{datum: "30.11.2019", pocetak: "10:00", kraj: "12:00", naziv: "0-01", predavac: "Sile"},
 			{datum: "30.11.2019", pocetak: "10:00", kraj: "12:00", naziv: "0-01", predavac: "Adin"}];
 			Kalendar.ucitajPodatke(null, vanredna);
-			postaviPrikazPeriodicnih(false);
 			Kalendar.obojiZauzeca(kalendar, 10, "0-01", "10:00", "12:00");
 
 			for (var i = 2; i < kalendar.rows.length; i++) {
@@ -172,7 +171,6 @@ describe('Kalendar', function() {
 			{dan: 4, semestar: "ljetni", pocetak: "10:00", kraj: "12:00", naziv: "0-02", predavac: "Juric"},
 			{dan: 6, semestar: "zimski", pocetak: "10:00", kraj: "12:00", naziv: "0-02", predavac: "Dzenana"}];
 			Kalendar.ucitajPodatke(periodicna, null);
-			postaviPrikazPeriodicnih(true);
 			Kalendar.obojiZauzeca(kalendar, 10, "0-02", "10:00", "12:00");
 
 			for (var i = 2; i < kalendar.rows.length; i++) {
@@ -195,7 +193,6 @@ describe('Kalendar', function() {
 			{datum: "07.07.2019", pocetak: "20:00", kraj: "22:00", naziv: "VA1", predavac: "Sile"},
 			{datum: "07.11.2019", pocetak: "20:00", kraj: "22:00", naziv: "VA1", predavac: "Adin"}];
 			Kalendar.ucitajPodatke(null, vanredna);
-			postaviPrikazPeriodicnih(false);
 			Kalendar.obojiZauzeca(kalendar, 10, "VA1", "20:00", "22:00");
 
 			for (var i = 2; i < kalendar.rows.length; i++) {
@@ -220,7 +217,6 @@ describe('Kalendar', function() {
 			{dan: 5, semestar: "zimski", pocetak: "15:00", kraj: "17:00", naziv: "EE1", predavac: "Juric"},
 			{dan: 6, semestar: "zimski", pocetak: "15:00", kraj: "17:00", naziv: "EE1", predavac: "Zenan"}];
 			Kalendar.ucitajPodatke(periodicna, null);
-			postaviPrikazPeriodicnih(true);
 			Kalendar.obojiZauzeca(kalendar, 11, "EE1", "15:00", "17:00");
 
 			for (var i = 2; i < kalendar.rows.length; i++) {
@@ -242,7 +238,6 @@ describe('Kalendar', function() {
 			var obojeniY = [];
 			var brojac 
 
-			postaviPrikazPeriodicnih(true);
 
 			// 1. poziv - PERIODICNA
 			Kalendar.obojiZauzeca(kalendar, 10, "MA", "07:00", "09:00");
@@ -271,7 +266,6 @@ describe('Kalendar', function() {
 				}
 			}
 
-			postaviPrikazPeriodicnih(false);
 
 			// 1. poziv - VANREDNA
 			Kalendar.obojiZauzeca(kalendar, 10, "MA", "07:00", "09:00");
@@ -308,7 +302,6 @@ describe('Kalendar', function() {
 			{datum: "20.02.2019", pocetak: "14:00", kraj: "14:30", naziv: "1-09", predavac: "Amra"},
 			{datum: "25.02.2019", pocetak: "14:00", kraj: "14:30", naziv: "1-09", predavac: "Sile"}];
 			Kalendar.ucitajPodatke(null, vanredna);
-			postaviPrikazPeriodicnih(false);
 			Kalendar.obojiZauzeca(kalendar, 1, "1-09", "14:00", "14:30");
 
 			// Prvo bojenje - test
@@ -348,7 +341,6 @@ describe('Kalendar', function() {
 			var vanredna = [{datum: "05.11.2019", pocetak: "12:00", kraj: "14:00", naziv: "1-08", predavac: "Faris"},
 							{datum: "06.11.2019", pocetak: "14:00", kraj: "16:00", naziv: "1-08", predavac: "Amir"}];
 			Kalendar.ucitajPodatke(null, vanredna);
-			postaviPrikazPeriodicnih(false);
 			Kalendar.obojiZauzeca(kalendar, 10, "1-08", "10:00", "14:00");
 
 			assert.equal("zauzeta", kalendar.rows[3].cells[1].className, "Zauzeće 1 treba biti prikazano (boja crvena)");
@@ -363,7 +355,6 @@ describe('Kalendar', function() {
 			{dan: 3, semestar: "zimski", pocetak: "19:30", kraj: "20:45", naziv: "1-09", predavac: "Dzenana"},
 			{dan: 4, semestar: "zimski", pocetak: "19:30", kraj: "20:45", naziv: "0-01", predavac: "Vedran"}];
 			Kalendar.ucitajPodatke(periodicna, null);
-			postaviPrikazPeriodicnih(true);
 			Kalendar.obojiZauzeca(kalendar, 0, "1-09", "19:30", "23:00");
 
 			for (var i = 2; i < kalendar.rows.length; i++) {

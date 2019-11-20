@@ -55,7 +55,7 @@
 				<option value="EE2">EE2</option>
 			</select>
 			<label>Periodična:</label>
-			<input onchange="azurirajPrikaz(document.getElementById('kalendarRef'));" type="checkbox" name="periodicna">
+			<input type="checkbox" name="periodicna">
 			<label>Početak:</label>
 			<input onkeyup="azurirajPrikaz(document.getElementById('kalendarRef'));" type="time" name="pocetak">
 			<label>Kraj:</label>
@@ -63,72 +63,6 @@
 		</div>
 		<div class="kalendar">
 			<table id="kalendarRef">
-				<tr>
-					<th colspan="7"></th>
-				</tr>
-				<tr class="dani">
-					<td>PON</td>
-					<td>UTO</td>
-					<td>SRI</td>
-					<td>ČET</td>
-					<td>PET</td>
-					<td>SUB</td>
-					<td>NED</td>
-				</tr>
-				<tr class="brojevi">
-					<td class="slobodna"></td>
-					<td class="slobodna"></td>
-					<td class="slobodna"></td>
-					<td class="slobodna"></td>
-					<td class="slobodna"></td>
-					<td class="slobodna"></td>
-					<td class="slobodna"></td>
-				</tr>
-				<tr class="brojevi">
-					<td class="slobodna"></td>
-					<td class="slobodna"></td>
-					<td class="slobodna"></td>
-					<td class="slobodna"></td>
-					<td class="slobodna"></td>
-					<td class="slobodna"></td>
-					<td class="slobodna"></td>
-				</tr>
-				<tr class="brojevi">
-					<td class="slobodna"></td>
-					<td class="slobodna"></td>
-					<td class="slobodna"></td>
-					<td class="slobodna"></td>
-					<td class="slobodna"></td>
-					<td class="slobodna"></td>
-					<td class="slobodna"></td>
-				</tr>
-				<tr class="brojevi">
-					<td class="slobodna"></td>
-					<td class="slobodna"></td>
-					<td class="slobodna"></td>
-					<td class="slobodna"></td>
-					<td class="slobodna"></td>
-					<td class="slobodna"></td>
-					<td class="slobodna"></td>
-				</tr>
-				<tr class="brojevi">
-					<td class="slobodna"></td>
-					<td class="slobodna"></td>
-					<td class="slobodna"></td>
-					<td class="slobodna"></td>
-					<td class="slobodna"></td>
-					<td class="slobodna"></td>
-					<td class="slobodna"></td>
-				</tr>
-				<tr class="brojevi" id="dodatniRed">
-					<td class="slobodna"></td>
-					<td class="slobodna"></td>
-					<td class="slobodna"></td>
-					<td class="slobodna"></td>
-					<td class="slobodna"></td>
-					<td class="slobodna"></td>
-					<td class="slobodna"></td>
-				</tr>
 			</table>
 			<input type="button" onclick="prethodniMjesec(document.getElementById('kalendarRef'));" name="prethodni" value="Prethodni">
 			<input type="button" onclick="sljedeciMjesec(document.getElementById('kalendarRef'));" name="sljedeci" value="Sljedeći">

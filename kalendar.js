@@ -1,5 +1,4 @@
 var trenutniMjesec = new Date().getMonth();
-var prikazPeriodicnih = false;
 
 let Kalendar = (function() {
 	const mjesecIme = ["Januar", "Februar", "Mart", "April", "Maj", "Juni", "Juli", "Avgust", "Septembar", "Oktobar", "Novembar", "Decembar"];
@@ -67,6 +66,11 @@ let Kalendar = (function() {
 		var	y1m = vratiBroj(regexMinute, pocetak2) + 1;
 		var	y2m = vratiBroj(regexMinute, kraj2) + 1;
 
+		x1 += x1m / 60;
+		x2 += x2m / 60;
+		y1 += y1m / 60;
+		y2 += y2m / 60;
+
 		if (x1 > x2 || y1 > y2 || x1 == x2 && x1m > x2m || y1 == y2 && y1m > y2m)
 			return false;
 		else if (x1 == x2 && y1 != y2 && x1 >= y1 && x1 < y2)
@@ -75,26 +79,17 @@ let Kalendar = (function() {
 			return true;
 		else if (x1 < y2 && y1 < x2)
 			return true;
-		else if (x1 != x2 || y1 != y2)
-			return false;
-		else if (x1m == x2m && y1m != y2m && x1m >= y1m && x1m < y2m)
-			return true;
-		else if (y1m == y2m && x1m != x2m && y1m >= x1m && y1m < x2m)
-			return true;
-		return x1m < y2m && y1m < x2m;
+		return !(x1 != x2 || y1 != y2);
 	}
 
 	function obojiZauzecaImpl(kalendarRef, mjesec, sala, pocetak, kraj) {
-		if (periodicna === undefined || vanredna === undefined)
-			return false;
 		obojiSveZeleno(kalendarRef);
 		var prviDan = vratiPrviDanMjeseca(new Date().getFullYear(), mjesec);
 		if (pocetak == "")
 			pocetak = "00:00";
 		if (kraj == "")
 			kraj = "23:59";
-
-		if (prikazPeriodicnih) {
+		if (periodicna != undefined && periodicna != null) {
 			for (var periodicnoZauzece of periodicna) {
 				if (periodicnoZauzece.naziv === sala && nalaziSeUIntervalu(periodicnoZauzece.pocetak, periodicnoZauzece.kraj, pocetak, kraj) && vratiNizMjeseciSemestra(periodicnoZauzece.semestar).includes(mjesec)) {
 					var dan = periodicnoZauzece.dan;
@@ -103,7 +98,8 @@ let Kalendar = (function() {
 					}
 				}
 			}
-		} else {
+		}
+		if (vanredna != undefined && vanredna != null) {
 			for (var vanrednoZauzece of vanredna) {
 				if (vanrednoZauzece.naziv === sala && nalaziSeUIntervalu(vanrednoZauzece.pocetak, vanrednoZauzece.kraj, pocetak, kraj) && vratiMjesecIzDatuma(vanrednoZauzece.datum) === mjesec && vratiGodinuIzDatuma(vanrednoZauzece.datum) === new Date().getFullYear()) {
 					var dan = vratiDanIzDatuma(vanrednoZauzece.datum);
@@ -120,16 +116,43 @@ let Kalendar = (function() {
 		vanredna = vanrednaP;
 	}
 
+	function nacrtajKostur(kalendarRef, prviDan, brojDana) {
+		const danIme = ["PON", "UTO", "SRI", "CET", "PET", "SUB", "NED"];
+		var tbody;
+		tbody = "<tr><th colspan=\"7\"></th>"
+		
+		tbody += "</tr><tr class=\"dani\">";
+		for (var i = 0; i < 7; i++) {
+			tbody += "<td>" + danIme[i] + "</td>";
+		}
+		tbody += "</tr>";
+
+		for (var i = 0; i < 5; i++) {
+			tbody += "<tr class=\"brojevi\">";
+			for (var j = 0; j < 7; j++) {
+				tbody += "<td class=\"slobodna\"></td>";
+			}
+			tbody += "</tr>";
+		}
+
+		// Dodatni red
+		if (prviDan === 6 && brojDana >= 30 || prviDan === 5 && brojDana === 31) {
+			tbody += "<tr class=\"brojevi\">";
+			for (var j = 0; j < 7; j++) {
+				tbody += "<td class=\"slobodna\"></td>";
+			}
+			tbody += "</tr>";
+		}
+		kalendarRef.innerHTML = tbody;
+	}
+
 	function iscrtajKalendarImpl(kalendarRef, mjesec){
-		kalendarRef.rows[0].cells[0].innerHTML = mjesecIme[mjesec];
 		var prviDan = vratiPrviDanMjeseca(new Date().getFullYear(), mjesec);
 		var brojDana = vratiBrojDanaUMjesecu(new Date().getFullYear(), mjesec);
 		var brojac = 1;
 
-		if (prviDan === 6 && brojDana >= 30 || prviDan === 5 && brojDana === 31) 
-			document.getElementById("dodatniRed").style.display = "contents";
-		else
-			document.getElementById("dodatniRed").style.display = "none";
+		nacrtajKostur(kalendarRef, prviDan, brojDana);
+		kalendarRef.rows[0].cells[0].innerHTML = mjesecIme[mjesec];
 
 		for (var i = 2; i < kalendarRef.rows.length; i++) {
 			for (var j = 0; j < kalendarRef.rows[i].cells.length; j++) {
@@ -194,12 +217,8 @@ function prethodniMjesec(kalendarRef) {
 
 function azurirajPrikaz(kalendarRef) {
 	var sala = document.getElementsByName("sale")[0].value;
-	postaviPrikazPeriodicnih(document.getElementsByName("periodicna")[0].checked);
+	// postaviPrikazPeriodicnih(document.getElementsByName("periodicna")[0].checked);
 	var pocetak = document.getElementsByName("pocetak")[0].value;
 	var kraj = document.getElementsByName("kraj")[0].value;
 	Kalendar.obojiZauzeca(kalendarRef, trenutniMjesec, sala, pocetak, kraj);
-}
-
-function postaviPrikazPeriodicnih(prikaz) {
-	prikazPeriodicnih = prikaz;
 }

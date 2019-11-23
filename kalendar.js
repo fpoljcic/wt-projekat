@@ -53,7 +53,7 @@ let Kalendar = (function() {
 	}
 
 	function nalaziSeUIntervalu(pocetak1, kraj1, pocetak2, kraj2) {
-		if (pocetak2 == "" || kraj2 == "")
+		if (!(/^\d\d:\d\d$/.test(pocetak1)) || !(/^\d\d:\d\d$/.test(kraj1)) || !(/^\d\d:\d\d$/.test(pocetak2)) || !(/^\d\d:\d\d$/.test(kraj2)))
 			return false;
 		var regexSati = /(\d\d):/gm;
 		var regexMinute = /:(\d\d)/gm;
@@ -85,6 +85,8 @@ let Kalendar = (function() {
 	}
 
 	function obojiZauzecaImpl(kalendarRef, mjesec, sala, pocetak, kraj) {
+		if (mjesec < 0 || mjesec > 11 || !(/^\d\d:\d\d$/.test(pocetak)) || !(/^\d\d:\d\d$/.test(kraj)))
+			return false;
 		obojiSveZeleno(kalendarRef);
 		var prviDan = vratiPrviDanMjeseca(new Date().getFullYear(), mjesec);
 		/*
@@ -115,7 +117,7 @@ let Kalendar = (function() {
 		}
 	}
 
-	function ucitajPodatkeImpl(periodicnaP, vanrednaP){
+	function ucitajPodatkeImpl(periodicnaP, vanrednaP) {
 		periodicna = periodicnaP;
 		vanredna = vanrednaP;
 	}
@@ -150,7 +152,9 @@ let Kalendar = (function() {
 		kalendarRef.innerHTML = tbody;
 	}
 
-	function iscrtajKalendarImpl(kalendarRef, mjesec){
+	function iscrtajKalendarImpl(kalendarRef, mjesec) {
+		if (mjesec < 0 || mjesec > 11)
+			return false;
 		var prviDan = vratiPrviDanMjeseca(new Date().getFullYear(), mjesec);
 		var brojDana = vratiBrojDanaUMjesecu(new Date().getFullYear(), mjesec);
 		var brojac = 1;
@@ -186,7 +190,7 @@ let Kalendar = (function() {
 }());
 
 
-window.onload = function(){
+window.onload = function() {
 	Kalendar.iscrtajKalendar(document.getElementById("kalendarRef"), trenutniMjesec);
 
 	var periodicna = [{dan: 0, semestar: "zimski", pocetak: "09:00", kraj: "11:00", naziv: "0-01", predavac: "Vedran"},

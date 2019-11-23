@@ -55,7 +55,8 @@ let Kalendar = (function() {
 	}
 
 	function nalaziSeUIntervalu(pocetak1, kraj1, pocetak2, kraj2) {
-		if (!(/^\d\d:\d\d$/.test(pocetak1)) || !(/^\d\d:\d\d$/.test(kraj1)) || !(/^\d\d:\d\d$/.test(pocetak2)) || !(/^\d\d:\d\d$/.test(kraj2)))
+		var rxPatern = /^([01][0-9]|2[0-3]):([0-5][0-9])$/;
+		if (!(rxPatern.test(pocetak1)) || !(rxPatern.test(kraj1)) || !(rxPatern.test(pocetak2)) || !(rxPatern.test(kraj2)))
 			return false;
 		var regexSati = /(\d\d):/gm;
 		var regexMinute = /:(\d\d)/gm;
@@ -87,7 +88,8 @@ let Kalendar = (function() {
 	}
 
 	function obojiZauzecaImpl(kalendarRef, mjesec, sala, pocetak, kraj) {
-		if (mjesec < 0 || mjesec > 11 || !(/^\d\d:\d\d$/.test(pocetak)) || !(/^\d\d:\d\d$/.test(kraj)))
+		var rxPatern = /^([01][0-9]|2[0-3]):([0-5][0-9])$/;
+		if (mjesec < 0 || mjesec > 11 || !(rxPatern.test(pocetak)) || !(rxPatern.test(kraj)))
 			return false;
 		obojiSveZeleno(kalendarRef);
 		var prviDan = vratiPrviDanMjeseca(new Date().getFullYear(), mjesec);
@@ -101,6 +103,8 @@ let Kalendar = (function() {
 			for (var periodicnoZauzece of periodicna) {
 				if (periodicnoZauzece.naziv === sala && nalaziSeUIntervalu(periodicnoZauzece.pocetak, periodicnoZauzece.kraj, pocetak, kraj) && vratiNizMjeseciSemestra(periodicnoZauzece.semestar).includes(mjesec)) {
 					var dan = periodicnoZauzece.dan;
+					if (dan < 0 || dan > 6)
+						continue;
 					for (var i = 2; i < kalendarRef.rows.length; i++) {
 						kalendarRef.rows[i].cells[dan].className = "zauzeta";
 					}
@@ -111,6 +115,9 @@ let Kalendar = (function() {
 			for (var vanrednoZauzece of vanredna) {
 				if (vanrednoZauzece.naziv === sala && nalaziSeUIntervalu(vanrednoZauzece.pocetak, vanrednoZauzece.kraj, pocetak, kraj) && vratiMjesecIzDatuma(vanrednoZauzece.datum) === mjesec && vratiGodinuIzDatuma(vanrednoZauzece.datum) === new Date().getFullYear()) {
 					var dan = vratiDanIzDatuma(vanrednoZauzece.datum);
+					var brojDana = vratiBrojDanaUMjesecu(new Date().getFullYear(), mjesec);
+					if (dan < 0 || dan > brojDana - 1)
+						continue;
 					var x = Math.floor((dan + prviDan) / 7);
 					var y = (prviDan + (dan % 7)) % 7;
 					kalendarRef.rows[x + 2].cells[y].className = "zauzeta";

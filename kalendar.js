@@ -7,6 +7,8 @@ let Kalendar = (function() {
 	function vratiBroj(regex, broj) {
 		regex.lastIndex = 0;
 		var izdvojen = regex.exec(broj);
+		if (izdvojen == null)
+			return -1;
 		var s = izdvojen[1].charAt(1);
 		if (izdvojen[1].charAt(0) === '0')
 			return (parseInt(izdvojen[1].charAt(1)) - 1);
@@ -49,7 +51,7 @@ let Kalendar = (function() {
 			return [1, 2, 3, 4, 5];
 		if (semestar === "zimski")
 			return [9, 10, 11, 0];
-		return false;
+		return [];
 	}
 
 	function nalaziSeUIntervalu(pocetak1, kraj1, pocetak2, kraj2) {

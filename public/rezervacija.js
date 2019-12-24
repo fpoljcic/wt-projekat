@@ -1,27 +1,26 @@
-let Pozivi = (function() {
-	
+var trenutniMjesec = new Date().getMonth();
 
-	function ucitajSaServeraImpl() {
-		var ajax = new XMLHttpRequest();
-		ajax.onreadystatechange = function () {
-			if (ajax.readyState == 4 && ajax.status == 200) {
-				var podaci = JSON.parse(ajax.responseText);
-				Kalendar.ucitajPodatke(podaci.periodicna, podaci.vanredna);
-			}
-		}
-		ajax.open("GET", "http://localhost:8080/ucitaj", true);
-		ajax.send();
-	}
-
-	function ucitajPodatkeImpl(periodicnaP, vanrednaP) {
-	
-	}
+window.onload = function() {
+	Kalendar.iscrtajKalendar(document.getElementById("kalendarRef"), trenutniMjesec);
+	Pozivi.ucitajSaServera();
+	azurirajPrikaz(document.getElementById("kalendarRef"));
+}
 
 
-	return {
-		ucitajSaServera: ucitajSaServeraImpl,
-		ucitajPodatke: ucitajPodatkeImpl
-	}
-}());
+function sljedeciMjesec(kalendarRef) {
+	Kalendar.iscrtajKalendar(kalendarRef, ++trenutniMjesec);
+	azurirajPrikaz(kalendarRef);
+}
 
-Pozivi.ucitajSaServera();
+function prethodniMjesec(kalendarRef) {
+	Kalendar.iscrtajKalendar(kalendarRef, --trenutniMjesec);
+	azurirajPrikaz(kalendarRef);
+}
+
+function azurirajPrikaz(kalendarRef) {
+	var sala = document.getElementsByName("sale")[0].value;
+	// postaviPrikazPeriodicnih(document.getElementsByName("periodicna")[0].checked);
+	var pocetak = document.getElementsByName("pocetak")[0].value;
+	var kraj = document.getElementsByName("kraj")[0].value;
+	Kalendar.obojiZauzeca(kalendarRef, trenutniMjesec, sala, pocetak, kraj);
+}

@@ -1,0 +1,19 @@
+{
+  "name": "wt1918120",
+  "version": "1.0.0",
+  "description": "This README would normally document whatever steps are necessary to get your application up and running.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://fpoljcic@bitbucket.org/fpoljcic/wt1918120.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/fpoljcic/wt1918120#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

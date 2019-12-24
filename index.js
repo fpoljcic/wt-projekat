@@ -1,4 +1,5 @@
 const express = require('express');
+const fs = require('fs');
 const bodyParser = require('body-parser');
 const app = express();
 
@@ -30,5 +31,112 @@ app.get('/rezervacija.html', function (req, res) {
 app.get('/ucitaj', function (req, res) {
 	res.sendFile(__dirname + "/zauzeca.json");
 });
+
+app.post('/periodicna', function (req, res) {
+	let tijelo = req.body;
+	let dan = tijelo['dan'];
+	let semestar = tijelo['semestar'];
+	let pocetak = tijelo['pocetak'];
+	let kraj = tijelo['kraj'];
+	let naziv = tijelo['naziv'];
+	let predavac = tijelo['predavac'];
+	let datumS = tijelo['datumS'];
+	delete tijelo['datumS'];
+
+	fs.readFile('zauzeca.json', (err, data) => {
+	    if (err) throw err;
+	    let periodicnoZauzece = JSON.parse(data);
+	    for (var i = 0; i < periodicnoZauzece.periodicna.length; i++) {
+	    	var zauzece = periodicnoZauzece.periodicna[i];
+	    	if (zauzece.dan === dan && zauzece.semestar === semestar && zauzece.naziv === naziv && nalaziSeUIntervalu(pocetak, kraj, zauzece.pocetak, zauzece.kraj)) {
+	    		res.status(409).send("Nije moguće rezervisati salu " + naziv + " za navedeni datum " + datumS + " i termin od " + pocetak + " do " + kraj + "!");
+	    		return;
+	    	}
+	    }
+	    upisiRezervaciju(tijelo, res, 'periodicna');
+	});
+});
+
+app.post('/vanredna', function (req, res) {
+	let tijelo = req.body;
+	let datum = tijelo['datum'];
+	let pocetak = tijelo['pocetak'];
+	let kraj = tijelo['kraj'];
+	let naziv = tijelo['naziv'];
+	let predavac = tijelo['predavac'];
+	let datumS = tijelo['datumS'];
+	delete tijelo['datumS'];
+
+	fs.readFile('zauzeca.json', (err, data) => {
+	    if (err) throw err;
+	    let vanrednoZauzece = JSON.parse(data);
+	    for (var i = 0; i < vanrednoZauzece.vanredna.length; i++) {
+	    	var zauzece = vanrednoZauzece.vanredna[i];
+	    	if (zauzece.datum === datum && zauzece.naziv === naziv && nalaziSeUIntervalu(pocetak, kraj, zauzece.pocetak, zauzece.kraj)) {
+	    		res.status(409).send("Nije moguće rezervisati salu " + naziv + " za navedeni datum " + datumS + " i termin od " + pocetak + " do " + kraj + "!");
+	    		return;
+	    	}
+	    }
+	    upisiRezervaciju(tijelo, res, 'vanredna');
+	});
+});
+
+function upisiRezervaciju(tijelo, res, tip) {
+	fs.readFile('zauzeca.json', function (err, data) {
+	    var json = JSON.parse(data);
+	    json[tip].push(tijelo);
+	    fs.writeFile("zauzeca.json", JSON.stringify(json), function(err) {
+		    if(err) {
+		        return console.log(err);
+		    }
+		    console.log("Uspješno upisana " + tip + " rezervacija.");
+	    	res.send(json);
+		}); 
+	});
+}
+
+function nalaziSeUIntervalu(pocetak1, kraj1, pocetak2, kraj2) {
+	var rxPatern = /^([01][0-9]|2[0-3]):([0-5][0-9])$/;
+	if (!(rxPatern.test(pocetak1)) || !(rxPatern.test(kraj1)) || !(rxPatern.test(pocetak2)) || !(rxPatern.test(kraj2)))
+		return false;
+	var regexSati = /(\d\d):/gm;
+	var regexMinute = /:(\d\d)/gm;
+
+	var x1 = vratiBroj(regexSati, pocetak1) + 1;
+	var x2 = vratiBroj(regexSati, kraj1) + 1;
+	var y1 = vratiBroj(regexSati, pocetak2) + 1;
+	var y2 = vratiBroj(regexSati, kraj2) + 1;
+
+	var x1m = vratiBroj(regexMinute, pocetak1) + 1;
+	var x2m = vratiBroj(regexMinute, kraj1) + 1;
+	var	y1m = vratiBroj(regexMinute, pocetak2) + 1;
+	var	y2m = vratiBroj(regexMinute, kraj2) + 1;
+
+	x1 += x1m / 60;
+	x2 += x2m / 60;
+	y1 += y1m / 60;
+	y2 += y2m / 60;
+
+	if (x1 > x2 || y1 > y2 || x1 == x2 && x1m > x2m || y1 == y2 && y1m > y2m)
+		return false;
+	else if (x1 == x2 && y1 != y2 && x1 >= y1 && x1 < y2)
+		return true;
+	else if (y1 == y2 && x1 != x2 && y1 >= x1 && y1 < x2)
+		return true;
+	else if (x1 < y2 && y1 < x2)
+		return true;
+	return !(x1 != x2 || y1 != y2);
+}
+
+function vratiBroj(regex, broj) {
+	regex.lastIndex = 0;
+	var izdvojen = regex.exec(broj);
+	if (izdvojen == null)
+		return -1;
+	var s = izdvojen[1].charAt(1);
+	if (izdvojen[1].charAt(0) === '0')
+		return (parseInt(izdvojen[1].charAt(1)) - 1);
+	return (parseInt(izdvojen[1]) - 1);
+}
 
 app.listen(8080);

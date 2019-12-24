@@ -143,7 +143,7 @@ let Kalendar = (function() {
 		for (var i = 0; i < 5; i++) {
 			tbody += "<tr class=\"brojevi\">";
 			for (var j = 0; j < 7; j++) {
-				tbody += "<td class=\"slobodna\"></td>";
+				tbody += "<td onclick=\"rezervisi(this);\" class=\"slobodna\"></td>";
 			}
 			tbody += "</tr>";
 		}
@@ -152,7 +152,7 @@ let Kalendar = (function() {
 		if (prviDan === 6 && brojDana >= 30 || prviDan === 5 && brojDana === 31) {
 			tbody += "<tr class=\"brojevi\">";
 			for (var j = 0; j < 7; j++) {
-				tbody += "<td class=\"slobodna\"></td>";
+				tbody += "<td onclick=\"rezervisi(this);\" class=\"slobodna\"></td>";
 			}
 			tbody += "</tr>";
 		}

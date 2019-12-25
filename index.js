@@ -2,6 +2,7 @@ const express = require('express');
 const fs = require('fs');
 const bodyParser = require('body-parser');
 const app = express();
+const port = 8080;
 
 app.use(express.static('public'));
 
@@ -82,8 +83,13 @@ app.post('/vanredna', function (req, res) {
 });
 
 app.get('/slike', function (req, res) {
-	//res.send(__dirname + "\\public\\1.jpg");
-	res.sendFile(__dirname + "\\public\\1.jpg");
+	var indexStranice = req.query.indexStranice;
+	var stranice = [];
+	for (var i = indexStranice * 3 + 1; i < indexStranice * 3 + 4; i++) {
+		stranice.push("http://localhost:" + port + "/images/" + i + ".jpg");
+	}
+	res.send(JSON.stringify({images: [stranice[0], stranice[1], stranice[2]]}));
+	//res.sendFile(__dirname + "\\public\\1.jpg");
 });
 
 function upisiRezervaciju(tijelo, res, tip) {
@@ -144,4 +150,4 @@ function vratiBroj(regex, broj) {
 	return (parseInt(izdvojen[1]) - 1);
 }
 
-app.listen(8080);
+app.listen(port);

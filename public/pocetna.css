@@ -50,6 +50,23 @@ body {
 	height: auto;
 }
 
+input[type=button] {
+	background-color: #b0c4dd;
+	border: 2px solid #406c9e;
+	padding: 1.5% 2.5%;
+	cursor: pointer;
+}
+
+input:disabled {
+	cursor: default;
+}
+
+input[name=prethodni] {
+}
+
+input[name=sljedeci] {
+}
+
 @media only screen and (max-width: 600px) {
 	.meni li {
 		display: block;

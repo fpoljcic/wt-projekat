@@ -42,18 +42,20 @@ let Pozivi = (function() {
 		}
 	}
 
-	function ucitajSlikeImpl() {
+	function ucitajSlikeImpl(indexStranice) {
 		var ajax = new XMLHttpRequest();
 		ajax.onreadystatechange = function () {
 			if (ajax.readyState == 4 && ajax.status == 200) {
-				var putanjaSlike = ajax.responseText;
-				prikaziSlike(putanjaSlike);
+				var podaci = JSON.parse(ajax.responseText);
+				prikaziSlike(podaci.images, false);
+				/*
 				var img = $('<img id="image_id">');
 				img.attr('src', 'data:image/png;base64,' + data_received);
 				img.appendTo('#image_div');
+				*/
 			}
 		}
-		ajax.open("GET", "http://localhost:8080/slike", true);
+		ajax.open("GET", "http://localhost:8080/slike?indexStranice=" + indexStranice, true);
 		ajax.send();
 	}
 

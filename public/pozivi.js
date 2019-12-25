@@ -42,9 +42,25 @@ let Pozivi = (function() {
 		}
 	}
 
+	function ucitajSlikeImpl() {
+		var ajax = new XMLHttpRequest();
+		ajax.onreadystatechange = function () {
+			if (ajax.readyState == 4 && ajax.status == 200) {
+				var putanjaSlike = ajax.responseText;
+				prikaziSlike(putanjaSlike);
+				var img = $('<img id="image_id">');
+				img.attr('src', 'data:image/png;base64,' + data_received);
+				img.appendTo('#image_div');
+			}
+		}
+		ajax.open("GET", "http://localhost:8080/slike", true);
+		ajax.send();
+	}
+
 	return {
 		ucitajSaServera: ucitajSaServeraImpl,
-		upisiPeriodicnu : upisiPeriodicnuImpl,
-		upisiVanrednu : upisiVanrednuImpl
+		upisiPeriodicnu: upisiPeriodicnuImpl,
+		upisiVanrednu: upisiVanrednuImpl,
+		ucitajSlike: ucitajSlikeImpl 
 	}
 }());

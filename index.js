@@ -81,6 +81,11 @@ app.post('/vanredna', function (req, res) {
 	});
 });
 
+app.get('/slike', function (req, res) {
+	//res.send(__dirname + "\\public\\1.jpg");
+	res.sendFile(__dirname + "\\public\\1.jpg");
+});
+
 function upisiRezervaciju(tijelo, res, tip) {
 	fs.readFile('zauzeca.json', function (err, data) {
 	    var json = JSON.parse(data);

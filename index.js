@@ -89,7 +89,6 @@ app.get('/slike', function (req, res) {
 		stranice.push("http://localhost:" + port + "/images/" + i + ".jpg");
 	}
 	res.send(JSON.stringify({images: [stranice[0], stranice[1], stranice[2]]}));
-	//res.sendFile(__dirname + "\\public\\1.jpg");
 });
 
 function upisiRezervaciju(tijelo, res, tip) {

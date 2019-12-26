@@ -1,5 +1,6 @@
 var putanjeSlika = [];
 var indexStranice = 0;
+var maxIndexStranice = 0;
 
 window.onload = function() {
 	Pozivi.ucitajSlike(indexStranice);
@@ -32,6 +33,9 @@ function zabraniDugmad() {
 
 function sljedeci() {
 	indexStranice++;
-	Pozivi.ucitajSlike(indexStranice);
+	if (indexStranice > maxIndexStranice) {
+		maxIndexStranice = indexStranice;
+		Pozivi.ucitajSlike(indexStranice);
+	} else prikaziSlike(putanjeSlika[indexStranice], true);
 	zabraniDugmad();
 }

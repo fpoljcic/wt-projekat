@@ -48,15 +48,11 @@ let Pozivi = (function() {
 			if (ajax.readyState == 4 && ajax.status == 200) {
 				var podaci = JSON.parse(ajax.responseText);
 				prikaziSlike(podaci.images, false);
-				/*
-				var img = $('<img id="image_id">');
-				img.attr('src', 'data:image/png;base64,' + data_received);
-				img.appendTo('#image_div');
-				*/
 			}
 		}
 		ajax.open("GET", "http://localhost:8080/slike?indexStranice=" + indexStranice, true);
 		ajax.send();
+		console.log("Poslan ajax zahtjev za slike");
 	}
 
 	return {

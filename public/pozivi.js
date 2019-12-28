@@ -55,10 +55,23 @@ let Pozivi = (function() {
 		console.log("Poslan ajax zahtjev za slike");
 	}
 
+	function postojiSlikaImpl(id) {
+		var ajax = new XMLHttpRequest();
+		ajax.onreadystatechange = function () {
+			if (ajax.readyState == 4 && ajax.status == 200) {
+				setUcitaneSve(!JSON.parse(ajax.responseText).result);
+				zabraniDugmad();
+			}
+		}
+		ajax.open("GET", "http://localhost:8080/postojiSlika?id=" + id, true);
+		ajax.send();
+	}
+
 	return {
 		ucitajSaServera: ucitajSaServeraImpl,
 		upisiPeriodicnu: upisiPeriodicnuImpl,
 		upisiVanrednu: upisiVanrednuImpl,
-		ucitajSlike: ucitajSlikeImpl 
+		ucitajSlike: ucitajSlikeImpl,
+		postojiSlika: postojiSlikaImpl
 	}
 }());

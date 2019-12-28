@@ -15,6 +15,7 @@
   "homepage": "https://bitbucket.org/fpoljcic/wt1918120#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "fs": "0.0.1-security"
+    "fs": "0.0.1-security",
+    "url-exists": "^1.0.3"
   }
 }

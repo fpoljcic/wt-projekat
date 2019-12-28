@@ -1,6 +1,7 @@
 const express = require('express');
 const fs = require('fs');
 const bodyParser = require('body-parser');
+const urlExists = require('url-exists');
 const app = express();
 const port = 8080;
 
@@ -85,10 +86,37 @@ app.post('/vanredna', function (req, res) {
 app.get('/slike', function (req, res) {
 	var indexStranice = req.query.indexStranice;
 	var stranice = [];
-	for (var i = indexStranice * 3 + 1; i < indexStranice * 3 + 4; i++) {
-		stranice.push("http://localhost:" + port + "/images/" + i + ".jpg");
-	}
-	res.send(JSON.stringify({images: [stranice[0], stranice[1], stranice[2]]}));
+	var i = indexStranice * 3 + 1;
+	var url1 = "http://localhost:" + port + "/images/" + i + ".jpg";
+	i++;
+	var url2 = "http://localhost:" + port + "/images/" + i + ".jpg";
+	i++;
+	var url3 = "http://localhost:" + port + "/images/" + i + ".jpg";
+	urlExists(url1, function(err, exists1) {
+		urlExists(url2, function(err, exists2) {
+			urlExists(url3, function(err, exists3) {
+				dodajSliku(stranice, 0, exists1, url1);
+				dodajSliku(stranice, 1, exists2, url2);
+				dodajSliku(stranice, 2, exists3, url3);
+				res.send(JSON.stringify({images: [stranice[0], stranice[1], stranice[2]]}));
+			});
+		});
+	});
+});
+
+function dodajSliku(stranice, i, exists, url) {
+	if (exists)
+		stranice.push(url);
+	else
+		stranice.push(null);
+}
+
+app.get('/postojiSlika', function (req, res) {
+	var idSlike = req.query.id;
+	var url = "http://localhost:" + port + "/images/" + idSlike + ".jpg";
+	urlExists(url, function(err, exists) {
+		res.send({"result": exists});
+	});
 });
 
 function upisiRezervaciju(tijelo, res, tip) {

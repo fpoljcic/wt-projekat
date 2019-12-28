@@ -33,8 +33,14 @@ function rezervisi(element) {
 		window.alert("Odaberite početno vrijeme zauzeća");
 		return;
 	}
+
 	if (kraj == "") {
 		window.alert("Odaberite krajnje vrijeme zauzeća");
+		return;
+	}
+
+	if (pocetak > kraj) {
+		window.alert("Pogrešno unesena vremena zauzeća");
 		return;
 	}
 

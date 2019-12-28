@@ -61,12 +61,6 @@ input:disabled {
 	cursor: default;
 }
 
-input[name=prethodni] {
-}
-
-input[name=sljedeci] {
-}
-
 @media only screen and (max-width: 600px) {
 	.meni li {
 		display: block;
@@ -79,5 +73,16 @@ input[name=sljedeci] {
 	.sadrzaj img {
 		max-width: 80%;
 		height: auto;
+	}
+
+	#sadrzaj_wrapper {
+		width: 94%;
+		display: inline-grid;
+		grid-row-gap: 1%;
+	}
+
+	input[name=prethodni], input[name=sljedeci] {
+		width: 40%;
+		margin: auto;
 	}
 }

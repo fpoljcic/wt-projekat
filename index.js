@@ -8,7 +8,7 @@ const port = 8080;
 app.use(express.static('public'));
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded( { extended: true}));
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.get('/', function (req, res) {
 	res.sendFile(__dirname + "/pocetna.html");
@@ -34,6 +34,7 @@ app.get('/ucitaj', function (req, res) {
 	res.sendFile(__dirname + "/zauzeca.json");
 });
 
+// Unos periodicne rezervacije
 app.post('/periodicna', function (req, res) {
 	let tijelo = req.body;
 	let dan = tijelo['dan'];
@@ -83,6 +84,7 @@ function perPodaciIspravni(dan, semestar, pocetak, kraj, naziv, predavac) {
 	return true;
 }
 
+// Unos vanredne rezervacije
 app.post('/vanredna', function (req, res) {
 	let tijelo = req.body;
 	let datum = tijelo['datum'];
@@ -136,6 +138,20 @@ function vanrPodaciIspravni(datum, pocetak, kraj, naziv, predavac) {
 	return true;
 }
 
+function upisiRezervaciju(tijelo, res, tip) {
+	fs.readFile('zauzeca.json', function (err, data) {
+		var json = JSON.parse(data);
+		json[tip].push(tijelo);
+		fs.writeFile("zauzeca.json", JSON.stringify(json, null, 4), function(err) {
+			if(err)
+				return console.log(err);
+			console.log("Uspješno upisana " + tip + " rezervacija.");
+			res.send(json);
+		}); 
+	});
+}
+
+// Dobavljanje slika
 app.get('/slike', function (req, res) {
 	var indexStranice = req.query.indexStranice;
 	var stranice = [];
@@ -164,6 +180,7 @@ function dodajSliku(stranice, i, exists, url) {
 		stranice.push(null);
 }
 
+// Provjera postojanja sljedece slike
 app.get('/postojiSlika', function (req, res) {
 	var idSlike = req.query.id;
 	var url = "http://localhost:" + port + "/images/" + idSlike + ".jpg";
@@ -192,20 +209,6 @@ function vratiNizMjeseciSemestra(semestar) {
 	if (semestar === "zimski")
 		return [9, 10, 11, 0];
 	return [];
-}
-
-function upisiRezervaciju(tijelo, res, tip) {
-	fs.readFile('zauzeca.json', function (err, data) {
-		var json = JSON.parse(data);
-		json[tip].push(tijelo);
-		fs.writeFile("zauzeca.json", JSON.stringify(json, null, 4), function(err) {
-			if(err) {
-				return console.log(err);
-			}
-			console.log("Uspješno upisana " + tip + " rezervacija.");
-			res.send(json);
-		}); 
-	});
 }
 
 function nalaziSeUIntervalu(pocetak1, kraj1, pocetak2, kraj2) {

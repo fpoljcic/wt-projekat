@@ -22,7 +22,7 @@ let Pozivi = (function() {
 		ajax.send(JSON.stringify({dan:Number(dan), semestar:semestar, pocetak:pocetak, kraj:kraj, naziv:naziv, predavac:predavac, datumS:datumS}));
 	}
 
-	function upisiVanrednuImpl(datum, pocetak, kraj, naziv, predavac, datumS) {
+	function upisiVanrednuImpl(datum, pocetak, kraj, naziv, predavac) {
 		var ajax = new XMLHttpRequest();
 		ajax.onreadystatechange = function () {
 			obradiOdgovor(ajax);

@@ -91,12 +91,7 @@ let Kalendar = (function() {
 			return false;
 		obojiSveZeleno(kalendarRef);
 		var prviDan = vratiPrviDanMjeseca(new Date().getFullYear(), mjesec);
-		/*
-		if (pocetak == "")
-			pocetak = "00:00";
-		if (kraj == "")
-			kraj = "23:59";
-		*/
+
 		if (periodicna != undefined && periodicna != null) {
 			for (var periodicnoZauzece of periodicna) {
 				if (periodicnoZauzece.naziv === sala && nalaziSeUIntervalu(periodicnoZauzece.pocetak, periodicnoZauzece.kraj, pocetak, kraj) && vratiNizMjeseciSemestra(periodicnoZauzece.semestar).includes(mjesec)) {
@@ -109,6 +104,7 @@ let Kalendar = (function() {
 				}
 			}
 		}
+		
 		if (vanredna != undefined && vanredna != null) {
 			for (var vanrednoZauzece of vanredna) {
 				if (vanrednoZauzece.naziv === sala && nalaziSeUIntervalu(vanrednoZauzece.pocetak, vanrednoZauzece.kraj, pocetak, kraj) && vratiMjesecIzDatuma(vanrednoZauzece.datum) === mjesec && vratiGodinuIzDatuma(vanrednoZauzece.datum) === new Date().getFullYear()) {

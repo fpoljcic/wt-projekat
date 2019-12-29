@@ -3,7 +3,6 @@ var trenutniMjesec = new Date().getMonth();
 window.onload = function() {
 	Kalendar.iscrtajKalendar(document.getElementById("kalendarRef"), trenutniMjesec);
 	Pozivi.ucitajSaServera();
-	azurirajPrikaz(document.getElementById("kalendarRef"));
 }
 
 

@@ -5,6 +5,7 @@ let Pozivi = (function() {
 			if (ajax.readyState == 4 && ajax.status == 200) {
 				var podaci = JSON.parse(ajax.responseText);
 				Kalendar.ucitajPodatke(podaci.periodicna, podaci.vanredna);
+				azurirajPrikaz(document.getElementById("kalendarRef"));
 			}
 		}
 		ajax.open("GET", "http://localhost:8080/ucitaj", true);
@@ -28,7 +29,7 @@ let Pozivi = (function() {
 		}
 		ajax.open("POST", "http://localhost:8080/vanredna", true);
 		ajax.setRequestHeader("Content-Type", "application/json");
-		ajax.send(JSON.stringify({datum:datum, pocetak:pocetak, kraj:kraj, naziv:naziv, predavac:predavac, datumS:datumS}));
+		ajax.send(JSON.stringify({datum:datum, pocetak:pocetak, kraj:kraj, naziv:naziv, predavac:predavac}));
 	}
 
 	function obradiOdgovor(ajax) {
@@ -37,6 +38,7 @@ let Pozivi = (function() {
 			Kalendar.ucitajPodatke(podaci.periodicna, podaci.vanredna);
 			azurirajPrikaz(document.getElementById("kalendarRef"));
 		} else if (ajax.readyState == 4 && ajax.status == 409) {
+			Pozivi.ucitajSaServera();
 			var greska = ajax.responseText;
 			alert(greska);
 		}

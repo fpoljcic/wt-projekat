@@ -42,22 +42,46 @@ app.post('/periodicna', function (req, res) {
 	let kraj = tijelo['kraj'];
 	let naziv = tijelo['naziv'];
 	let predavac = tijelo['predavac'];
+	if (!perPodaciIspravni(dan, semestar, pocetak, kraj, naziv, predavac)) {
+	    res.status(400).send("Primljeni podaci nisu ispravni!");
+	    return;
+	}
 	let datumS = tijelo['datumS'];
-	delete tijelo['datumS'];
+	if (datumS != undefined)
+		delete tijelo['datumS'];
 
 	fs.readFile('zauzeca.json', (err, data) => {
 	    if (err) throw err;
-	    let periodicnoZauzece = JSON.parse(data);
-	    for (var i = 0; i < periodicnoZauzece.periodicna.length; i++) {
-	    	var zauzece = periodicnoZauzece.periodicna[i];
+	    let svaZauzeca = JSON.parse(data);
+	    for (var i = 0; i < svaZauzeca.periodicna.length; i++) {
+	    	var zauzece = svaZauzeca.periodicna[i];
 	    	if (zauzece.dan === dan && zauzece.semestar === semestar && zauzece.naziv === naziv && nalaziSeUIntervalu(pocetak, kraj, zauzece.pocetak, zauzece.kraj)) {
-	    		res.status(409).send("Nije moguće rezervisati salu " + naziv + " za navedeni datum " + datumS + " i termin od " + pocetak + " do " + kraj + "!");
+	    		if (datumS != undefined)
+	    			res.status(409).send("Nije moguće rezervisati salu " + naziv + " za navedeni datum " + datumS + " i termin od " + pocetak + " do " + kraj + "!");
+	    		else {
+					let danIme = ["ponedjeljak", "utorak", "srijeda", "četvrtak", "petak", "subota", "nedjelja"];
+	    			datumS = danIme[dan];
+	    			res.status(409).send("Nije moguće rezervisati salu " + naziv + " za " + semestar + " semestar, na dan " + datumS + " i termin od " + pocetak + " do " + kraj + "!");
+	    		}
 	    		return;
 	    	}
 	    }
 	    upisiRezervaciju(tijelo, res, 'periodicna');
 	});
 });
+
+function perPodaciIspravni(dan, semestar, pocetak, kraj, naziv, predavac) {
+	if (dan == undefined || semestar == undefined || pocetak == undefined || kraj == undefined || naziv == undefined || predavac == undefined)
+		return false;
+	var rxPatern = /^([01][0-9]|2[0-3]):([0-5][0-9])$/;
+	if (!(rxPatern.test(pocetak)) || !(rxPatern.test(kraj)))
+		return false;
+	if (semestar != "ljetni" && semestar != "zimski")
+		return false;
+	if (dan < 0 || dan > 6)
+		return false;
+	return true;
+}
 
 app.post('/vanredna', function (req, res) {
 	let tijelo = req.body;
@@ -66,22 +90,51 @@ app.post('/vanredna', function (req, res) {
 	let kraj = tijelo['kraj'];
 	let naziv = tijelo['naziv'];
 	let predavac = tijelo['predavac'];
-	let datumS = tijelo['datumS'];
-	delete tijelo['datumS'];
+	if (!vanrPodaciIspravni(datum, pocetak, kraj, naziv, predavac)) {
+	    res.status(400).send("Primljeni podaci nisu ispravni!");
+	    return;
+	}
+	let datumS = datum.split(".").join("/");
 
 	fs.readFile('zauzeca.json', (err, data) => {
 	    if (err) throw err;
-	    let vanrednoZauzece = JSON.parse(data);
-	    for (var i = 0; i < vanrednoZauzece.vanredna.length; i++) {
-	    	var zauzece = vanrednoZauzece.vanredna[i];
+	    let svaZauzeca = JSON.parse(data);
+	    for (var i = 0; i < svaZauzeca.vanredna.length; i++) {
+	    	var zauzece = svaZauzeca.vanredna[i];
 	    	if (zauzece.datum === datum && zauzece.naziv === naziv && nalaziSeUIntervalu(pocetak, kraj, zauzece.pocetak, zauzece.kraj)) {
 	    		res.status(409).send("Nije moguće rezervisati salu " + naziv + " za navedeni datum " + datumS + " i termin od " + pocetak + " do " + kraj + "!");
 	    		return;
 	    	}
 	    }
+
+	    let mjesec = vratiMjesecIzDatuma(datum);
+	    let prviDan = vratiPrviDanMjeseca(new Date().getFullYear(), mjesec);
+	    let dan = vratiDanIzDatuma(datum);
+	    let danUSedmici = (prviDan + (dan % 7)) % 7;
+
+	    for (var i = 0; i < svaZauzeca.periodicna.length; i++) {
+	    	var zauzece = svaZauzeca.periodicna[i];
+	    	if (vratiNizMjeseciSemestra(zauzece.semestar).includes(mjesec) && zauzece.dan == danUSedmici && zauzece.naziv === naziv && nalaziSeUIntervalu(pocetak, kraj, zauzece.pocetak, zauzece.kraj)) {
+	    		res.status(409).send("Nije moguće rezervisati salu " + naziv + " za navedeni datum " + datumS + " i termin od " + pocetak + " do " + kraj + "!");
+	    		return;
+	    	}
+	    }
+
 	    upisiRezervaciju(tijelo, res, 'vanredna');
 	});
 });
+
+function vanrPodaciIspravni(datum, pocetak, kraj, naziv, predavac) {
+	if (datum == undefined || pocetak == undefined || kraj == undefined || naziv == undefined || predavac == undefined)
+		return false;
+	var rxPatern = /^([01][0-9]|2[0-3]):([0-5][0-9])$/;
+	if (!(rxPatern.test(pocetak)) || !(rxPatern.test(kraj)))
+		return false;
+	var rxPatern2 = /^(0[1-9]|1\d|2\d|3[01])\.(0[1-9]|1[0-2])\.(19|20)\d{2}$/;
+	if (!(rxPatern2.test(datum)))
+	    return false;
+	return true;
+}
 
 app.get('/slike', function (req, res) {
 	var indexStranice = req.query.indexStranice;
@@ -118,6 +171,28 @@ app.get('/postojiSlika', function (req, res) {
 		res.send({"result": exists});
 	});
 });
+
+function vratiPrviDanMjeseca(godina, mjesec) {
+	return (new Date(godina, mjesec, 1).getDay() || 7) - 1;
+}
+
+function vratiDanIzDatuma(datum) {
+	var regex = /(\d\d)\./gm;
+	return vratiBroj(regex, datum);
+}
+
+function vratiMjesecIzDatuma(datum) {
+	var regex = /\.(\d\d)\./gm;
+	return vratiBroj(regex, datum);
+}
+
+function vratiNizMjeseciSemestra(semestar) {
+	if (semestar === "ljetni")
+		return [1, 2, 3, 4, 5];
+	if (semestar === "zimski")
+		return [9, 10, 11, 0];
+	return [];
+}
 
 function upisiRezervaciju(tijelo, res, tip) {
 	fs.readFile('zauzeca.json', function (err, data) {

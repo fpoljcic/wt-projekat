@@ -78,9 +78,7 @@ function rezervisi(element) {
 				dan = element.cellIndex;
 				Pozivi.upisiPeriodicnu(dan, semestar, pocetak, kraj, naziv, "PredavacP", datum);
 			} else
-				Pozivi.upisiVanrednu(datum.split("/").join("."), pocetak, kraj, naziv, "PredavacV", datum);
-		} else {
-			return;
-		} 
+			Pozivi.upisiVanrednu(datum.split("/").join("."), pocetak, kraj, naziv, "PredavacV", datum);
+		}
 	}
 }

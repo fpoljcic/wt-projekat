@@ -41,6 +41,9 @@ let Pozivi = (function() {
 			Pozivi.ucitajSaServera();
 			var greska = ajax.responseText;
 			alert(greska);
+		} else if (ajax.readyState == 4 && ajax.status == 400) {
+			var greska = ajax.responseText;
+			alert(greska);
 		}
 	}
 

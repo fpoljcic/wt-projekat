@@ -15,7 +15,7 @@ module.exports = function (sequelize, DataTypes) {
       kraj: Sequelize.TIME
    }, {
       timestamps: false,
-      freezeTableName: true,
+      freezeTableName: true
    });
    return Termin;
 }

@@ -31,7 +31,7 @@ module.exports = function (sequelize, DataTypes) {
       }
    }, {
       timestamps: false,
-      freezeTableName: true,
+      freezeTableName: true
    });
    return Rezervacija;
 }

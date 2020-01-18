@@ -12,7 +12,7 @@ module.exports = function (sequelize, DataTypes) {
 	   uloga: Sequelize.STRING
 	}, {
 	   timestamps: false,
-	   freezeTableName: true,
+	   freezeTableName: true
 	});
     return Osoblje;
 }

@@ -2,6 +2,7 @@ const express = require('express');
 const fs = require('fs');
 const bodyParser = require('body-parser');
 const urlExists = require('url-exists');
+const db = require('./db.js')
 const app = express();
 const port = 8080;
 
@@ -32,6 +33,12 @@ app.get('/rezervacija.html', function (req, res) {
 
 app.get('/ucitaj', function (req, res) {
 	res.sendFile(__dirname + "/zauzeca.json");
+});
+
+app.get('/osoblje', function (req, res) {
+	db.osoblje.findAll({ raw: true }).then(function (osoblje) {
+		res.end(osoblje);
+    });
 });
 
 // Unos periodicne rezervacije

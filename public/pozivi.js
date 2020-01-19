@@ -9,8 +9,6 @@ let Pozivi = (function() {
 			}
 		}
 		ajax.open("GET", "http://localhost:8080/rezervacije", true);
-		// Potrebno da bi sklonili XML Parsing error grešku na Firefox-u
-		ajax.overrideMimeType("text/html");
 		ajax.send();
 	}
 
@@ -21,8 +19,6 @@ let Pozivi = (function() {
 		}
 		ajax.open("POST", "http://localhost:8080/periodicna", true);
 		ajax.setRequestHeader("Content-Type", "application/json");
-		// Potrebno da bi sklonili XML Parsing error grešku na Firefox-u
-		ajax.overrideMimeType("text/html");
 		ajax.send(JSON.stringify({dan:Number(dan), semestar:semestar, pocetak:pocetak, kraj:kraj, naziv:naziv, predavac:predavac, datumS:datumS}));
 	}
 
@@ -33,8 +29,6 @@ let Pozivi = (function() {
 		}
 		ajax.open("POST", "http://localhost:8080/vanredna", true);
 		ajax.setRequestHeader("Content-Type", "application/json");
-		// Potrebno da bi sklonili XML Parsing error grešku na Firefox-u
-		ajax.overrideMimeType("text/html");
 		ajax.send(JSON.stringify({datum:datum, pocetak:pocetak, kraj:kraj, naziv:naziv, predavac:predavac}));
 	}
 
@@ -87,8 +81,6 @@ let Pozivi = (function() {
 			}
 		}
 		ajax.open("GET", "http://localhost:8080/osoblje", true);
-		// Potrebno da bi sklonili XML Parsing error grešku na Firefox-u
-		ajax.overrideMimeType("text/html");
 		ajax.send();
 	}
 
@@ -101,9 +93,20 @@ let Pozivi = (function() {
 			}
 		}
 		ajax.open("GET", "http://localhost:8080/sale", true);
-		// Potrebno da bi sklonili XML Parsing error grešku na Firefox-u
-		ajax.overrideMimeType("text/html");
 		ajax.send();
+	}
+
+	function ucitajSaleOsobljaImpl() {
+		var ajax = new XMLHttpRequest();
+		ajax.onreadystatechange = function () {
+			if (ajax.readyState == 4 && ajax.status == 200) {
+				var osoblje = JSON.parse(ajax.responseText);
+				upisiSaleOsoblje(osoblje);
+			}
+		}
+		ajax.open("GET", "http://localhost:8080/saleOsoblja", true);
+		ajax.send();
+		console.log("Poslan ajax zahtjev za azuriranje sala");
 	}
 
 	return {
@@ -113,6 +116,7 @@ let Pozivi = (function() {
 		ucitajSlike: ucitajSlikeImpl,
 		postojiSlika: postojiSlikaImpl,
 		ucitajOsoblje: ucitajOsobljeImpl,
-		ucitajSale: ucitajSaleImpl
+		ucitajSale: ucitajSaleImpl,
+		ucitajSaleOsoblja: ucitajSaleOsobljaImpl
 	}
 }());

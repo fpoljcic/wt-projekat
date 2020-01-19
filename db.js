@@ -15,9 +15,6 @@ db.termin = sequelize.import(__dirname+'/Termin.js');
 db.sala = sequelize.import(__dirname+'/Sala.js');
 
 // relacije
-// Veze 1-n jedna osoba moze imati vise rezervacija
-// jedna sala moze imati vise rezervacija
-// sve osobe bi trebale imate getRezervacije i setRezervacije
 db.osoblje.hasMany(db.rezervacija, {
   as:'osobljeRezervacija',
   foreignKey: 'osoba',
@@ -29,13 +26,11 @@ db.termin.hasOne(db.rezervacija, {
 	foreignKey: 'termin'
 });
 
-
 db.sala.hasMany(db.rezervacija, {
   as: 'salaRezervacija',
   foreignKey: 'sala',
   targetKey: 'id'
 });
-
 
 db.osoblje.hasOne(db.sala, {
 	as:'osobljeSala',
@@ -53,12 +48,10 @@ db.rezervacija.belongsTo(db.termin, {
   targetKey: 'id'
 });
 
-
 db.rezervacija.belongsTo(db.sala, {
 	as: 'rezervacijaSala',
 	foreignKey: 'sala'
 });
-
 
 db.sala.belongsTo(db.osoblje, {
   as: 'salaOsoblje',

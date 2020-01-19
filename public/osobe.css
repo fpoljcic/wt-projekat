@@ -1,0 +1,88 @@
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	padding-top: 50px;
+	font-size: 14px;
+}
+
+.meni {
+	background-color: #729fcf;
+	border: 1px solid lightgreen;
+	text-align: center;
+}
+
+.meni ul {
+	padding: 0 1%;
+}
+
+.meni li {
+	display: inline;
+	padding-left: 1%;
+	padding-right: 1%;
+}
+
+.meni a {
+	color: black;
+}
+
+.logo img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	border: 1px;
+	border-style: outset;
+	border-color: black;
+	margin-top: -40px;
+}
+
+.sadrzaj {
+	border: 1px solid lightgreen;
+	background-color: #729fcf;
+	margin-top: 0.5em;
+	padding: 1em;
+}
+
+#tabelaOsoblja {
+	border-spacing: 0;
+	margin-right: auto;
+	margin-left: auto;
+	width: 20em;
+	border: 1px;
+	border-style: outset;
+	border-color: black;
+}
+
+th {
+	background-color: #b3b3b3;
+	padding: 2%;
+	font-weight: normal;
+	border: 1px;
+	border-style: inset;
+	border-color: black;
+}
+
+td {
+	padding: 2%;
+	background-color: white;
+	border: 1px;
+	border-style: inset;
+	border-color: black;
+	text-align: center;
+}
+
+@media only screen and (max-width: 600px) {
+	.meni li {
+		display: block;
+	}
+
+	th {
+		display: none;
+	}
+
+	#tabelaOsoblja {
+		width: 10em;
+	}
+
+	td {
+		padding: 0.3em;
+	}
+}

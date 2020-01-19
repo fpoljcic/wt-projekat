@@ -32,6 +32,10 @@ app.get('/rezervacija.html', function (req, res) {
 	res.sendFile(__dirname + "/rezervacija.html");
 });
 
+app.get('/osobe.html', function (req, res) {
+	res.sendFile(__dirname + "/osobe.html");
+});
+
 app.get('/rezervacije', function (req, res) {
 	vratiSveRezervacije(res);
 });
@@ -62,19 +66,67 @@ function vratiSveRezervacije(res) {
 				podaci.vanredna.push(rezervacija);
 			}
 		}
-		res.end(JSON.stringify(podaci, null, 4));
+		res.send(podaci);
     });
 }
 
 app.get('/osoblje', function (req, res) {
 	db.osoblje.findAll().then(function (osoblje) {
-		res.end(JSON.stringify(osoblje, null, 4));
+		res.send(osoblje);
+    });
+});
+
+app.get('/saleOsoblja', function (req, res) {
+	var trenutnoDatumVrijeme = new Date();
+	var trenutniDatum = trenutnoDatumVrijeme.getDate() + "." + trenutnoDatumVrijeme.getMonth() + 1 + "." + trenutnoDatumVrijeme.getFullYear();
+	var trenutnoVrijeme = trenutnoDatumVrijeme.getHours() + ":" + trenutnoDatumVrijeme.getMinutes();
+	let mjesec = vratiMjesecIzDatuma(trenutniDatum);
+	let prviDan = vratiPrviDanMjeseca(new Date().getFullYear(), mjesec);
+	let dan = vratiDanIzDatuma(trenutniDatum);
+	let danUSedmici = (prviDan + (dan % 7)) % 7;
+	let semestar = "zimski"
+	if (vratiNizMjeseciSemestra("ljetni").includes(mjesec))
+		semestar = "ljetni";
+	db.rezervacija.findAll({
+		include: [{ model: db.termin, as: 'rezervacijaTermin', where: {[Op.or]: [{redovni: false, datum: trenutniDatum}, {redovni: true, dan: danUSedmici}]} },
+				  { model: db.osoblje, as: 'rezervacijaOsoblje' },
+				  { model: db.sala, as: 'rezervacijaSala' }]
+	}).then(function (termini) {
+		var idDodatogOsoblja = [];
+		var podaci = [];
+		for(var i in termini) {
+			var pocetakR = termini[i].rezervacijaTermin.pocetak.substring(0, 5);
+			var krajR = termini[i].rezervacijaTermin.kraj.substring(0, 5);
+			if (nalaziSeUIntervalu(trenutnoVrijeme, trenutnoVrijeme, pocetakR, krajR)) {
+				idDodatogOsoblja.push(termini[i].rezervacijaOsoblje.id);
+				var osobaImeIPrezime = termini[i].rezervacijaOsoblje.ime + " " + termini[i].rezervacijaOsoblje.prezime;
+				var osobaSala = termini[i].rezervacijaSala.naziv;
+				var objekat = {
+					osoba: osobaImeIPrezime,
+					sala: osobaSala
+				};
+				podaci.push(objekat);
+			}
+		}
+		db.osoblje.findAll({where: {
+		      id: {[Op.notIn]:idDodatogOsoblja}
+		}}).then(function (osoblje) {
+			for(var i in osoblje) {
+				var osobaImeIPrezime = osoblje[i].ime + " " + osoblje[i].prezime;
+				var objekat = {
+					osoba: osobaImeIPrezime,
+					sala: "u kancelariji"
+				};
+				podaci.push(objekat);
+			}
+			res.send(podaci);
+		});
     });
 });
 
 app.get('/sale', function (req, res) {
 	db.sala.findAll().then(function (sale) {
-		res.end(JSON.stringify(sale, null, 4));
+		res.send(sale);
     });
 });
 
@@ -174,7 +226,7 @@ app.post('/vanredna', function (req, res) {
 	let datumS = datum.split(".").join("/");
 
 	db.rezervacija.findAll({
-		include: [{ model: db.termin, as: 'rezervacijaTermin', where: {[Op.or]: [{redovni: false, datum: datum}, {redovni: true}]}},
+		include: [{ model: db.termin, as: 'rezervacijaTermin', where: {[Op.or]: [{redovni: false, datum: datum}, {redovni: true}]} },
 				  { model: db.sala, as: 'rezervacijaSala', where: {naziv: naziv}},
 				  { model: db.osoblje, as: 'rezervacijaOsoblje'}]
 	}).then(function (termini) {

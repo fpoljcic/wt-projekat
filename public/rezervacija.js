@@ -3,6 +3,8 @@ var trenutniMjesec = new Date().getMonth();
 window.onload = function() {
 	Kalendar.iscrtajKalendar(document.getElementById("kalendarRef"), trenutniMjesec);
 	Pozivi.ucitajSaServera();
+	Pozivi.ucitajOsoblje();
+	Pozivi.ucitajSale();
 }
 
 function sljedeciMjesec(kalendarRef) {
@@ -62,6 +64,8 @@ function rezervisi(element) {
 		return;
 	}
 	
+	var predavacID = document.getElementsByName("osoblje")[0].value;
+	
 	// Slobodna sala za dato vrijeme
 	if (confirm("Da li želite da rezervišete ovaj termin?")) {
 		if (periodicna) {
@@ -75,8 +79,22 @@ function rezervisi(element) {
 				return;
 			}
 			dan = element.cellIndex;
-			Pozivi.upisiPeriodicnu(dan, semestar, pocetak, kraj, naziv, "PredavacP", datum);
+			Pozivi.upisiPeriodicnu(dan, semestar, pocetak, kraj, naziv, predavacID, datum);
 		} else
-		Pozivi.upisiVanrednu(datum.split("/").join("."), pocetak, kraj, naziv, "PredavacV");
+		Pozivi.upisiVanrednu(datum.split("/").join("."), pocetak, kraj, naziv, predavacID);
+	}
+}
+
+function upisiOsoblje(osoblje) {
+	var osobljeSelect = document.getElementsByName("osoblje")[0];
+	for(var i in osoblje) {
+		osobljeSelect.add(new Option(osoblje[i].ime + " " + osoblje[i].prezime, osoblje[i].id));
+	}
+}
+
+function upisiSale(sale) {
+	var saleSelect = document.getElementsByName("sale")[0];
+	for(var i in sale) {
+		saleSelect.add(new Option(sale[i].naziv, sale[i].naziv));
 	}
 }

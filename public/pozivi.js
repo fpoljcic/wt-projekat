@@ -8,7 +8,9 @@ let Pozivi = (function() {
 				azurirajPrikaz(document.getElementById("kalendarRef"));
 			}
 		}
-		ajax.open("GET", "http://localhost:8080/ucitaj", true);
+		ajax.open("GET", "http://localhost:8080/rezervacije", true);
+		// Potrebno da bi sklonili XML Parsing error grešku na Firefox-u
+		ajax.overrideMimeType("text/html");
 		ajax.send();
 	}
 
@@ -19,6 +21,8 @@ let Pozivi = (function() {
 		}
 		ajax.open("POST", "http://localhost:8080/periodicna", true);
 		ajax.setRequestHeader("Content-Type", "application/json");
+		// Potrebno da bi sklonili XML Parsing error grešku na Firefox-u
+		ajax.overrideMimeType("text/html");
 		ajax.send(JSON.stringify({dan:Number(dan), semestar:semestar, pocetak:pocetak, kraj:kraj, naziv:naziv, predavac:predavac, datumS:datumS}));
 	}
 
@@ -29,6 +33,8 @@ let Pozivi = (function() {
 		}
 		ajax.open("POST", "http://localhost:8080/vanredna", true);
 		ajax.setRequestHeader("Content-Type", "application/json");
+		// Potrebno da bi sklonili XML Parsing error grešku na Firefox-u
+		ajax.overrideMimeType("text/html");
 		ajax.send(JSON.stringify({datum:datum, pocetak:pocetak, kraj:kraj, naziv:naziv, predavac:predavac}));
 	}
 
@@ -72,11 +78,41 @@ let Pozivi = (function() {
 		ajax.send();
 	}
 
+	function ucitajOsobljeImpl() {
+		var ajax = new XMLHttpRequest();
+		ajax.onreadystatechange = function () {
+			if (ajax.readyState == 4 && ajax.status == 200) {
+				var osoblje = JSON.parse(ajax.responseText);
+				upisiOsoblje(osoblje);
+			}
+		}
+		ajax.open("GET", "http://localhost:8080/osoblje", true);
+		// Potrebno da bi sklonili XML Parsing error grešku na Firefox-u
+		ajax.overrideMimeType("text/html");
+		ajax.send();
+	}
+
+	function ucitajSaleImpl() {
+		var ajax = new XMLHttpRequest();
+		ajax.onreadystatechange = function () {
+			if (ajax.readyState == 4 && ajax.status == 200) {
+				var sale = JSON.parse(ajax.responseText);
+				upisiSale(sale);
+			}
+		}
+		ajax.open("GET", "http://localhost:8080/sale", true);
+		// Potrebno da bi sklonili XML Parsing error grešku na Firefox-u
+		ajax.overrideMimeType("text/html");
+		ajax.send();
+	}
+
 	return {
 		ucitajSaServera: ucitajSaServeraImpl,
 		upisiPeriodicnu: upisiPeriodicnuImpl,
 		upisiVanrednu: upisiVanrednuImpl,
 		ucitajSlike: ucitajSlikeImpl,
-		postojiSlika: postojiSlikaImpl
+		postojiSlika: postojiSlikaImpl,
+		ucitajOsoblje: ucitajOsobljeImpl,
+		ucitajSale: ucitajSaleImpl
 	}
 }());

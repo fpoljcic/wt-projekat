@@ -15,35 +15,55 @@ db.termin = sequelize.import(__dirname+'/Termin.js');
 db.sala = sequelize.import(__dirname+'/Sala.js');
 
 // relacije
-// Veza 1-n jedna osoba moze imati vise rezervacija
+// Veze 1-n jedna osoba moze imati vise rezervacija
+// jedna sala moze imati vise rezervacija
 // sve osobe bi trebale imate getRezervacije i setRezervacije
 db.osoblje.hasMany(db.rezervacija, {
-  as:'rezervacijeOsobe',
+  as:'osobljeRezervacija',
   foreignKey: 'osoba',
-  sourceKey: 'id',
-  constraints: false
+  sourceKey: 'id'
 });
 
-// Veze 1-1
-db.termin.belongsTo(db.rezervacija, {
-  as: 'terminRezervacija',
-  foreignKey: 'id',
-  targetKey: 'termin',
-  constraints: false
+db.termin.hasOne(db.rezervacija, {
+	as:'terminRezervacija',
+	foreignKey: 'termin'
 });
 
-db.sala.belongsTo(db.rezervacija, {
+
+db.sala.hasMany(db.rezervacija, {
   as: 'salaRezervacija',
-  foreignKey: 'id',
-  targetKey: 'sala',
-  constraints: false
+  foreignKey: 'sala',
+  targetKey: 'id'
 });
 
-db.osoblje.belongsTo(db.sala, {
-  as: 'osobljeSala',
-  foreignKey: 'id',
-  targetKey: 'zaduzenaOsoba',
-  constraints: false
+
+db.osoblje.hasOne(db.sala, {
+	as:'osobljeSala',
+	foreignKey: 'zaduzenaOsoba'
+});
+
+db.rezervacija.belongsTo(db.osoblje, {
+	as:'rezervacijaOsoblje',
+	foreignKey: 'osoba'
+});
+
+db.rezervacija.belongsTo(db.termin, {
+  as: 'rezervacijaTermin',
+  foreignKey: 'termin',
+  targetKey: 'id'
+});
+
+
+db.rezervacija.belongsTo(db.sala, {
+	as: 'rezervacijaSala',
+	foreignKey: 'sala'
+});
+
+
+db.sala.belongsTo(db.osoblje, {
+  as: 'salaOsoblje',
+  foreignKey: 'zaduzenaOsoba',
+  targetKey: 'id'
 });
 
 // SET PASSWORD FOR root@localhost = PASSWORD('root');

@@ -2,7 +2,8 @@ const express = require('express');
 const fs = require('fs');
 const bodyParser = require('body-parser');
 const urlExists = require('url-exists');
-const db = require('./db.js')
+const db = require('./db.js');
+const { Op } = require("sequelize");
 const app = express();
 const port = 8080;
 
@@ -31,13 +32,49 @@ app.get('/rezervacija.html', function (req, res) {
 	res.sendFile(__dirname + "/rezervacija.html");
 });
 
-app.get('/ucitaj', function (req, res) {
-	res.sendFile(__dirname + "/zauzeca.json");
+app.get('/rezervacije', function (req, res) {
+	vratiSveRezervacije(res);
 });
 
+function vratiSveRezervacije(res) {
+	db.rezervacija.findAll({
+		include: [{ model: db.termin, as: 'rezervacijaTermin' },
+				  { model: db.osoblje, as: 'rezervacijaOsoblje' },
+				  { model: db.sala, as: 'rezervacijaSala' }]
+	}).then(function (termini) {
+		var podaci = {              
+		    periodicna: [], 
+		    vanredna: []
+		};
+		for(var i in termini) {
+			var rezervacija = {};
+			rezervacija.pocetak = termini[i].rezervacijaTermin.pocetak.substring(0, 5);
+			rezervacija.kraj = termini[i].rezervacijaTermin.kraj.substring(0, 5);;
+			rezervacija.naziv = termini[i].rezervacijaSala.naziv;
+			rezervacija.predavac = termini[i].rezervacijaOsoblje.ime + " " + termini[i].rezervacijaOsoblje.prezime + " (" + termini[i].rezervacijaOsoblje.uloga + ")";
+			if (termini[i].rezervacijaTermin.redovni) {
+				rezervacija.dan = termini[i].rezervacijaTermin.dan;
+				rezervacija.semestar = termini[i].rezervacijaTermin.semestar;
+				podaci.periodicna.push(rezervacija);
+			}
+			else {
+				rezervacija.datum = termini[i].rezervacijaTermin.datum;
+				podaci.vanredna.push(rezervacija);
+			}
+		}
+		res.end(JSON.stringify(podaci, null, 4));
+    });
+}
+
 app.get('/osoblje', function (req, res) {
-	db.osoblje.findAll({ raw: true }).then(function (osoblje) {
-		res.end(osoblje);
+	db.osoblje.findAll().then(function (osoblje) {
+		res.end(JSON.stringify(osoblje, null, 4));
+    });
+});
+
+app.get('/sale', function (req, res) {
+	db.sala.findAll().then(function (sale) {
+		res.end(JSON.stringify(sale, null, 4));
     });
 });
 
@@ -49,8 +86,8 @@ app.post('/periodicna', function (req, res) {
 	let pocetak = tijelo['pocetak'];
 	let kraj = tijelo['kraj'];
 	let naziv = tijelo['naziv'];
-	let predavac = tijelo['predavac'];
-	if (!perPodaciIspravni(dan, semestar, pocetak, kraj, naziv, predavac)) {
+	let osobaId = tijelo['predavac'];
+	if (!perPodaciIspravni(dan, semestar, pocetak, kraj, naziv, osobaId)) {
 		res.status(400).send("Primljeni podaci nisu ispravni!");
 		return;
 	}
@@ -58,24 +95,55 @@ app.post('/periodicna', function (req, res) {
 	if (datumS != undefined)
 		delete tijelo['datumS'];
 
-	fs.readFile('zauzeca.json', (err, data) => {
-		if (err) throw err;
-		let svaZauzeca = JSON.parse(data);
-		for (var i = 0; i < svaZauzeca.periodicna.length; i++) {
-			var zauzece = svaZauzeca.periodicna[i];
-			if (zauzece.dan === dan && zauzece.semestar === semestar && zauzece.naziv === naziv && nalaziSeUIntervalu(pocetak, kraj, zauzece.pocetak, zauzece.kraj)) {
+	db.rezervacija.findAll({
+		include: [{ model: db.termin, as: 'rezervacijaTermin', where: {redovni: true, dan: dan, semestar: semestar}},
+				  { model: db.sala, as: 'rezervacijaSala', where: {naziv: naziv}},
+				  { model: db.osoblje, as: 'rezervacijaOsoblje'}]
+	}).then(function (termini) {
+		for(var i in termini) {
+			var pocetakR = termini[i].rezervacijaTermin.pocetak.substring(0, 5);
+			var krajR = termini[i].rezervacijaTermin.kraj.substring(0, 5);
+			if (nalaziSeUIntervalu(pocetak, kraj, pocetakR, krajR)) {
+				var rezervisao = "\nRezervisao: " + termini[i].rezervacijaOsoblje.ime + " " + termini[i].rezervacijaOsoblje.prezime + " (" + termini[i].rezervacijaOsoblje.uloga + ")";
 				if (datumS != undefined)
-					res.status(409).send("Nije moguće rezervisati salu " + naziv + " za navedeni datum " + datumS + " i termin od " + pocetak + " do " + kraj + "!");
+					res.status(409).send("Nije moguće rezervisati salu " + naziv + " za navedeni datum " + datumS + " i termin od " + pocetak + " do " + kraj + "!" + rezervisao);
 				else {
 					let danIme = ["ponedjeljak", "utorak", "srijeda", "četvrtak", "petak", "subota", "nedjelja"];
 					datumS = danIme[dan];
-					res.status(409).send("Nije moguće rezervisati salu " + naziv + " za " + semestar + " semestar, na dan " + datumS + " i termin od " + pocetak + " do " + kraj + "!");
+					res.status(409).send("Nije moguće rezervisati salu " + naziv + " za " + semestar + " semestar, na dan " + datumS + " i termin od " + pocetak + " do " + kraj + "!" + rezervisao);
 				}
 				return;
 			}
 		}
-		upisiRezervaciju(tijelo, res, 'periodicna');
-	});
+		db.termin.create({
+	        redovni: true,
+	        dan: dan,
+	        semestar: semestar,
+	        pocetak: pocetak,
+	        kraj: kraj
+	    }).then(function (noviTermin) {
+	        if (noviTermin) {
+	        	var terminId = noviTermin.id;
+	        	db.sala.findOne({where: {naziv: naziv}}).then(function (sala) {
+	        		var salaId = sala.id;
+	        		db.rezervacija.create({
+	        			termin: terminId,
+	        			sala: salaId,
+	        			osoba: osobaId
+	        		}).then(function (novaRezervacija) {
+	        			if (novaRezervacija) {
+		        			console.log("Uspješno upisana periodična rezervacija.");
+							vratiSveRezervacije(res);
+						} else {
+				            res.status(400).send("Greška: Problem sa bazom");
+				        }
+	        		});
+	        	});
+	        } else {
+	            res.status(400).send("Greška: Problem sa bazom");
+	        }
+	    });
+    });
 });
 
 function perPodaciIspravni(dan, semestar, pocetak, kraj, naziv, predavac) {
@@ -98,39 +166,67 @@ app.post('/vanredna', function (req, res) {
 	let pocetak = tijelo['pocetak'];
 	let kraj = tijelo['kraj'];
 	let naziv = tijelo['naziv'];
-	let predavac = tijelo['predavac'];
-	if (!vanrPodaciIspravni(datum, pocetak, kraj, naziv, predavac)) {
+	let osobaId = tijelo['predavac'];
+	if (!vanrPodaciIspravni(datum, pocetak, kraj, naziv, osobaId)) {
 		res.status(400).send("Primljeni podaci nisu ispravni!");
 		return;
 	}
 	let datumS = datum.split(".").join("/");
 
-	fs.readFile('zauzeca.json', (err, data) => {
-		if (err) throw err;
-		let svaZauzeca = JSON.parse(data);
-		for (var i = 0; i < svaZauzeca.vanredna.length; i++) {
-			var zauzece = svaZauzeca.vanredna[i];
-			if (zauzece.datum === datum && zauzece.naziv === naziv && nalaziSeUIntervalu(pocetak, kraj, zauzece.pocetak, zauzece.kraj)) {
-				res.status(409).send("Nije moguće rezervisati salu " + naziv + " za navedeni datum " + datumS + " i termin od " + pocetak + " do " + kraj + "!");
+	db.rezervacija.findAll({
+		include: [{ model: db.termin, as: 'rezervacijaTermin', where: {[Op.or]: [{redovni: false, datum: datum}, {redovni: true}]}},
+				  { model: db.sala, as: 'rezervacijaSala', where: {naziv: naziv}},
+				  { model: db.osoblje, as: 'rezervacijaOsoblje'}]
+	}).then(function (termini) {
+		for(var i in termini) {
+			var redovni = termini[i].rezervacijaTermin.redovni;
+			var pocetakR = termini[i].rezervacijaTermin.pocetak.substring(0, 5);
+			var krajR = termini[i].rezervacijaTermin.kraj.substring(0, 5);
+			if (nalaziSeUIntervalu(pocetak, kraj, pocetakR, krajR)) {
+				if (redovni) {
+					let mjesec = vratiMjesecIzDatuma(datum);
+					let prviDan = vratiPrviDanMjeseca(new Date().getFullYear(), mjesec);
+					let dan = vratiDanIzDatuma(datum);
+					let danUSedmici = (prviDan + (dan % 7)) % 7;
+					var danP = termini[i].rezervacijaTermin.dan;
+					var semestarP = termini[i].rezervacijaTermin.semestar;
+					if (!(vratiNizMjeseciSemestra(semestarP).includes(mjesec) && danP == danUSedmici)) {
+						continue;
+					}
+				}
+				var rezervisao = "\nRezervisao: " + termini[i].rezervacijaOsoblje.ime + " " + termini[i].rezervacijaOsoblje.prezime + " (" + termini[i].rezervacijaOsoblje.uloga + ")";
+				res.status(409).send("Nije moguće rezervisati salu " + naziv + " za navedeni datum " + datumS + " i termin od " + pocetak + " do " + kraj + "!" + rezervisao);
 				return;
 			}
 		}
-
-		let mjesec = vratiMjesecIzDatuma(datum);
-		let prviDan = vratiPrviDanMjeseca(new Date().getFullYear(), mjesec);
-		let dan = vratiDanIzDatuma(datum);
-		let danUSedmici = (prviDan + (dan % 7)) % 7;
-
-		for (var i = 0; i < svaZauzeca.periodicna.length; i++) {
-			var zauzece = svaZauzeca.periodicna[i];
-			if (vratiNizMjeseciSemestra(zauzece.semestar).includes(mjesec) && zauzece.dan == danUSedmici && zauzece.naziv === naziv && nalaziSeUIntervalu(pocetak, kraj, zauzece.pocetak, zauzece.kraj)) {
-				res.status(409).send("Nije moguće rezervisati salu " + naziv + " za navedeni datum " + datumS + " i termin od " + pocetak + " do " + kraj + "!");
-				return;
-			}
-		}
-
-		upisiRezervaciju(tijelo, res, 'vanredna');
-	});
+		db.termin.create({
+	        redovni: false,
+	        datum: datum,
+	        pocetak: pocetak,
+	        kraj: kraj
+	    }).then(function (noviTermin) {
+	        if (noviTermin) {
+	        	var terminId = noviTermin.id;
+	        	db.sala.findOne({where: {naziv: naziv}}).then(function (sala) {
+	        		var salaId = sala.id;
+	        		db.rezervacija.create({
+	        			termin: terminId,
+	        			sala: salaId,
+	        			osoba: osobaId
+	        		}).then(function (novaRezervacija) {
+	        			if (novaRezervacija) {
+		        			console.log("Uspješno upisana vanredna rezervacija.");
+							vratiSveRezervacije(res);
+						} else {
+				            res.status(400).send("Greška: Problem sa bazom");
+				        }
+	        		});
+	        	});
+	        } else {
+	            res.status(400).send("Greška: Problem sa bazom");
+	        }
+	    });
+    });
 });
 
 function vanrPodaciIspravni(datum, pocetak, kraj, naziv, predavac) {
@@ -143,19 +239,6 @@ function vanrPodaciIspravni(datum, pocetak, kraj, naziv, predavac) {
 	if (!(rxPatern2.test(datum)))
 		return false;
 	return true;
-}
-
-function upisiRezervaciju(tijelo, res, tip) {
-	fs.readFile('zauzeca.json', function (err, data) {
-		var json = JSON.parse(data);
-		json[tip].push(tijelo);
-		fs.writeFile("zauzeca.json", JSON.stringify(json, null, 4), function(err) {
-			if(err)
-				return console.log(err);
-			console.log("Uspješno upisana " + tip + " rezervacija.");
-			res.send(json);
-		}); 
-	});
 }
 
 // Dobavljanje slika

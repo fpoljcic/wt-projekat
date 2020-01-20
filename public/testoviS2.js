@@ -137,7 +137,7 @@ describe('Kalendar', function() {
 			for (var i = 2; i < kalendar.rows.length; i++) {
 				for (var j = 0; j < kalendar.rows[i].cells.length; j++) {
 					if (kalendar.rows[i].cells[j].innerHTML != "" && kalendar.rows[i].cells[j].style.visibility == "visible")
-						assert.equal("slobodna", kalendar.rows[i].cells[j].className, "Sve ćelije trebaju biti obojene u zeleno");
+						assert.equal(kalendar.rows[i].cells[j].className, "slobodna", "Sve ćelije trebaju biti obojene u zeleno");
 				}
 			}
 		});
@@ -157,9 +157,9 @@ describe('Kalendar', function() {
 					if (kalendar.rows[i].cells[j].innerHTML == "" || kalendar.rows[i].cells[j].style.visibility != "visible")
 						continue;
 					if (i == 2 && j == 2 || i == 6 && j == 1 || i == 6 && j == 3)
-						assert.equal("zauzeta", kalendar.rows[i].cells[j].className, "Ćelije 1, 28 i 30 trebaju biti obojene u crvenu");
+						assert.equal(kalendar.rows[i].cells[j].className, "zauzeta", "Ćelije 1, 28 i 30 trebaju biti obojene u crvenu");
 					else
-						assert.equal("slobodna", kalendar.rows[i].cells[j].className, "Sve ćelije osim ćelija 1, 28 i 30 trebaju biti obojene u zelenu");
+						assert.equal(kalendar.rows[i].cells[j].className, "slobodna", "Sve ćelije osim ćelija 1, 28 i 30 trebaju biti obojene u zelenu");
 				}
 			}
 		});
@@ -178,9 +178,9 @@ describe('Kalendar', function() {
 					if (kalendar.rows[i].cells[j].innerHTML == "" || kalendar.rows[i].cells[j].style.visibility != "visible")
 						continue;
 					if (i == 2 && j == 6 || i == 3 && j == 6 || i == 4 && j == 6 || i == 5 && j == 6)
-						assert.equal("zauzeta", kalendar.rows[i].cells[j].className, "Ćelije 3, 10, 17 i 24 trebaju biti obojene u crvenu");
+						assert.equal(kalendar.rows[i].cells[j].className, "zauzeta", "Ćelije 3, 10, 17 i 24 trebaju biti obojene u crvenu");
 					else
-						assert.equal("slobodna", kalendar.rows[i].cells[j].className, "Sve ćelije osim ćelija 3, 10, 17 i 24 trebaju biti obojene u zelenu");
+						assert.equal(kalendar.rows[i].cells[j].className, "slobodna", "Sve ćelije osim ćelija 3, 10, 17 i 24 trebaju biti obojene u zelenu");
 				}
 			}
 		});
@@ -200,9 +200,9 @@ describe('Kalendar', function() {
 					if (kalendar.rows[i].cells[j].innerHTML == "" || kalendar.rows[i].cells[j].style.visibility != "visible")
 						continue;
 					if (i == 3 && j == 5)
-						assert.equal("zauzeta", kalendar.rows[i].cells[j].className, "Ćelija 7 treba biti obojena u crvenu");
+						assert.equal(kalendar.rows[i].cells[j].className, "zauzeta", "Ćelija 7 treba biti obojena u crvenu");
 					else
-						assert.equal("slobodna", kalendar.rows[i].cells[j].className, "Sve ćelije osim ćelije 7 trebaju biti obojene u zelenu");
+						assert.equal(kalendar.rows[i].cells[j].className, "slobodna", "Sve ćelije osim ćelije 7 trebaju biti obojene u zelenu");
 				}
 			}
 		});
@@ -222,7 +222,7 @@ describe('Kalendar', function() {
 			for (var i = 2; i < kalendar.rows.length; i++) {
 				for (var j = 0; j < kalendar.rows[i].cells.length; j++) {
 					if (kalendar.rows[i].cells[j].innerHTML != "" && kalendar.rows[i].cells[j].style.visibility == "visible")
-						assert.equal("zauzeta", kalendar.rows[i].cells[j].className, "Sve ćelije trebaju biti obojene u crvenu");
+						assert.equal(kalendar.rows[i].cells[j].className, "zauzeta", "Sve ćelije trebaju biti obojene u crvenu");
 				}
 			}
 		});
@@ -257,12 +257,12 @@ describe('Kalendar', function() {
 					if (kalendar.rows[i].cells[j].innerHTML == "" || kalendar.rows[i].cells[j].style.visibility != "visible")
 						continue;
 					if (i == obojeniX[0] && j == obojeniY[0]) {
-						assert.equal("zauzeta", kalendar.rows[i].cells[j].className, "2. uzastopni poziv metode obojiZauzeca ne treba izmjenit boju zauzeca (periodicne rezervacije)");
+						assert.equal(kalendar.rows[i].cells[j].className, "zauzeta", "2. uzastopni poziv metode obojiZauzeca ne treba izmjenit boju zauzeca (periodicne rezervacije)");
 						obojeniX.shift();
 						obojeniY.shift();
 					}
 					else
-						assert.equal("slobodna", kalendar.rows[i].cells[j].className, "2. uzastopni poziv metode obojiZauzeca ne treba izmjenit boju zauzeca (periodicne rezervacije)");
+						assert.equal(kalendar.rows[i].cells[j].className, "slobodna", "2. uzastopni poziv metode obojiZauzeca ne treba izmjenit boju zauzeca (periodicne rezervacije)");
 				}
 			}
 
@@ -285,12 +285,12 @@ describe('Kalendar', function() {
 					if (kalendar.rows[i].cells[j].innerHTML == "" || kalendar.rows[i].cells[j].style.visibility != "visible")
 						continue;
 					if (i == obojeniX[0] && j == obojeniY[0]) {
-						assert.equal("zauzeta", kalendar.rows[i].cells[j].className, "2. uzastopni poziv metode obojiZauzeca ne treba izmjenit boju zauzeca (vanredne rezervacije)");
+						assert.equal(kalendar.rows[i].cells[j].className, "zauzeta", "2. uzastopni poziv metode obojiZauzeca ne treba izmjenit boju zauzeca (vanredne rezervacije)");
 						obojeniX.shift();
 						obojeniY.shift();
 					}
 					else
-						assert.equal("slobodna", kalendar.rows[i].cells[j].className, "2. uzastopni poziv metode obojiZauzeca ne treba izmjenit boju zauzeca (vanredne rezervacije)");
+						assert.equal(kalendar.rows[i].cells[j].className, "slobodna", "2. uzastopni poziv metode obojiZauzeca ne treba izmjenit boju zauzeca (vanredne rezervacije)");
 				}
 			}
 		});
@@ -310,9 +310,9 @@ describe('Kalendar', function() {
 					if (kalendar.rows[i].cells[j].innerHTML == "" || kalendar.rows[i].cells[j].style.visibility != "visible")
 						continue;
 					if (i == 2 && j == 5 || i == 3 && j == 4 || i == 5 && j == 3 || i == 6 && j == 1)
-						assert.equal("zauzeta", kalendar.rows[i].cells[j].className, "Ćelije 1, 7, 20 i 25 trebaju biti obojene u crvenu");
+						assert.equal(kalendar.rows[i].cells[j].className, "zauzeta", "Ćelije 1, 7, 20 i 25 trebaju biti obojene u crvenu");
 					else
-						assert.equal("slobodna", kalendar.rows[i].cells[j].className, "Sve ćelije osim ćelija 1, 7, 20 i 25 trebaju biti obojene u zelenu");
+						assert.equal(kalendar.rows[i].cells[j].className, "slobodna", "Sve ćelije osim ćelija 1, 7, 20 i 25 trebaju biti obojene u zelenu");
 				}
 			}
 
@@ -329,9 +329,9 @@ describe('Kalendar', function() {
 					if (kalendar.rows[i].cells[j].innerHTML == "" || kalendar.rows[i].cells[j].style.visibility != "visible")
 						continue;
 					if (i == 4 && j == 1 || i == 4 && j == 4 || i == 6 && j == 2 || i == 6 && j == 3)
-						assert.equal("zauzeta", kalendar.rows[i].cells[j].className, "Ćelije 11, 14, 26 i 27 trebaju biti obojene u crvenu");
+						assert.equal(kalendar.rows[i].cells[j].className, "zauzeta", "Ćelije 11, 14, 26 i 27 trebaju biti obojene u crvenu");
 					else
-						assert.equal("slobodna", kalendar.rows[i].cells[j].className, "Sve ćelije osim ćelija 11, 14, 26 i 27 trebaju biti obojene u zelenu");
+						assert.equal(kalendar.rows[i].cells[j].className, "slobodna", "Sve ćelije osim ćelija 11, 14, 26 i 27 trebaju biti obojene u zelenu");
 				}
 			}
 		});
@@ -343,8 +343,8 @@ describe('Kalendar', function() {
 			Kalendar.ucitajPodatke(null, vanredna);
 			Kalendar.obojiZauzeca(kalendar, 10, "1-08", "10:00", "14:00");
 
-			assert.equal("zauzeta", kalendar.rows[3].cells[3].className, "Zauzeće 1 treba biti prikazano (boja crvena)");
-			assert.equal("slobodna", kalendar.rows[3].cells[4].className, "Zauzeće 2 ne treba biti prikazano (boja zelena)");
+			assert.equal(kalendar.rows[3].cells[3].className, "zauzeta", "Zauzeće 1 treba biti prikazano (boja crvena)");
+			assert.equal(kalendar.rows[3].cells[4].className, "slobodna", "Zauzeće 2 ne treba biti prikazano (boja zelena)");
 		});
 
 		it('Moj test 2: Testiranje filtriranja po sali, 5 zauzeća u različitim salama, filtrirat ćemo jednu', function() {
@@ -362,9 +362,9 @@ describe('Kalendar', function() {
 					if (kalendar.rows[i].cells[j].innerHTML == "" || kalendar.rows[i].cells[j].style.visibility != "visible")
 						continue;
 					if (j == 3)
-						assert.equal("zauzeta", kalendar.rows[i].cells[j].className, "Zauzeće četvrtkom u sali 1-09 treba biti prikazano (boja crvena)");
+						assert.equal(kalendar.rows[i].cells[j].className, "zauzeta", "Zauzeće četvrtkom u sali 1-09 treba biti prikazano (boja crvena)");
 					else
-						assert.equal("slobodna", kalendar.rows[i].cells[j].className, "Zauzeće u ostalim salama ne treba biti prikazano (boja crvena)");
+						assert.equal(kalendar.rows[i].cells[j].className, "slobodna", "Zauzeće u ostalim salama ne treba biti prikazano (boja crvena)");
 				}
 			}
 		});

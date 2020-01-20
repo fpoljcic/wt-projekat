@@ -19,6 +19,32 @@
 		mocha.checkLeaks();
 	</script>
 
+	<div class="sadrzaj">
+		<div class="polja">
+			<label>Osoblje:</label>
+			<select name="osoblje">
+			</select>
+			<label>Sala:</label>
+			<select onchange="azurirajPrikaz(document.getElementById('kalendarRef'));" name="sale">
+			</select>
+			<label>Periodična:</label>
+			<input type="checkbox" name="periodicna">
+			<label>Početak:</label>
+			<input onchange="azurirajPrikaz(document.getElementById('kalendarRef'));" type="time" name="pocetak">
+			<label>Kraj:</label>
+			<input onchange="azurirajPrikaz(document.getElementById('kalendarRef'));" type="time" name="kraj">
+		</div>
+		<div class="kalendar">
+			<table id="kalendarRef">				
+			</table>
+			<input type="button" onclick="prethodniMjesec(document.getElementById('kalendarRef'));" name="prethodni" value="Prethodni">
+			<input type="button" onclick="sljedeciMjesec(document.getElementById('kalendarRef'));" name="sljedeci" value="Sljedeći">
+		</div>
+	</div>
+
+	<script src="kalendar.js"></script>
+	<script src="pozivi.js"></script>
+	<script src="rezervacija.js"></script>
 	<script src="testoviS4.js"></script>
 	<script class="mocha-exec">
 		mocha.run();

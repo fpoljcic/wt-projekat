@@ -1,10 +1,10 @@
 var trenutniMjesec = new Date().getMonth();
 
 window.onload = function() {
-	Kalendar.iscrtajKalendar(document.getElementById("kalendarRef"), trenutniMjesec);
-	Pozivi.ucitajSaServera();
 	Pozivi.ucitajOsoblje();
 	Pozivi.ucitajSale();
+	Kalendar.iscrtajKalendar(document.getElementById("kalendarRef"), trenutniMjesec);
+	Pozivi.ucitajSaServera();
 }
 
 function sljedeciMjesec(kalendarRef) {

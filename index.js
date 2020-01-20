@@ -4,8 +4,12 @@ const bodyParser = require('body-parser');
 const urlExists = require('url-exists');
 const db = require('./db.js');
 const { Op } = require("sequelize");
+var cors = require('cors');
 const app = express();
 const port = 8080;
+
+// Neophodno radi mogucnosti slanja ajax zahtjeva za testove
+app.use(cors());
 
 app.use(express.static('public'));
 

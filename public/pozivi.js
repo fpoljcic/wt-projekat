@@ -109,6 +109,19 @@ let Pozivi = (function() {
 		console.log("Poslan ajax zahtjev za azuriranje sala");
 	}
 
+	function vratiOsobuZaRezImpl(datum, naziv, pocetak, kraj) {
+		var ajax = new XMLHttpRequest();
+		ajax.onreadystatechange = function () {
+			if (ajax.readyState == 4 && ajax.status == 200) {
+				var objekat = JSON.parse(ajax.responseText);
+				ispisiAlert(objekat.osoba, objekat.naziv, objekat.datum, objekat.pocetak, objekat.kraj);
+			}
+		}
+		ajax.open("POST", "http://localhost:8080/vratiOsobuZaRez", true);
+		ajax.setRequestHeader("Content-Type", "application/json");
+		ajax.send(JSON.stringify({datum:datum, naziv:naziv, pocetak:pocetak, kraj:kraj}));
+	}
+
 	return {
 		ucitajSaServera: ucitajSaServeraImpl,
 		upisiPeriodicnu: upisiPeriodicnuImpl,
@@ -117,6 +130,7 @@ let Pozivi = (function() {
 		postojiSlika: postojiSlikaImpl,
 		ucitajOsoblje: ucitajOsobljeImpl,
 		ucitajSale: ucitajSaleImpl,
-		ucitajSaleOsoblja: ucitajSaleOsobljaImpl
+		ucitajSaleOsoblja: ucitajSaleOsobljaImpl,
+		vratiOsobuZaRez: vratiOsobuZaRezImpl
 	}
 }());

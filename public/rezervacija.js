@@ -60,7 +60,7 @@ function rezervisi(element) {
 	var periodicna = document.getElementsByName("periodicna")[0].checked;
 
 	if (element.className != "slobodna") {
-		alert("Nije moguće rezervisati salu " + naziv + " za navedeni datum " + datum + " i termin od " + pocetak + " do " + kraj + "!");
+		Pozivi.vratiOsobuZaRez(datum.split("/").join("."), naziv, pocetak, kraj);
 		return;
 	}
 	
@@ -83,6 +83,11 @@ function rezervisi(element) {
 		} else
 		Pozivi.upisiVanrednu(datum.split("/").join("."), pocetak, kraj, naziv, predavacID);
 	}
+}
+
+function ispisiAlert(osoba, naziv, datum, pocetak, kraj) {
+	var rezervisao = "\nRezervisao: " + osoba.ime + " " + osoba.prezime + " (" + osoba.uloga + ")";
+	alert("Nije moguće rezervisati salu " + naziv + " za navedeni datum " + datum + " i termin od " + pocetak + " do " + kraj + "!" + rezervisao);
 }
 
 function upisiOsoblje(osoblje) {

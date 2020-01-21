@@ -150,9 +150,10 @@ app.post('/periodicna', function (req, res) {
 	let datumS = tijelo['datumS'];
 	if (datumS != undefined)
 		delete tijelo['datumS'];
-
+// {[Op.or]: [{redovni: false, datum: datum}, {redovni: true}]}
+// where: {redovni: true, dan: dan, semestar: semestar}
 	db.rezervacija.findAll({
-		include: [{ model: db.termin, as: 'rezervacijaTermin', where: {redovni: true, dan: dan, semestar: semestar}},
+		include: [{ model: db.termin, as: 'rezervacijaTermin', where: {[Op.or]: [{redovni: false}, {redovni: true, dan: dan, semestar: semestar}]} },
 				  { model: db.sala, as: 'rezervacijaSala', where: {naziv: naziv}},
 				  { model: db.osoblje, as: 'rezervacijaOsoblje'}]
 	}).then(function (termini) {
@@ -160,6 +161,18 @@ app.post('/periodicna', function (req, res) {
 			var pocetakR = termini[i].rezervacijaTermin.pocetak.substring(0, 5);
 			var krajR = termini[i].rezervacijaTermin.kraj.substring(0, 5);
 			if (nalaziSeUIntervalu(pocetak, kraj, pocetakR, krajR)) {
+				var redovni = termini[i].rezervacijaTermin.redovni;
+				if (!redovni) {
+					let datumPer = termini[i].rezervacijaTermin.datum;
+					let mjesec = vratiMjesecIzDatuma(datumPer);
+					if (!vratiNizMjeseciSemestra(semestar).includes(mjesec))
+						continue;
+					let prviDan = vratiPrviDanMjeseca(new Date().getFullYear(), mjesec);
+					let danD = vratiDanIzDatuma(datumPer);
+					let danUSedmici = (prviDan + (danD % 7)) % 7;
+					if (danUSedmici != dan)
+						continue;
+				}
 				var rezervisao = "\nRezervisao: " + termini[i].rezervacijaOsoblje.ime + " " + termini[i].rezervacijaOsoblje.prezime + " (" + termini[i].rezervacijaOsoblje.uloga + ")";
 				if (datumS != undefined)
 					res.status(409).send("Nije moguće rezervisati salu " + naziv + " za navedeni datum " + datumS + " i termin od " + pocetak + " do " + kraj + "!" + rezervisao);
@@ -296,6 +309,42 @@ function vanrPodaciIspravni(datum, pocetak, kraj, naziv, predavac) {
 		return false;
 	return true;
 }
+
+app.post('/vratiOsobuZaRez', function (req, res) {
+	let tijelo = req.body;
+	let datum = tijelo['datum'];
+	let naziv = tijelo['naziv'];
+	let pocetak = tijelo['pocetak'];
+	let kraj = tijelo['kraj'];
+	let mjesec = vratiMjesecIzDatuma(datum);
+	let prviDan = vratiPrviDanMjeseca(new Date().getFullYear(), mjesec);
+	let dan = vratiDanIzDatuma(datum);
+	let danUSedmici = (prviDan + (dan % 7)) % 7;
+	let semestar = "zimski"
+	if (vratiNizMjeseciSemestra("ljetni").includes(mjesec))
+		semestar = "ljetni";
+
+	db.rezervacija.findOne({
+		include: [{ model: db.termin, as: 'rezervacijaTermin', where: {[Op.or]: [{redovni: false, datum: datum}, {redovni: true, dan: danUSedmici, semestar: semestar}]} },
+				  { model: db.osoblje, as: 'rezervacijaOsoblje'}]
+	}).then(function (rezervacija) {
+		let ime = rezervacija.rezervacijaOsoblje.ime;
+		let prezime = rezervacija.rezervacijaOsoblje.prezime;
+		let uloga = rezervacija.rezervacijaOsoblje.uloga;
+		let objekat = {
+			osoba: {
+				ime: ime,
+				prezime: prezime,
+				uloga: uloga
+			},
+			naziv: naziv,
+			datum: datum,
+			pocetak: pocetak,
+			kraj: kraj
+		};
+		res.send(objekat);
+    });
+});
 
 // Dobavljanje slika
 app.get('/slike', function (req, res) {

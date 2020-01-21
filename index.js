@@ -368,6 +368,7 @@ app.post('/vratiOsobuZaRez', function (req, res) {
 					kraj: kraj
 				};
 				res.send(objekat);
+				return;
 			}
 		}
     });

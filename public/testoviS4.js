@@ -2,6 +2,8 @@ let assert = chai.assert;
 let expect = chai.expect;
 
 describe('Testovi serverskih funkcionalnosti', function() {
+	// Da bi sprijecili padanje testa ako su dugo izvrsava postavljamo timeout na 4s (default 2s)
+	this.timeout(4000);
 	describe('a) GET /osoblje', function() {
 		it('Slanje GET zahtjeva na /osoblje: očekivano je da su sadržane osobe iz postavke', (done) => {
 			var ajax = new XMLHttpRequest();

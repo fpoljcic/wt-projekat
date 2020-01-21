@@ -324,25 +324,32 @@ app.post('/vratiOsobuZaRez', function (req, res) {
 	if (vratiNizMjeseciSemestra("ljetni").includes(mjesec))
 		semestar = "ljetni";
 
-	db.rezervacija.findOne({
+	db.rezervacija.findAll({
 		include: [{ model: db.termin, as: 'rezervacijaTermin', where: {[Op.or]: [{redovni: false, datum: datum}, {redovni: true, dan: danUSedmici, semestar: semestar}]} },
+				  { model: db.sala, as: 'rezervacijaSala', where: {naziv: naziv}},
 				  { model: db.osoblje, as: 'rezervacijaOsoblje'}]
-	}).then(function (rezervacija) {
-		let ime = rezervacija.rezervacijaOsoblje.ime;
-		let prezime = rezervacija.rezervacijaOsoblje.prezime;
-		let uloga = rezervacija.rezervacijaOsoblje.uloga;
-		let objekat = {
-			osoba: {
-				ime: ime,
-				prezime: prezime,
-				uloga: uloga
-			},
-			naziv: naziv,
-			datum: datum,
-			pocetak: pocetak,
-			kraj: kraj
-		};
-		res.send(objekat);
+	}).then(function (rezervacije) {
+		for(var i in rezervacije) {
+			var pocetakR = rezervacije[i].rezervacijaTermin.pocetak.substring(0, 5);
+			var krajR = rezervacije[i].rezervacijaTermin.kraj.substring(0, 5);
+			if (nalaziSeUIntervalu(pocetak, kraj, pocetakR, krajR)) {
+				let ime = rezervacije[i].rezervacijaOsoblje.ime;
+				let prezime = rezervacije[i].rezervacijaOsoblje.prezime;
+				let uloga = rezervacije[i].rezervacijaOsoblje.uloga;
+				let objekat = {
+					osoba: {
+						ime: ime,
+						prezime: prezime,
+						uloga: uloga
+					},
+					naziv: naziv,
+					datum: datum,
+					pocetak: pocetak,
+					kraj: kraj
+				};
+				res.send(objekat);
+			}
+		}
     });
 });
 

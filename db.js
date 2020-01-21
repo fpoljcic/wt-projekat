@@ -61,8 +61,7 @@ db.sala.belongsTo(db.osoblje, {
 
 // SET PASSWORD FOR root@localhost = PASSWORD('root');
 
-// db.sequelize.sync();
-db.sequelize.sync({force:true}).then(function() {
+db.sequelize.sync().then(function() {
     inicializacija();
 });
 
@@ -89,8 +88,7 @@ function inicializacija() {
         ime: 'Test',
         prezime: 'Test',
         uloga: 'asistent'
-    }
-    ]).then(function () {
+    }], { ignoreDuplicates: true }).then(function () {
         db.sala.bulkCreate([
 		{
 	        id: 1,
@@ -101,8 +99,7 @@ function inicializacija() {
 	        id: 2,
 	        naziv: '1-15',
 	        zaduzenaOsoba: 2
-	    }
-	    ]).then(function () {
+	    }], { ignoreDuplicates: true }).then(function () {
 	        db.termin.bulkCreate([
 			{
 		        id: 1,
@@ -121,8 +118,7 @@ function inicializacija() {
 		        semestar: 'zimski',
 		        pocetak: '13:00',
 		        kraj: '14:00'
-		    }
-		    ]).then(function () {
+		    }], { ignoreDuplicates: true }).then(function () {
 		        db.rezervacija.bulkCreate([
 				{
 			        id: 1,
@@ -135,8 +131,7 @@ function inicializacija() {
 			        termin: 2,
 			        sala: 1,
 			        osoba: 3
-			    }
-			]).then(function () {
+			    }], { ignoreDuplicates: true }).then(function () {
 		    	console.log("Gotovo kreiranje tabela i ubacivanje pocetnih podataka!");
 		    });
 		    });

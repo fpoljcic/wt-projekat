@@ -15,7 +15,17 @@ let Pozivi = (function() {
 	function upisiPeriodicnuImpl(dan, semestar, pocetak, kraj, naziv, predavac, datumS) {
 		var ajax = new XMLHttpRequest();
 		ajax.onreadystatechange = function () {
-			obradiOdgovor(ajax);
+			if (ajax.readyState == 4) {
+				if (ajax.status == 428) {
+					var potvrda = ajax.responseText;
+					if (confirm(potvrda)) {
+						ajax.open("POST", "http://localhost:8080/periodicna", true);
+						ajax.setRequestHeader("Content-Type", "application/json");
+						ajax.send(JSON.stringify({dan:Number(dan), semestar:semestar, pocetak:pocetak, kraj:kraj, naziv:naziv, predavac:predavac, datumS:datumS, potvrda: true}));
+					}
+				} else
+					obradiOdgovor(ajax);
+			}
 		}
 		ajax.open("POST", "http://localhost:8080/periodicna", true);
 		ajax.setRequestHeader("Content-Type", "application/json");
@@ -25,7 +35,17 @@ let Pozivi = (function() {
 	function upisiVanrednuImpl(datum, pocetak, kraj, naziv, predavac) {
 		var ajax = new XMLHttpRequest();
 		ajax.onreadystatechange = function () {
-			obradiOdgovor(ajax);
+			if (ajax.readyState == 4) {
+				if (ajax.status == 428) {
+					var potvrda = ajax.responseText;
+					if (confirm(potvrda)) {
+						ajax.open("POST", "http://localhost:8080/vanredna", true);
+						ajax.setRequestHeader("Content-Type", "application/json");
+						ajax.send(JSON.stringify({datum:datum, pocetak:pocetak, kraj:kraj, naziv:naziv, predavac:predavac, potvrda: true}));
+					}
+				} else
+					obradiOdgovor(ajax);
+			}
 		}
 		ajax.open("POST", "http://localhost:8080/vanredna", true);
 		ajax.setRequestHeader("Content-Type", "application/json");
@@ -33,17 +53,20 @@ let Pozivi = (function() {
 	}
 
 	function obradiOdgovor(ajax) {
-		if (ajax.readyState == 4 && ajax.status == 200) {
-			var podaci = JSON.parse(ajax.responseText);
-			Kalendar.ucitajPodatke(podaci.periodicna, podaci.vanredna);
-			azurirajPrikaz(document.getElementById("kalendarRef"));
-		} else if (ajax.readyState == 4 && ajax.status == 409) {
-			Pozivi.ucitajSaServera();
-			var greska = ajax.responseText;
-			alert(greska);
-		} else if (ajax.readyState == 4 && ajax.status == 400) {
-			var greska = ajax.responseText;
-			alert(greska);
+		switch (ajax.status) {
+			case 200:
+				var podaci = JSON.parse(ajax.responseText);
+				Kalendar.ucitajPodatke(podaci.periodicna, podaci.vanredna);
+				azurirajPrikaz(document.getElementById("kalendarRef"));
+				break;
+			case 409:
+				Pozivi.ucitajSaServera();
+				var greska = ajax.responseText;
+				alert(greska);
+				break;
+			case 400:
+				var greska = ajax.responseText;
+				alert(greska);
 		}
 	}
 

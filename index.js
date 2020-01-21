@@ -150,12 +150,11 @@ app.post('/periodicna', function (req, res) {
 	let datumS = tijelo['datumS'];
 	if (datumS != undefined)
 		delete tijelo['datumS'];
-// {[Op.or]: [{redovni: false, datum: datum}, {redovni: true}]}
-// where: {redovni: true, dan: dan, semestar: semestar}
 	db.rezervacija.findAll({
 		include: [{ model: db.termin, as: 'rezervacijaTermin', where: {[Op.or]: [{redovni: false}, {redovni: true, dan: dan, semestar: semestar}]} },
-				  { model: db.sala, as: 'rezervacijaSala', where: {naziv: naziv}},
-				  { model: db.osoblje, as: 'rezervacijaOsoblje'}]
+				  { model: db.sala, as: 'rezervacijaSala'},
+				  { model: db.osoblje, as: 'rezervacijaOsoblje'}],
+		where: {[Op.or]: [{'$rezervacijaSala.naziv$': naziv}, {'$rezervacijaOsoblje.id$': osobaId}]}
 	}).then(function (termini) {
 		for(var i in termini) {
 			var pocetakR = termini[i].rezervacijaTermin.pocetak.substring(0, 5);
@@ -172,6 +171,19 @@ app.post('/periodicna', function (req, res) {
 					let danUSedmici = (prviDan + (danD % 7)) % 7;
 					if (danUSedmici != dan)
 						continue;
+				}
+				var nazivSale = termini[i].rezervacijaSala.naziv;
+				if (nazivSale != naziv) {
+					if (tijelo['potvrda'] != undefined)
+						continue;
+					if (datumS != undefined)
+						res.status(428).send("Da li ste sigurni da želite rezervisati na " + datumS + "?\nVeć imate rezervaciju u sali " + nazivSale + " u ovo vrijeme.");
+					else {
+						let danIme = ["ponedjeljak", "utorak", "srijeda", "četvrtak", "petak", "subota", "nedjelja"];
+						datumS = danIme[dan];
+						res.status(428).send("Da li ste sigurni da želite rezervisati za " + semestar + " semestar, na dan " + datumS + "?\nVeć imate rezervaciju u sali " + nazivSale + " u ovo vrijeme.");
+					}
+					return;
 				}
 				var rezervisao = "\nRezervisao: " + termini[i].rezervacijaOsoblje.ime + " " + termini[i].rezervacijaOsoblje.prezime + " (" + termini[i].rezervacijaOsoblje.uloga + ")";
 				if (datumS != undefined)
@@ -244,14 +256,15 @@ app.post('/vanredna', function (req, res) {
 
 	db.rezervacija.findAll({
 		include: [{ model: db.termin, as: 'rezervacijaTermin', where: {[Op.or]: [{redovni: false, datum: datum}, {redovni: true}]} },
-				  { model: db.sala, as: 'rezervacijaSala', where: {naziv: naziv}},
-				  { model: db.osoblje, as: 'rezervacijaOsoblje'}]
+				  { model: db.sala, as: 'rezervacijaSala'},
+				  { model: db.osoblje, as: 'rezervacijaOsoblje'}],
+		where: {[Op.or]: [{'$rezervacijaSala.naziv$': naziv}, {'$rezervacijaOsoblje.id$': osobaId}]}
 	}).then(function (termini) {
 		for(var i in termini) {
-			var redovni = termini[i].rezervacijaTermin.redovni;
 			var pocetakR = termini[i].rezervacijaTermin.pocetak.substring(0, 5);
 			var krajR = termini[i].rezervacijaTermin.kraj.substring(0, 5);
 			if (nalaziSeUIntervalu(pocetak, kraj, pocetakR, krajR)) {
+				var redovni = termini[i].rezervacijaTermin.redovni;
 				if (redovni) {
 					let mjesec = vratiMjesecIzDatuma(datum);
 					let prviDan = vratiPrviDanMjeseca(new Date().getFullYear(), mjesec);
@@ -262,6 +275,13 @@ app.post('/vanredna', function (req, res) {
 					if (!(vratiNizMjeseciSemestra(semestarP).includes(mjesec) && danP == danUSedmici)) {
 						continue;
 					}
+				}
+				var nazivSale = termini[i].rezervacijaSala.naziv;
+				if (nazivSale != naziv) {
+					if (tijelo['potvrda'] != undefined)
+						continue;
+					res.status(428).send("Da li ste sigurni da želite rezervisati na " + datumS + "?\nVeć imate rezervaciju u sali " + nazivSale + " u ovo vrijeme.");
+					return;
 				}
 				var rezervisao = "\nRezervisao: " + termini[i].rezervacijaOsoblje.ime + " " + termini[i].rezervacijaOsoblje.prezime + " (" + termini[i].rezervacijaOsoblje.uloga + ")";
 				res.status(409).send("Nije moguće rezervisati salu " + naziv + " za navedeni datum " + datumS + " i termin od " + pocetak + " do " + kraj + "!" + rezervisao);

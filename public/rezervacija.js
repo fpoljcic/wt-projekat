@@ -60,6 +60,8 @@ function rezervisi(element) {
 	var periodicna = document.getElementsByName("periodicna")[0].checked;
 
 	if (element.className != "slobodna") {
+		// ako nije trebalo slati ajax poziv kada je celija crvena moze se ovdje samo sljedeci alert ispisat
+		// alert("Nije moguće rezervisati salu " + naziv + " za navedeni datum " + datum + " i termin od " + pocetak + " do " + kraj + "!");
 		Pozivi.vratiOsobuZaRez(datum.split("/").join("."), naziv, pocetak, kraj);
 		return;
 	}

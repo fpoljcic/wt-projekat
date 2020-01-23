@@ -3,8 +3,8 @@ const fs = require('fs');
 const bodyParser = require('body-parser');
 const urlExists = require('url-exists');
 const db = require('./db.js');
-const { Op } = require("sequelize");
-var cors = require('cors');
+const { Op } = require('sequelize');
+const cors = require('cors');
 const app = express();
 const port = 8080;
 

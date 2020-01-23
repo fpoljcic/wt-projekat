@@ -8,7 +8,7 @@ const db = {};
 db.Sequelize = Sequelize;  
 db.sequelize = sequelize;
 
-//import modela
+// import modela
 db.osoblje = sequelize.import(__dirname+'/Osoblje.js');
 db.rezervacija = sequelize.import(__dirname+'/Rezervacija.js');
 db.termin = sequelize.import(__dirname+'/Termin.js');
@@ -68,8 +68,6 @@ db.sequelize.sync().then(function() {
 module.exports = db;
 
 function inicializacija() {
-	let osoblje;
-
 	db.osoblje.bulkCreate([
 	{
         id: 1,
@@ -132,7 +130,7 @@ function inicializacija() {
 			        sala: 1,
 			        osoba: 3
 			    }], { ignoreDuplicates: true }).then(function () {
-		    	console.log("Gotovo kreiranje tabela i ubacivanje pocetnih podataka!");
+		    	console.log("Gotovo kreiranje tabela i ubacivanje početnih podataka!");
 		    });
 		    });
 	    });

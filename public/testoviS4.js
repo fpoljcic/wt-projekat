@@ -1,6 +1,8 @@
 let assert = chai.assert;
 let expect = chai.expect;
 
+// Prije pokretanja testova pokrenuti server (node index.js)
+
 describe('Testovi serverskih funkcionalnosti', function() {
 	// Da bi sprijecili padanje testa ako su dugo izvrsava postavljamo timeout na 4s (default 2s)
 	this.timeout(4000);
@@ -108,12 +110,7 @@ describe('Testovi serverskih funkcionalnosti', function() {
 					document.getElementsByName("sale")[0].dispatchEvent(new Event("change"));
 
 					for (var i = 2; i < kalendar.rows.length; i++) {
-						for (var j = 0; j < kalendar.rows[i].cells.length; j++) {
-							if (kalendar.rows[i].cells[j].innerHTML == "" || kalendar.rows[i].cells[j].style.visibility != "visible")
-								continue;
-							if (j == 1)
-								assert.equal(kalendar.rows[i].cells[j].className, "zauzeta", "Zauzeće utorkom u sali 1-11 treba biti prikazano (boja crvena)");
-						}
+						assert.equal(kalendar.rows[i].cells[1].className, "zauzeta", "Zauzeće utorkom u sali 1-11 treba biti prikazano (boja crvena)");
 					}
 					done();
 				}

@@ -1,0 +1,4 @@
+Potrebno je ukloniti vlastite tabele iz baze prije testiranja.
+Za ispravno prikazivanje testova (zad 4) potrebno je:
+1) Pokrenuti server (node index.js)
+2) Otvoriti public/testoviS4.html

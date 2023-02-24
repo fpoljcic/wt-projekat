@@ -18,7 +18,7 @@
     "express": "^4.17.1",
     "fs": "0.0.1-security",
     "mysql2": "^2.1.0",
-    "sequelize": "^5.21.3",
+    "sequelize": "^6.29.0",
     "url-exists": "^1.0.3"
   }
 }
